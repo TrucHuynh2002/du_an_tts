@@ -27,5 +27,9 @@ Route::resource('congviec', CongviecController::class);
 Route::resource('chucvu', ChucvuController::class);
 Route::resource('congty', CongtyController::class);
 Route::resource('thuctapsinh', ThuctapsinhController::class);
+<<<<<<< HEAD
 //thay đổi 123
 //andrei stony
+=======
+
+>>>>>>> 024d65982c2e2987b5250f122b0b29a5d78ecbe5
