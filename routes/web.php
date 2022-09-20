@@ -29,5 +29,5 @@ Route::resource('congty', CongtyController::class);
 Route::resource('thuctapsinh', ThuctapsinhController::class);
 
 //thay đổi 123
-//andrei stony
+//andrei stony1zxcx
 
