@@ -28,9 +28,9 @@ Route::resource('chucvu', ChucvuController::class);
 Route::resource('congty', CongtyController::class);
 Route::resource('thuctapsinh', ThuctapsinhController::class);
 
-<<<<<<< HEAD
 //thay đổi 123
 //andrei stony thay đổi
 
-=======
->>>>>>> 47792e1382f4d3df1346b60c1c87622a649fff6e
+
+
+require __DIR__.'/auth.php';
