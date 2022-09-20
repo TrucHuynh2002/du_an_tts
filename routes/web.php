@@ -27,4 +27,8 @@ Route::resource('congviec', CongviecController::class);
 Route::resource('chucvu', ChucvuController::class);
 Route::resource('congty', CongtyController::class);
 Route::resource('thuctapsinh', ThuctapsinhController::class);
+<<<<<<< HEAD
 // thay doi 3
+=======
+//thay đổi 123133131313
+>>>>>>> 4d4e5e8b44daad3a8cb1093d3622e4f4cd1fe1bf
