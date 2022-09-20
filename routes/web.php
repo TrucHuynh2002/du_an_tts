@@ -27,3 +27,4 @@ Route::resource('congviec', CongviecController::class);
 Route::resource('chucvu', ChucvuController::class);
 Route::resource('congty', CongtyController::class);
 Route::resource('thuctapsinh', ThuctapsinhController::class);
+// hello
