@@ -26,6 +26,11 @@ Route::resource('nhom', NhomController::class);
 Route::resource('congviec', CongviecController::class);
 Route::resource('chucvu', ChucvuController::class);
 Route::resource('congty', CongtyController::class);
+// Route::post('/congty/create', [CongtyController::class, 'store']);
+// Route::post('/congty/{id}', [CongtyController::class, 'delete'])->name('deleteCongTy');
+// Route::get('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc'])->name('capnhatdanhmuc');
+// Route::post('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc_'])->name('capnhatdanhmuc');
 Route::resource('thuctapsinh', ThuctapsinhController::class);
+// thuctapsinh.index
 
 require __DIR__.'/auth.php';
