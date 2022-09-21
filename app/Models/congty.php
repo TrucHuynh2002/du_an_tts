@@ -11,8 +11,8 @@ class congty extends Model
     protected $primaryKey = 'id_congty';
     public $timestamps = false;
     protected $fillable = [
-    'ten_congty', 
-    'dia_chi',  
+    'ten_congty',
+    'dia_chi',
     'img'
     ];
 

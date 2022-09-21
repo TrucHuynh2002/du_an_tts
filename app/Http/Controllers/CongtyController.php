@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StudentRequest;
 use App\Models\congty;
 use App\Http\Requests\kernel;
 
@@ -37,15 +38,23 @@ class CongtyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
         $t = new congty;
         $t->ten_congty = $request->ten_congty;
         $t->dia_chi = $request->dia_chi;
-        // $t->$img = $request->input('img');
-        $t->img = "img.png";
+        // $t->img = $request->file('img');
+        $get_image = $request->file('img');
+        if ($get_image) {
+                $get_name_image = $get_image->getClientOriginalName();
+                $path = 'upload/';
+                $name_image  = current(explode('.',$get_name_image));
+                $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension();
+                $get_image->move($path,$new_image);
+                $t->img = $new_image;
+        }
         $t->save();
-        return redirect()->back();
+        return redirect(route('congty.index'));
         // $title = "Danh sách công ty";
         // $data = congty::all();
         // return view('congty.list', compact('title'),['data'=>$data]);
@@ -69,10 +78,11 @@ class CongtyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_congty)
     {
         $title = "Cập nhật công ty";
-        return view('congty.edit', compact('title'));
+        $t= congty::find($id_congty);
+        return view('congty.edit',compact('t','title'));
     }
 
     /**
@@ -82,9 +92,23 @@ class CongtyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_congty)
     {
-        //
+        $t= congty::find($id_congty);
+        $t->ten_congty = $request->ten_congty;
+        $t->dia_chi = $request->dia_chi;
+        // $t->img = $request->file('img');
+        $get_image = $request->file('img');
+        if ($get_image) {
+                $get_name_image = $get_image->getClientOriginalName();
+                $path = 'upload/';
+                $name_image  = current(explode('.',$get_name_image));
+                $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension();
+                $get_image->move($path,$new_image);
+                $t->img = $new_image;
+        }
+        $t->save();
+        return redirect(route('congty.index'));
     }
 
     /**

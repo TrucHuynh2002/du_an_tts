@@ -14,6 +14,7 @@
 
     @if ($errors->any())
         <div class="alert alert-danger">Dữ liệu không hợp lệ. Vui lòng kiểm tra lại !</div>
+        {{-- {{dd($errors->any)}} --}}
     @endif
 
     <!-- Nội dung -->
@@ -21,14 +22,14 @@
         @csrf
         <div class="form-group">
             <label for="ten_congty">Tên công ty</label>
-            <input class="form-control" type="text" id="ten_congty" name="ten_congty">
+            <input class="form-control" type="text" id="ten_congty" name="ten_congty" value="{{old('ten_congty')}}">
             @error('ten_congty')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="dia_chi">Địa chỉ</label>
-            <input class="form-control" type="text" id="dia_chi" name="dia_chi">
+            <input class="form-control" type="text" id="dia_chi" name="dia_chi" value="{{old('dia_chi')}}">
             @error('dia_chi')
                 <span style="color:red">{{$message}}</span>
             @enderror
@@ -36,6 +37,7 @@
         <div class="form-group">
             <label for="img">Hình ảnh</label>
             <input class="form-control" type="file" id="img" name="img">
+            
             @error('img')
                 <span style="color:red">{{$message}}</span>
             @enderror

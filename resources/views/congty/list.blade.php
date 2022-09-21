@@ -30,9 +30,9 @@
                   <td>{{$t->id_congty}}</td>
                   <td>{{$t->ten_congty}}</td>
                   <td>{{$t->dia_chi}}</td>
-                  <td>{{$t->img}}</td>
+                  <td><img src="upload/{{$t->img}}" width="80px" height="80px"></td>
                   <td>
-                    <a href="{{route('congty.show',['congty'=>$t->id_congty])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    <a href="{{route('congty.edit',['congty'=>$t->id_congty])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>
                   <td>
                     <form action="{{route('congty.destroy',['congty' => $t->id_congty])}}" method="post">
