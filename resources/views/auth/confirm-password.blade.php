@@ -1,36 +1,22 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layout.layout_acount')
+@section('title', 'Xác nhận mật khẩu')
+@section('main_acount')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-        </div>
+   
+    
+    <form method="POST" action="{{ route('password.confirm') }}">
+        @csrf
+        <h1>Confirm password</h1>
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.confirm') }}">
-            @csrf
+        <div class="form-group">
+            <label for="pwd">Password</label>
+            <input class="form-control" placeholder="Password" id="pwd" type="password" name="password"
+            required autocomplete="current-password">
+        </div>
 
-            <!-- Password -->
-            <div>
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <div class="flex justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Confirm') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        <button type="submit" value="submit" class="form-submit">{{ __('Confirm') }}</button>
+    </form>
+@endsection
