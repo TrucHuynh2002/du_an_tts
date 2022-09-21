@@ -45,10 +45,10 @@ class CongtyController extends Controller
         // $t->$img = $request->input('img');
         $t->img = "img.png";
         $t->save();
-        // return ridirect()->back();
-        $title = "Danh sách công ty";
-        $data = congty::all();
-        return view('congty.list', compact('title'),['data'=>$data]);
+        return redirect()->back();
+        // $title = "Danh sách công ty";
+        // $data = congty::all();
+        // return view('congty.list', compact('title'),['data'=>$data]);
     }
 
     /**
@@ -96,8 +96,8 @@ class CongtyController extends Controller
     public function destroy($id_congty)
     {
         $congty= congty::find($id_congty);
-        // $congty->delete();
-        return redirect('/');
+        $congty->delete();
+        return redirect()->back();
         // return redirect(route('congty.index'));
     }
         
