@@ -11,6 +11,7 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{asset('css/demo.css')}}">
+	
 </head>
 <body>
 	<div class="wrapper">
@@ -18,7 +19,7 @@
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="blue">				
 				<a href="/" class="logo">
-					<img src="/img/logo.png" alt="logo" class="logo">
+					<img style="width: 100%; height:80px; margin-top: 5px;" src="/img/logo.PNG" alt="logo" class="logo">
 				</a>
 			</div>
 			<!-- End Logo Header -->

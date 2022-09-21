@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\congty;
-use App\Http\Requests\kernel;
 
 class CongtyController extends Controller
 {
@@ -16,8 +14,7 @@ class CongtyController extends Controller
     public function index()
     {
         $title = "Danh sách công ty";
-        $data = congty::all();
-        return view('congty.list', compact('title'),['data'=>$data]);
+        return view('congty.list', compact('title'));
     }
 
     /**
@@ -25,7 +22,7 @@ class CongtyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(request $request)
+    public function create()
     {
         $title = "Thêm công ty";
         return view('congty.add', compact('title'));
@@ -39,16 +36,7 @@ class CongtyController extends Controller
      */
     public function store(Request $request)
     {
-        $t = new congty;
-        $t->ten_congty = $request->ten_congty;
-        $t->dia_chi = $request->dia_chi;
-        // $t->$img = $request->input('img');
-        $t->img = "img.png";
-        $t->save();
-        return redirect()->back();
-        // $title = "Danh sách công ty";
-        // $data = congty::all();
-        // return view('congty.list', compact('title'),['data'=>$data]);
+        //
     }
 
     /**
@@ -71,8 +59,7 @@ class CongtyController extends Controller
      */
     public function edit($id)
     {
-        $title = "Cập nhật công ty";
-        return view('congty.edit', compact('title'));
+        //
     }
 
     /**
@@ -93,13 +80,8 @@ class CongtyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_congty)
+    public function destroy($id)
     {
-        $congty= congty::find($id_congty);
-        $congty->delete();
-        return redirect()->back();
-        // return redirect(route('congty.index'));
+        //
     }
-        
-    
 }
