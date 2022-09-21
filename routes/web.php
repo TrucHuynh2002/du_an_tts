@@ -33,9 +33,4 @@ Route::resource('congty', CongtyController::class);
 Route::resource('thuctapsinh', ThuctapsinhController::class);
 // thuctapsinh.index
 
-//thay đổi 123
-//andrei stony thay đổi
-
-
-
 require __DIR__.'/auth.php';
