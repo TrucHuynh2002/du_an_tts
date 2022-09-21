@@ -24,20 +24,26 @@
                 <th></th>
               </tr>
             </thead>
+            @foreach($data as $t)
             <tbody>                      
                 <tr>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
+                  <td>{{$t->id_congty}}</td>
+                  <td>{{$t->ten_congty}}</td>
+                  <td>{{$t->dia_chi}}</td>
+                  <td>{{$t->img}}</td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    <a href="{{route('congty.show',['congty'=>$t->id_congty])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
-                  </td>
+                    <form action="{{route('congty.destroy',['congty' => $t->id_congty])}}" method="post">
+                      @method('DELETE')
+                      @csrf
+                      <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
+                    </form>
+                  </td> 
                 </tr>                          
             </tbody>
+            @endforeach
         </table>
     </div>      
 @endsection

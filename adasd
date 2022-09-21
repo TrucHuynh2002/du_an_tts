@@ -1,0 +1,142 @@
+[33mcommit d5ef0de90950ba7bf8dfce2cb87eaf479a849c7e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: trienpq123 <anhtrienpq123@gmail.com>
+Date:   Wed Sep 21 10:22:42 2022 +0700
+
+    Vừa tạo xong request tts
+
+[33mcommit ea921a1966f4b7475f71d5769e090a5fdeae8d05[m
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 14:58:39 2022 +0700
+
+    dn
+
+[33mcommit ae20299893d884fb182441741f09328e22c0f1f7[m
+Merge: 52d1586 47792e1
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 14:10:03 2022 +0700
+
+    sdaad
+
+[33mcommit 52d1586d5b4da51ccb59e6bfa26ce88c271c6a2f[m
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 14:07:49 2022 +0700
+
+    fix .env
+
+[33mcommit e335819399f3b3da5fa53afe14fed226aff10ed0[m
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 14:04:17 2022 +0700
+
+    Push lan 2
+
+[33mcommit 47792e1382f4d3df1346b60c1c87622a649fff6e[m
+Author: VanVu2002 <ngovanvu2002@gmail.com>
+Date:   Tue Sep 20 14:00:58 2022 +0700
+
+    132
+
+[33mcommit af3a7f33257936f8ec6aa8597b57efb016dc081b[m
+Merge: dfc1dd7 94ce93d
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 13:59:45 2022 +0700
+
+    chay duoc
+
+[33mcommit dfc1dd7ffa9064f5bbb451b862f42a4d426f3798[m
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 13:59:07 2022 +0700
+
+    chay duoc
+
+[33mcommit 94ce93de6b57e344919bf12472c49edfc7b6c2d6[m
+Author: VanVu2002 <ngovanvu2002@gmail.com>
+Date:   Tue Sep 20 13:51:47 2022 +0700
+
+    123
+
+[33mcommit 65a593ab2f0fb00791537a39531f9fef7688bbe5[m
+Merge: 0d779cf 6e1a58d
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 13:46:29 2022 +0700
+
+    abc
+
+[33mcommit 0d779cfd2822d4e85afe216c1ecb976322db2d12[m
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 13:45:22 2022 +0700
+
+    abc
+
+[33mcommit 6e1a58d2cd05074b083cff76b8ba640c053d78fa[m
+Author: VanVu2002 <ngovanvu2002@gmail.com>
+Date:   Tue Sep 20 13:44:58 2022 +0700
+
+    123
+
+[33mcommit ab354bed12d4de15de50d1048062126c76fe707c[m
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 13:41:30 2022 +0700
+
+    abc
+
+[33mcommit c24a72a73700a77e364e5158704befa842946256[m
+Merge: 96077ef 024d659
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 13:40:42 2022 +0700
+
+    Merge branch 'master' of https://github.com/TrucHuynh2002/du_an_tts
+
+[33mcommit 96077ef8f5bdd609c7167e79f0328a341ce643d5[m
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 13:37:52 2022 +0700
+
+    andreistony
+
+[33mcommit 024d65982c2e2987b5250f122b0b29a5d78ecbe5[m
+Author: TrucHuynh2002 <nguyentruchuynh@nl@gmail.com>
+Date:   Tue Sep 20 13:36:41 2022 +0700
+
+    truchuynh
+
+[33mcommit d5cf61f6133f2f462db15c2df6eaf5dc715f7ac9[m
+Merge: 8f11492 4d4e5e8
+Author: TrucHuynh2002 <nguyentruchuynh@nl@gmail.com>
+Date:   Tue Sep 20 13:35:07 2022 +0700
+
+    huynh123
+
+[33mcommit 8f114927f4edb422b16da81cf3e2cfa539b05425[m
+Author: TrucHuynh2002 <nguyentruchuynh@nl@gmail.com>
+Date:   Tue Sep 20 13:33:57 2022 +0700
+
+    huynh
+
+[33mcommit 4d4e5e8b44daad3a8cb1093d3622e4f4cd1fe1bf[m
+Author: TrucHuynh2002 <nguyentruchuynh@nl@gmail.com>
+Date:   Tue Sep 20 13:27:29 2022 +0700
+
+    thay doi 2
+
+[33mcommit cd86fcb773b8a48ced2fc0ae4434dece94b16613[m
+Author: VanVu2002 <ngovanvu2002@gmail.com>
+Date:   Tue Sep 20 13:24:17 2022 +0700
+
+    thay đổi
+
+[33mcommit ffe48b1404a5f956fe5b4a1ec899a7dd2ab40a1e[m
+Author: TrucHuynh2002 <nguyentruchuynh@nl@gmail.com>
+Date:   Tue Sep 20 13:22:18 2022 +0700
+
+    thay doi web
+
+[33mcommit 52b90914865fc22ea74db4a712808c340e001825[m
+Author: andreistony <andreistony17@gmail.com>
+Date:   Tue Sep 20 13:17:41 2022 +0700
+
+    thay doi csdl
+
+[33mcommit ca124ea6a954ee0a246391519db458d86cbe6106[m
+Author: TrucHuynh2002 <nguyentruchuynh@nl@gmail.com>
+Date:   Tue Sep 20 13:10:51 2022 +0700
+
+    du an tts
