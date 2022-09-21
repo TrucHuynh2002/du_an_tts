@@ -7,7 +7,7 @@
 
     {{-- kiểm lỗi --}}
     @if(Session::has('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success text-success">
         {{Session::get('success')}}
     </div>
     @endif

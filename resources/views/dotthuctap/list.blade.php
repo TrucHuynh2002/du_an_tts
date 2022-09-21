@@ -9,7 +9,7 @@
     <div class="row">
       {{-- kiểm lỗi --}}
       @if(Session::has('success'))
-      <div class="alert alert-success">
+      <div class="alert alert-success text-success">
           {{Session::get('success')}}
       </div>
       @endif
@@ -25,21 +25,27 @@
                 <th></th>
               </tr>
             </thead>
+            @foreach($data as $t)
             <tbody>                      
                 <tr>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>5</td>
+                  <td>{{$t->id_dot}}</td>
+                  <td>{{$t->ten_dot}}</td>
+                  <td>{{$t->updated_at}}</td>
+                  <td>{{$t->created_at}}</td>
+                  <td>{{$t->id_congty}}</td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    <a href="{{route('dotthuctap.edit',['dotthuctap'=>$t->id_dot])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
+                    <form action="{{route('dotthuctap.destroy',['dotthuctap' => $t->id_dot])}}" method="post">
+                      @method('DELETE')
+                      @csrf
+                      <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
+                    </form>
                   </td>
                 </tr>                          
             </tbody>
+            @endforeach
         </table>
     </div>      
 @endsection

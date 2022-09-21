@@ -107,7 +107,7 @@ class CongtyController extends Controller
                 $t->img = $new_image;
         }
         $t->save();
-        return redirect(route('congty.index'));
+        return redirect(route('congty.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**
@@ -120,7 +120,7 @@ class CongtyController extends Controller
     {
         $congty= congty::find($id_congty);
         $congty->delete();
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Xóa thành công !']);
         // return redirect(route('congty.index'));
     }
         
