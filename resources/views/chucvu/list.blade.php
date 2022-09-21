@@ -22,18 +22,24 @@
                 <th></th>
               </tr>
             </thead>
+            @foreach($data as $t)
             <tbody>                      
                 <tr>
-                  <td>1</td>
-                  <td>2</td>
+                  <td>{{$t->id_chucvu}}</td>
+                  <td>{{$t->ten_chucvu}}</td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    <a href="{{route('chucvu.edit',['chucvu'=>$t->id_chucvu])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
+                    <form action="{{route('chucvu.destroy',['chucvu' => $t->id_chucvu])}}" method="post">
+                      @method('DELETE')
+                      @csrf
+                      <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
+                    </form>
                   </td>
                 </tr>                          
             </tbody>
+            @endforeach
         </table>
     </div>      
 @endsection

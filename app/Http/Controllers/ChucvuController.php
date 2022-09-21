@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use App\Http\Requests\StudentRequest;
+use App\Models\chucvu;
 
 class ChucvuController extends Controller
 {
@@ -14,7 +16,8 @@ class ChucvuController extends Controller
     public function index()
     {
         $title = "Danh sách chức vụ";
-        return view('chucvu.list', compact('title'));
+        $data = chucvu::all();
+        return view('chucvu.list', compact('title'),['data'=>$data]);
     }
 
     /**
@@ -36,7 +39,10 @@ class ChucvuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $t = new chucvu;
+        $t->ten_chucvu = $request->ten_chucvu;
+        $t->save();
+        return redirect(route('chucvu.index'));
     }
 
     /**
@@ -57,9 +63,11 @@ class ChucvuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_chucvu)
     {
-        //
+        $title = "Cập nhật chức vụ";
+        $t= chucvu::find($id_chucvu);
+        return view('chucvu.edit',compact('t','title'));
     }
 
     /**
@@ -69,9 +77,12 @@ class ChucvuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_chucvu)
     {
-        //
+        $t= chucvu::find($id_chucvu);
+        $t->ten_chucvu = $request->ten_chucvu;
+        $t->save();
+        return redirect(route('chucvu.index'));
     }
 
     /**
@@ -80,8 +91,10 @@ class ChucvuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_chucvu)
     {
-        //
+        $t = chucvu::find($id_chucvu);
+        $t->delete();
+        return redirect(route('chucvu.index'));
     }
 }

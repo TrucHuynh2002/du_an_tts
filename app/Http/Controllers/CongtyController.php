@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 use App\Models\congty;
-use App\Http\Requests\kernel;
 
 class CongtyController extends Controller
 {
@@ -54,7 +53,7 @@ class CongtyController extends Controller
                 $t->img = $new_image;
         }
         $t->save();
-        return redirect(route('congty.index'));
+        return redirect(route('congty.index'))->with(['success' => 'Thêm công ty thành công !']);
         // $title = "Danh sách công ty";
         // $data = congty::all();
         // return view('congty.list', compact('title'),['data'=>$data]);
