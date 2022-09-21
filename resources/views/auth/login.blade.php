@@ -1,8 +1,8 @@
 @extends('layout.layout_acount')
 @section('title', 'Đăng nhập')
 @section('main_acount')
-
-<form method="POST" action="{{ route('login') }}">
+<div class="boydy">
+<form style="padding: 30px;" method="POST" action="{{ route('login') }}">
     @csrf
     <h1>Login</h1>
     <!-- Session Status -->
@@ -12,12 +12,12 @@
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
     <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">Email*</label>
         <input class="form-control" placeholder="Email" id="email" type="email" name="email" :value="old('email')" required autofocus>
     </div>
 
     <div class="form-group">
-        <label for="pwd">Password</label>
+        <label for="pwd">Password*</label>
         <input class="form-control" placeholder="Password" id="pwd" type="password" name="password"
         required autocomplete="current-password">
     </div>
@@ -36,5 +36,5 @@
             </a>
         @endif
     </div>
-</form>
+</form></div>
 @endsection
