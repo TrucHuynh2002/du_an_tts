@@ -32,7 +32,11 @@
                   <td>{{$t->ten_dot}}</td>
                   <td>{{$t->updated_at}}</td>
                   <td>{{$t->created_at}}</td>
-                  <td>{{$t->id_congty}}</td>
+                  <td>
+                    @foreach($get_congty as $b)
+                    {{$t->id_congty == $b->id_congty ? $b->ten_congty : ''}}
+                    @endforeach
+                  </td>
                   <td>
                     <a href="{{route('dotthuctap.edit',['dotthuctap'=>$t->id_dot])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>

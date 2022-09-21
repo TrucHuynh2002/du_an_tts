@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StudentRequest;
+use App\Models\User;
+use App\Models\dot_thuctap;
+use App\Models\chucvu;
+use Illuminate\Support\Facades\Hash;
 
 class ThuctapsinhController extends Controller
 {
@@ -14,7 +19,10 @@ class ThuctapsinhController extends Controller
     public function index()
     {
         $title = "Danh sách thực tập sinh";
-        return view('thuctapsinh.list', compact('title'));
+        $data = User::all();
+        $get_dotthuctap = dot_thuctap::all();
+        $get_chucvu = chucvu::all();
+        return view('thuctapsinh.list', compact('title','data','get_dotthuctap','get_chucvu'));
     }
 
     /**
@@ -25,7 +33,10 @@ class ThuctapsinhController extends Controller
     public function create()
     {
         $title = "Thêm thực tập sinh";
-        return view('thuctapsinh.add', compact('title'));
+        $get_dotthuctap = dot_thuctap::all();
+        $get_chucvu = chucvu::all();
+      
+        return view('thuctapsinh.add', compact('title','get_dotthuctap','get_chucvu'));
     }
 
     /**
@@ -36,7 +47,25 @@ class ThuctapsinhController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $t = new User;
+        $t->hoten_sv = $request->hoten_sv;
+        $t->email = $request->email;
+        $t->password = Hash::make($request->password);
+        $t->sdt = $request->sdt;
+        $get_image = $request->file('img');
+        if ($get_image) {
+            $get_name_image = $get_image->getClientOriginalName();
+            $path = 'upload/';
+            $name_image  = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension();
+            $get_image->move($path,$new_image);
+            $t->img = $new_image;
+    }
+        $t->dia_chi = $request->dia_chi;
+        $t->id_chucvu = $request->id_chucvu;
+        $t->id_dot = $request->id_dot;
+        $t->save();
+        return redirect(route('thuctapsinh.index'))->with(['success' => 'Thêm thành công !']);
     }
 
     /**
@@ -47,7 +76,8 @@ class ThuctapsinhController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = "Cập nhật thực tập sinh";
+        return view('thuctapsinh.edit', compact('title'));
     }
 
     /**
@@ -56,9 +86,14 @@ class ThuctapsinhController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_sv)
     {
-        //
+        $title = "Cập nhật thực tập sinh";
+        $get_dotthuctap = dot_thuctap::all();
+        $get_chucvu = chucvu::all();
+        $t= User::find($id_sv);
+        
+        return view('thuctapsinh.edit',compact('t','title','get_chucvu','get_dotthuctap'));
     }
 
     /**
@@ -68,9 +103,27 @@ class ThuctapsinhController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_user)
     {
-        //
+        $t= User::find($id_user);
+        $t->hoten_sv = $request->hoten_sv;
+        $t->email = $request->email;
+        $t->password = Hash::make($request->password);
+        $t->sdt = $request->sdt;
+        $get_image = $request->file('img');
+        if ($get_image) {
+            $get_name_image = $get_image->getClientOriginalName();
+            $path = 'upload/';
+            $name_image  = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension();
+            $get_image->move($path,$new_image);
+            $t->img = $new_image;
+    }
+        $t->dia_chi = $request->dia_chi;
+        $t->id_chucvu = "$request->id_chucvu";
+        $t->id_dot = $request->id_dot;
+        $t->save();
+        return redirect(route('thuctapsinh.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**
@@ -79,8 +132,10 @@ class ThuctapsinhController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_sv)
     {
-        //
+        $t= User::find($id_sv);
+        $t->delete();
+        return redirect()->back()->with(['success' => 'Xóa thành công !']);
     }
 }

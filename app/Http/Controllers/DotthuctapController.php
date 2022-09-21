@@ -18,7 +18,8 @@ class DotthuctapController extends Controller
     {
         $title = "Danh sách đợt thực tập";
         $data = dot_thuctap::all();
-        return view('dotthuctap.list', compact('title','data'));
+        $get_congty = congty::all();
+        return view('dotthuctap.list', compact('title','get_congty','data'));
     }
 
     /**
