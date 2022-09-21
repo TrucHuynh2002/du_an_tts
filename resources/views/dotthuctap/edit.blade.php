@@ -7,7 +7,7 @@
 
     {{-- kiểm lỗi --}}
     @if(Session::has('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success text-success">
         {{Session::get('success')}}
     </div>
     @endif
@@ -17,36 +17,36 @@
     @endif
 
     <!-- Nội dung -->
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="{{route('dotthuctap.update',['dotthuctap' => $t->id_dot])}}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('put')
         <div class="form-group">
             <h5>Tên đợt thực tập</h5>                       
-            <input class="form-control" type="text" name="ten_dot" value="">
+            <input class="form-control" type="text" name="ten_dot" value="{{$t->ten_dot}}">
             @error('ten_dot')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
             <h5>Ngày bắt đầu</h5>                       
-            <input class="form-control" type="datetime" name="ngay_batdau" value="">
+            <input class="form-control" type="date" name="ngay_batdau" value="{{$t->ngay_batdau}}">
             @error('ngay_batdau')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
             <h5>Ngày kết thúc</h5>                       
-            <input class="form-control" type="datetime" name="ngay_ketthuc" value="">
+            <input class="form-control" type="date" name="ngay_ketthuc" value="{{$t->ngay_ketthuc}}">
             @error('ngay_ketthuc')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
-            <label for="id_congty">ID công ty</label>
-            <select class="form-control" id="id_congty">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+            <label for="id_congty">Tên công ty</label>
+            <select class="form-control" id="id_congty" name="id_congty">
+                @foreach($get_congty as $data)
+                <option {{$t->id_congty == $data->id_congty ? 'selected' : ''}} value="{{$data->id_congty}}">{{$data->ten_congty}}</option>
+                @endforeach
               </select>
             @error('id_congty')
                 <span style="color:red">{{$message}}</span>

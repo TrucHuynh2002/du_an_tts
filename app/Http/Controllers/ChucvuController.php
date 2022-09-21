@@ -42,7 +42,7 @@ class ChucvuController extends Controller
         $t = new chucvu;
         $t->ten_chucvu = $request->ten_chucvu;
         $t->save();
-        return redirect(route('chucvu.index'));
+        return redirect(route('chucvu.index'))->with(['success' => 'Thêm thành công !']);
     }
 
     /**
@@ -82,7 +82,7 @@ class ChucvuController extends Controller
         $t= chucvu::find($id_chucvu);
         $t->ten_chucvu = $request->ten_chucvu;
         $t->save();
-        return redirect(route('chucvu.index'));
+        return redirect(route('chucvu.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**
@@ -95,6 +95,6 @@ class ChucvuController extends Controller
     {
         $t = chucvu::find($id_chucvu);
         $t->delete();
-        return redirect(route('chucvu.index'));
+        return redirect(route('chucvu.index'))->with(['success' => 'Xóa thành công !']);
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StudentRequest;
+use App\Models\dot_thuctap;
+use App\Models\users;
 
 class NhomController extends Controller
 {

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StudentRequest;
+use App\Models\dot_thuctap;
+use App\Models\congty;
 
 class DotthuctapController extends Controller
 {
@@ -14,7 +17,9 @@ class DotthuctapController extends Controller
     public function index()
     {
         $title = "Danh sách đợt thực tập";
-        return view('dotthuctap.list', compact('title'));
+        $data = dot_thuctap::all();
+        $get_congty = congty::all();
+        return view('dotthuctap.list', compact('title','get_congty','data'));
     }
 
     /**
@@ -25,7 +30,8 @@ class DotthuctapController extends Controller
     public function create()
     {
         $title = "Thêm đợt thực tập";
-        return view('dotthuctap.add', compact('title'));
+        $get_congty = congty::all();
+        return view('dotthuctap.add', compact('title','get_congty'));
     }
 
     /**
@@ -36,7 +42,13 @@ class DotthuctapController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $t = new dot_thuctap;
+        $t->ten_dot = $request->ten_dot;
+        $t->id_congty = $request->id_congty;
+        $t->created_at = $request->ngay_batdau;
+        $t->updated_at = $request->ngay_ketthuc;
+        $t->save();
+        return redirect(route('dotthuctap.index'))->with(['success' => 'Thêm thành công !']);
     }
 
     /**
@@ -57,9 +69,12 @@ class DotthuctapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_dot)
     {
-        //
+        $title = "Cập nhật đợt thực tập";
+        $get_congty= congty::all();
+        $t= dot_thuctap::find($id_dot);
+        return view('dotthuctap.edit',compact('t','title','get_congty'));
     }
 
     /**
@@ -69,9 +84,15 @@ class DotthuctapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_dot)
     {
-        //
+        $t= dot_thuctap::find($id_dot);
+        $t->ten_dot = $request->ten_dot;
+        $t->id_congty = $request->id_congty;
+        $t->created_at = $request->ngay_batdau;
+        $t->updated_at = $request->ngay_ketthuc;
+        $t->save();
+        return redirect(route('dotthuctap.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**
@@ -80,8 +101,10 @@ class DotthuctapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_dot)
     {
-        //
+        $dot_thuctap= dot_thuctap::find($id_dot);
+        $dot_thuctap->delete();
+        return redirect()->back()->with(['success' => 'Xóa thành công !']);
     }
 }
