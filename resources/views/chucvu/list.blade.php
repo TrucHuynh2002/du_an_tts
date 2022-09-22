@@ -3,6 +3,7 @@
 {{$title}}
 @endsection       
     <!-- Begin Page Content -->
+    
 @section('main')
 
     <!-- Nội dung -->
@@ -12,8 +13,22 @@
       <div class="alert alert-success text-success">
           {{Session::get('success')}}
       </div>
+      
       @endif
+      <div style="margin: 20px 0px 20px 30px;"class="dropdown">
+    <button style="   box-shadow: 0px 0px 17px 2px rgba(91, 87, 87, 0.8);
+   "  type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+      Tìm theo
+    </button>
+    		<div  style=" margin-top:2px; background-color:white; " class="dropdown-menu">
+				<a class="dropdown-item" href="#">Mã chức vụ</a>
+				<a class="dropdown-item" href="#">Tên chức vụ</a>
+			  
+      
+    		</div>
+  </div>
         <table class="table">
+          
             <thead class="thead-light">
               <tr>
                 <th>ID chức vụ</th>

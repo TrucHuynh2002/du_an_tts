@@ -4,6 +4,11 @@
 
    
 <div class="boydy-forgot">
+<div class="logo-header" data-background-color="blue">				
+				<a href="/" class="logo">
+					<img style="width: 100%; height:200px; margin-top: -100px;" src="/img/logo.PNG" alt="logo" class="logo">
+				</a>
+			</div>
     <form style="padding: 30px;" method="POST" action="{{ route('password.confirm') }}">
         @csrf
         <h1>Confirm password</h1>
@@ -17,6 +22,6 @@
             required autocomplete="current-password">
         </div>
 
-        <button type="submit" value="submit" class="form-submit">{{ __('Confirm') }}</button>
+        <button  style="width: 100%;" type="submit" value="submit" class="form-submit">{{ __('Confirm') }}</button>
     </form></div>
 @endsection
