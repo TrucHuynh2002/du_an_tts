@@ -303,3 +303,29 @@ body[data-background-color="dark"] .demo-icon .icon-class {
 		right: -85%;
 	}
 }
+
+.profile{
+	padding: 20px 0;
+}
+
+.profile-infor {
+	
+}
+
+.profile--image{
+	margin: 0 auto;
+	width:240px;
+	height:240px	
+}	
+
+
+.profile--image img {
+	width:100%;
+	min-height: 100%;
+	border-radius: 50%;	
+}
+
+.profile--status {
+	text-align: center;
+	margin: 16px;
+}

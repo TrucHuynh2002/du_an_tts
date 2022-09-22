@@ -6,6 +6,7 @@ use App\Http\Controllers\CongtyController;
 use App\Http\Controllers\CongviecController;
 use App\Http\Controllers\DotthuctapController;
 use App\Http\Controllers\NhomController;
+use App\Http\Controllers\TaikhoanController;
 use App\Http\Controllers\ThuctapsinhController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,6 @@ Route::resource('congty', CongtyController::class);
 // Route::get('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc'])->name('capnhatdanhmuc');
 // Route::post('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc_'])->name('capnhatdanhmuc');
 Route::resource('thuctapsinh', ThuctapsinhController::class);
-// thuctapsinh.index
+Route::resource('taikhoan', TaikhoanController::class);
 
 require __DIR__.'/auth.php';
