@@ -51,6 +51,7 @@ class CongviecController extends Controller
         $title = "Thêm công việc";
         $get_nhom = nhom::where('id_nhomtruong','=',Auth::user()->id_sv)->first();
         $get_users = User::all();
+        
         return view('congviec.add', compact('title','get_users','get_nhom'));
     }
 
