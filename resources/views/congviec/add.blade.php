@@ -17,8 +17,12 @@
     @endif
 
     <!-- Nội dung -->
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="{{route('congviec.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
+        <div class="form-group">
+            <label for="id_nhom">Nhóm</label>
+            <input class="form-control" type="text" id="id_nhom" name="id_nhom" disabled >
+        </div>
         <div class="form-group">
             <label for="ten_congviec">Tên công việc</label>
             <input class="form-control" type="text" id="ten_congviec" name="ten_congviec">
@@ -28,21 +32,25 @@
         </div>
         <div class="form-group">
             <label for="nguoi_thuchien">Người thực hiện</label>
-            <input class="form-control" type="text" id="nguoi_thuchien" name="nguoi_thuchien">
+            <select class="form-control" id="id_sv" name="id_sv" multiple onChange="alert('chi so index select da chon:'+options[selectIndex].value);">
+                @foreach($get_users as $data)
+                <option value="{{$data->id_sv}}">{{$data->hoten_sv}}</option>
+                @endforeach
+            </select>
             @error('nguoi_thuchien')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="ngay_batdau">Ngày bắt đầu</label>
-            <input class="form-control" type="datetime" id="ngay_batdau" name="ngay_batdau">
+            <input class="form-control" type="date" id="ngay_batdau" name="ngay_batdau">
             @error('ngay_batdau')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="ngay_ketthuc">Ngày kết thúc</label>
-            <input class="form-control" type="text" id="ngay_ketthuc" name="ngay_ketthuc">
+            <input class="form-control" type="date" id="ngay_ketthuc" name="ngay_ketthuc">
             @error('ngay_ketthuc')
                 <span style="color:red">{{$message}}</span>
             @enderror

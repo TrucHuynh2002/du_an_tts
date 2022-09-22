@@ -54,20 +54,24 @@
                 <tr>
                   <td>{{$t->id_congviec}}</td>
                   <td>{{$t->ten_congviec}}</td>
-                  <td>{{$t->id_nhom}}</td>
-                  {{-- <td>@foreach($get_phancongcongviec as $data)
+                  <td>@foreach($get_nhom as $data)
+                    {{$t->id_nhom == $data->id_nhom ? $data->ten_nhom : ''}}
+                    @endforeach</td>
+                  <td>@foreach($get_phancongcongviec as $data)
                     {{$t->id_congviec == $data->id_sv ? $data->hoten_sv : ''}}
-                    @endforeach</td> --}}
-                  <td>5</td>
-                  <td>6</td>
-                  <td>7</td>
-                  <td>8</td>
-                  <td>9</td>
+                    @endforeach</td>
+                  <td>{{$t->created_at}}</td>
+                  <td>{{$t->updated_at}}</td>
+                  @foreach($get_phancongcongviec as $data)
+                  <td>{{$data->tien_do}}</td>
+                  <td>{{$data->trang_thai}}</td>
+                  <td>{{$data->ghi_chu}}</td>
+                  @endforeach
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-primary"><i class='bx bxs-detail'></i></button></a>
+                    <a href="congviec/detail"><button type="button" class="btn btn-outline-primary"><i class='bx bxs-detail'></i></button></a>
                   </td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    {{-- <a href="{{route('congviec.edit',['congviec'=>$t->id_cv])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a> --}}
                   </td>
                   <td>
                     <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
