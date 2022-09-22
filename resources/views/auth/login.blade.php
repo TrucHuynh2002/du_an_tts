@@ -2,6 +2,11 @@
 @section('title', 'Đăng nhập')
 @section('main_acount')
 <div class="boydy">
+    <div class="logo-header" data-background-color="blue">				
+				<a href="/" class="logo">
+					<img style="width: 100%; height:200px; margin-top: -100px;" src="/img/logo.PNG" alt="logo" class="logo">
+				</a>
+			</div>
 <form style="padding: 30px;" method="POST" action="{{ route('login') }}">
     @csrf
     <h2>Đăng Nhập</h2>
@@ -28,13 +33,13 @@
             <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
         </label>
     </div>
-    <button type="submit" value="submit" class="btn btn-primary">{{ __('Login') }}</button>								
-    <div class="form-group">
+    <button  style="width: 100%;" type="submit" value="submit" class="btn btn-primary">{{ __('Login') }}</button>								
+   <center> <div  class="form-group">
         @if (Route::has('password.request'))
             <a class="nderline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                 {{ __('Quên mật khẩu?') }}
             </a>
         @endif
-    </div>
+    </div></center>
 </form></div>
 @endsection

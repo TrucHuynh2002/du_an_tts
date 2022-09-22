@@ -20,7 +20,7 @@
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="blue">				
 				<a href="/" class="logo">
-					<img style="width: 100%; height:80px; margin-top: 5px;" src="/img/logo.PNG" alt="logo" class="logo">
+					<img style="width: 100%; height:80px; margin-top: 5px;" src="/img/logo-admin.PNG" alt="logo" class="logo">
 				</a>
 			</div>
 			<!-- End Logo Header -->
@@ -52,25 +52,25 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+							<img src="/img/blogpost.jpg" alt="hình ảnh" class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
 									Quản Lý Thực Tập Sinh
 									<span class="user-level">Admin</span>
-								</span>
+									</span>
 							</a>
 
-							<div class="collapse in" id="collapseExample">
+							<div style="margin-right: 50px; " class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
-										<a href="#profile">
+										<a href="{{route('taikhoan.index')}}">
 											<span class="link-collapse">Xem thông tin</span>
 										</a>
 									</li>
 									<li>
-										<a href="#edit">
+										<a href="{{route('taikhoan.index')}}">
 											<span class="link-collapse">Cập nhật thông tin</span>
 										</a>
 									</li>
@@ -212,9 +212,9 @@
 		<!-- End Sidebar -->	
 
 		{{-- Start Nội dung --}}
-		<div class="container mt-3">
+		<!-- <div class="container mt-3">
   
-</div>
+</div> -->
 		<div class="main-panel">
 			<div class="content">
 				<div class="panel-header bg-primary-gradient">

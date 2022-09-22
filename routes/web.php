@@ -6,6 +6,7 @@ use App\Http\Controllers\CongtyController;
 use App\Http\Controllers\CongviecController;
 use App\Http\Controllers\DotthuctapController;
 use App\Http\Controllers\NhomController;
+use App\Http\Controllers\TaikhoanController;
 use App\Http\Controllers\ThuctapsinhController;
 use Illuminate\Support\Facades\Route;
 
