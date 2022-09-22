@@ -34,6 +34,17 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        
+        return [
+            'email.required' => 'Email không được bỏ trống',
+            'email.email' => 'Vui lòng nhập đúng định dạng email. vd:abc@gmail.com',
+            'password.required' => 'Mật khẩu không hợp lệ'
+        ];
+        
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *

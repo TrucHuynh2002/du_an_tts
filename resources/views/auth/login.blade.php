@@ -9,7 +9,7 @@
 			</div>
 <form style="padding: 30px;" method="POST" action="{{ route('login') }}">
     @csrf
-    <h1>Login</h1>
+    <h2>Đăng Nhập</h2>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -37,7 +37,7 @@
    <center> <div  class="form-group">
         @if (Route::has('password.request'))
             <a class="nderline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                {{ __('Forgot password?') }}
+                {{ __('Quên mật khẩu?') }}
             </a>
         @endif
     </div></center>
