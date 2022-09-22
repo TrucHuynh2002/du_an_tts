@@ -20,7 +20,7 @@
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="blue">				
 				<a href="/" class="logo">
-					<img style="width: 100%; height:80px; margin-top: 5px;" src="/img/logo.PNG" alt="logo" class="logo">
+					<img style="width: 100%; height:80px; margin-top: 5px;" src="/img/logo-admin.PNG" alt="logo" class="logo">
 				</a>
 			</div>
 			<!-- End Logo Header -->
