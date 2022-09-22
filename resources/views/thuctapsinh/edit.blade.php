@@ -28,6 +28,13 @@
             @enderror
         </div>
         <div class="form-group">
+            <label for="mssv">Mã số sinh viên</label>
+            <input class="form-control" type="text" id="mssv" name="mssv" value="{{$t->mssv}}">
+            @error('mssv')
+                <span style="color:red">{{$message}}</span>
+            @enderror
+        </div>
+        <div class="form-group">
             <label for="email">Email</label>
             <input class="form-control" type="email" id="email" name="email" value="{{$t->email}}">
             @error('email')

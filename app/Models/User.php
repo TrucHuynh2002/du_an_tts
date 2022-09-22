@@ -21,6 +21,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'hoten_sv',
+        'mssv',
         'email',
         'password',
         'sdt',

@@ -9,7 +9,7 @@
     <div class="row">
       {{-- kiểm lỗi --}}
       @if(Session::has('success'))
-      <div class="alert alert-success">
+      <div class="alert alert-success text-success">
           {{Session::get('success')}}
       </div>
       @endif
@@ -38,24 +38,38 @@
                 <th></th>
               </tr>
             </thead>
+            @foreach($get_nhom as $t)
             <tbody>                      
                 <tr>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>5</td>
+                  <td>{{$t->id_nhom}}</td>
+                  <td>{{$t->ten_nhom}}</td>
+                  <td>
+                  @foreach($get_users as $data)
+                  {{$t->id_nhomtruong == $data->id_sv ? $data->hoten_sv : ''}}
+                  @endforeach
+                  </td>
+                  <td>
+                    @foreach($get_dotthuctap as $data)
+                    {{$t->id_dot == $data->id_dot ? $data->ten_dot : ''}}
+                    @endforeach
+                    </td>
+                  <td>{{$t->de_tai}}</td>
                   <td>
                     <a href=""><button type="button" class="btn btn-outline-primary"><i class='bx bxs-detail'></i></button></a>
                   </td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    <a href="{{route('nhom.edit',['nhom'=>$t->id_nhom])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
+                    <form action="{{route('nhom.destroy',['nhom' => $t->id_nhom])}}" method="post">
+                      @method('DELETE')
+                      @csrf
+                      <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
+                    </form>
                   </td>
                 </tr>                          
             </tbody>
+            @endforeach
         </table>
     </div>      
 @endsection

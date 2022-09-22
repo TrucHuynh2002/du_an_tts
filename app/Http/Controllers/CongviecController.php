@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\nhom;
+use App\Models\congviec;
+use App\Models\phancongcongviec;
+
 
 class CongviecController extends Controller
 {
@@ -14,7 +18,10 @@ class CongviecController extends Controller
     public function index()
     {
         $title = "Danh sách công việc";
-        return view('congviec.list', compact('title'));
+        $get_nhom = nhom::all();
+        $get_congviec = congviec::all();
+        $get_phancongcongviec = congviec::all();
+        return view('congviec.list', compact('title','get_nhom','get_congviec','get_phancongcongviec'));
     }
 
     /**

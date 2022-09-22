@@ -32,6 +32,7 @@
                 <th>ID sinh viên</th>
                 <th></th>
                 <th>Tên sinh viên</th>
+                <th>MSSV</th>
                 <th>Email</th>
                 <th>Số điện thoại</th>
                 <th>Địa chỉ</th>
@@ -47,6 +48,7 @@
                   <td>{{$t->id_sv}}</td>
                   <td><img src="upload/{{$t->img}}" width="80px" height="80px"></td>
                   <td>{{$t->hoten_sv}}</td>
+                  <td>{{$t->mssv}}</td>
                   <td>{{$t->email}}</td>
                   <td>{{$t->sdt}}</td>
                   <td>{{$t->dia_chi}}</td>

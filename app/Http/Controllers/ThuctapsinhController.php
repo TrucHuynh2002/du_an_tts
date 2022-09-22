@@ -49,6 +49,7 @@ class ThuctapsinhController extends Controller
     {
         $t = new User;
         $t->hoten_sv = $request->hoten_sv;
+        $t->mssv = $request->mssv;
         $t->email = $request->email;
         $t->password = Hash::make($request->password);
         $t->sdt = $request->sdt;
@@ -107,6 +108,7 @@ class ThuctapsinhController extends Controller
     {
         $t= User::find($id_user);
         $t->hoten_sv = $request->hoten_sv;
+        $t->mssv = $request->mssv;
         $t->email = $request->email;
         $t->password = Hash::make($request->password);
         $t->sdt = $request->sdt;

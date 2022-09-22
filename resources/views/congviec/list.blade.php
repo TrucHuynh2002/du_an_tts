@@ -9,7 +9,7 @@
     <div class="row">
       {{-- kiểm lỗi --}}
       @if(Session::has('success'))
-      <div class="alert alert-success">
+      <div class="alert alert-success text-success">
           {{Session::get('success')}}
       </div>
       @endif
@@ -49,12 +49,15 @@
                 <th></th>              
               </tr>
             </thead>
+            @foreach($get_congviec as $t)
             <tbody>                      
                 <tr>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
+                  <td>{{$t->id_congviec}}</td>
+                  <td>{{$t->ten_congviec}}</td>
+                  <td>{{$t->id_nhom}}</td>
+                  {{-- <td>@foreach($get_phancongcongviec as $data)
+                    {{$t->id_congviec == $data->id_sv ? $data->hoten_sv : ''}}
+                    @endforeach</td> --}}
                   <td>5</td>
                   <td>6</td>
                   <td>7</td>
@@ -71,6 +74,7 @@
                   </td>
                 </tr>                          
             </tbody>
+            @endforeach
         </table>
     </div>      
 @endsection
