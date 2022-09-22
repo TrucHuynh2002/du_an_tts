@@ -21,7 +21,8 @@
         @csrf
         <div class="form-group">
             <label for="id_nhom">Nhóm</label>
-            <input class="form-control" type="text" id="id_nhom" name="id_nhom" disabled >
+            <input class="form-control" type="text" id="ten_nhom" name="ten_nhom" disabled value="{{$get_nhom->ten_nhom}}">
+            <input class="form-control" type="text" id="id_nhom" name="id_nhom" hidden value="{{$get_nhom->id_nhom}}">
         </div>
         <div class="form-group">
             <label for="ten_congviec">Tên công việc</label>

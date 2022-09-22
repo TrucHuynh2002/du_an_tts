@@ -10,6 +10,7 @@ use App\Http\Controllers\TaikhoanController;
 use App\Http\Controllers\ThuctapsinhController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::resource('congviec', CongviecController::class);
     Route::resource('chucvu', ChucvuController::class);
     Route::resource('congty', CongtyController::class);
+    Route::resource('taikhoan', CongtyController::class);
     // Route::post('/congty/create', [CongtyController::class, 'store']);
     // Route::post('/congty/{id}', [CongtyController::class, 'delete'])->name('deleteCongTy');
     // Route::get('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc'])->name('capnhatdanhmuc');

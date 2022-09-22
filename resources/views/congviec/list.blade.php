@@ -49,24 +49,26 @@
                 <th></th>              
               </tr>
             </thead>
-            @foreach($get_congviec as $t)
+            @foreach($get_all as $cv)
             <tbody>                      
                 <tr>
-                  <td>{{$t->id_congviec}}</td>
-                  <td>{{$t->ten_congviec}}</td>
-                  <td>@foreach($get_nhom as $data)
-                    {{$t->id_nhom == $data->id_nhom ? $data->ten_nhom : ''}}
-                    @endforeach</td>
-                  <td>@foreach($get_phancongcongviec as $data)
-                    {{$t->id_congviec == $data->id_sv ? $data->hoten_sv : ''}}
-                    @endforeach</td>
-                  <td>{{$t->created_at}}</td>
-                  <td>{{$t->updated_at}}</td>
-                  @foreach($get_phancongcongviec as $data)
-                  <td>{{$data->tien_do}}</td>
-                  <td>{{$data->trang_thai}}</td>
-                  <td>{{$data->ghi_chu}}</td>
-                  @endforeach
+                  <td>{{$cv->id_congviec}}</td>
+                  <td>{{$cv->ten_congviec}}</td>
+                  <td>
+                    {{$cv->ten_nhom}}
+                  </td>
+                  <td>
+                    {{$cv->hoten_sv}}
+                  </td>
+                  <td>{{$cv->created_at}}</td>
+                  <td>{{$cv->updated_at}}</td>
+                
+                  <td>{{$cv->tien_do}}%</td>
+                  <td class="{{$cv->trang_thai == 0 ? 'text-danger' : 'text-success'}}">
+                    {{$cv->trang_thai == 0 ? 'Chua hoan thanh' : 'Hoan thanh'}}
+                  </td>
+                  <td>{{$cv->ghi_chu}}</td>
+        
                   <td>
                     <a href="congviec/detail"><button type="button" class="btn btn-outline-primary"><i class='bx bxs-detail'></i></button></a>
                   </td>
