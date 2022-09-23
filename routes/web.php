@@ -7,6 +7,7 @@ use App\Http\Controllers\CongviecController;
 use App\Http\Controllers\DotthuctapController;
 use App\Http\Controllers\NhomController;
 use App\Http\Controllers\TaikhoanController;
+use App\Http\Controllers\ThamgianhomController;
 use App\Http\Controllers\ThuctapsinhController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::prefix('/')->middleware(['auth'])->group(function(){
     // Route::get('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc'])->name('capnhatdanhmuc');
     // Route::post('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc_'])->name('capnhatdanhmuc');
     Route::resource('thuctapsinh', ThuctapsinhController::class);
+    Route::resource('thamgianhom', ThamgianhomController::class);
 // thuctapsinh.index
 
 });
