@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 // use App\Http\Requests\StudentRequest;
 use App\Models\chucvu;
@@ -15,8 +15,12 @@ class ChucvuController extends Controller
      */
     public function index()
     {
+    if (Gate::allows('get-quantrivien')) {
         $title = "Danh sách chức vụ";
         $data = chucvu::all();
+    } else {
+        return abort(403);
+     }
         return view('chucvu.list', compact('title'),['data'=>$data]);
     }
 
@@ -27,7 +31,11 @@ class ChucvuController extends Controller
      */
     public function create()
     {
+        if (Gate::allows('get-quantrivien')) {
         $title = "Thêm chức vụ";
+    } else {
+        return abort(403);
+    }
         return view('chucvu.add', compact('title'));
     }
 
@@ -41,7 +49,7 @@ class ChucvuController extends Controller
     {
         $t = new chucvu;
         $t->ten_chucvu = $request->ten_chucvu;
-        $t->save();
+        $t->save();   
         return redirect(route('chucvu.index'))->with(['success' => 'Thêm thành công !']);
     }
 
@@ -65,8 +73,12 @@ class ChucvuController extends Controller
      */
     public function edit($id_chucvu)
     {
+        if (Gate::allows('get-quantrivien')) {
         $title = "Cập nhật chức vụ";
         $t= chucvu::find($id_chucvu);
+        } else {
+            return abort(403);
+        }
         return view('chucvu.edit',compact('t','title'));
     }
 
@@ -79,9 +91,11 @@ class ChucvuController extends Controller
      */
     public function update(Request $request, $id_chucvu)
     {
+        
         $t= chucvu::find($id_chucvu);
         $t->ten_chucvu = $request->ten_chucvu;
         $t->save();
+        
         return redirect(route('chucvu.index'))->with(['success' => 'Sửa thành công !']);
     }
 
@@ -93,8 +107,12 @@ class ChucvuController extends Controller
      */
     public function destroy($id_chucvu)
     {
+        if (Gate::allows('get-quantrivien')) {
         $t = chucvu::find($id_chucvu);
         $t->delete();
+        } else {
+            return abort(403);
+        }
         return redirect(route('chucvu.index'))->with(['success' => 'Xóa thành công !']);
     }
 }

@@ -33,9 +33,11 @@
                 <th>Tên đợt thực tập</th>
                 <th>Ngày bắt đầu</th>
                 <th>Ngày kết thúc</th>
+                @can('get-quantrivien')
                 <th>Tên công ty</th>
                 <th></th>
                 <th></th>
+                @endcan
               </tr>
             </thead>
             @foreach($data as $t)
@@ -45,6 +47,7 @@
                   <td>{{$t->ten_dot}}</td>
                   <td>{{$t->updated_at}}</td>
                   <td>{{$t->created_at}}</td>
+                  @can('get-quantrivien')
                   <td>
                     @foreach($get_congty as $b)
                     {{$t->id_congty == $b->id_congty ? $b->ten_congty : ''}}
@@ -60,6 +63,7 @@
                       <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
                     </form>
                   </td>
+                  @endcan
                 </tr>                          
             </tbody>
             @endforeach

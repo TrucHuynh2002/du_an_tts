@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -14,7 +15,16 @@ class AdminController extends Controller
     public function index()
     {
         $title = "Trang chủ Admin";
-        return view('layout.layout_admin', compact('title'));
+        
+        $user = User::findOrFail(1);
+        // if (Gate::allows('get-quantrivien', $user)) {
+        //     echo "Ban la quan tri vien";
+        // } elseif (Gate::allows('get-quanli', $user)) {
+        //     echo "Ban la quan li";
+        // } else {
+        //     echo "Ban la thuc tap sinh";
+        // }
+        return view('layout.layout_admin', compact('title','user'));
     }
 
     /**

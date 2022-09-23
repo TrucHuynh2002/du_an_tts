@@ -37,7 +37,9 @@
                 <th>Số điện thoại</th>
                 <th>Địa chỉ</th>
                 <th>Đợt</th>
+                @can('get-quantrivien')
                 <th>Chức vụ</th>
+                @endcan
                 <th></th>
                 <th></th>
               </tr>
@@ -57,11 +59,13 @@
                   {{$t->id_dot == $data->id_dot ? $data->ten_dot : ''}}
                   @endforeach
                   </td>
+                  @can('get-quantrivien')
                   <td>
                   @foreach($get_chucvu as $data)
                   {{$t->id_chucvu == $data->id_chucvu ? $data->ten_chucvu : ''}}
                   @endforeach
                   </td>
+                  @endcan
                   <td>
                     <a href="{{route('thuctapsinh.edit',['thuctapsinh'=>$t->id_sv])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>

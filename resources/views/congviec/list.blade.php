@@ -43,10 +43,11 @@
                 <th>Tiến độ</th>
                 <th>Trạng thái</th>
                 <th>Hoàn thành</th>
+                @can('get-thuctapsinh')
                 <th></th>
                 <th></th>
                 <th></th>  
-                <th></th>              
+                @endcan
               </tr>
             </thead>
             @foreach($get_all as $cv)
@@ -68,16 +69,18 @@
                     {{$cv->trang_thai == 0 ? 'Chua hoan thanh' : 'Hoan thanh'}}
                   </td>
                   <td>{{$cv->ghi_chu}}</td>
-        
+                  @can('get-thuctapsinh')
                   <td>
                     <a href="congviec/detail"><button type="button" class="btn btn-outline-primary"><i class='bx bxs-detail'></i></button></a>
                   </td>
                   <td>
-                    {{-- <a href="{{route('congviec.edit',['congviec'=>$t->id_cv])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a> --}}
+                    <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    {{-- {{route('congviec.edit',['congviec'=>$t->id_cv])}} --}}
                   </td>
                   <td>
                     <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
                   </td>
+                  @endcan
                 </tr>                          
             </tbody>
             @endforeach

@@ -47,6 +47,7 @@
 		</div>
 
 		<!-- Sidebar -->
+		
 		<div class="sidebar sidebar-style-2">			
 			<div class="sidebar-wrapper scrollbar scrollbar-inner">
 				<div class="sidebar-content">
@@ -56,10 +57,24 @@
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								@can('get-quantrivien')
 								<span>
-									Quản Lý Thực Tập Sinh
-									<span class="user-level">Admin</span>
-									</span>
+									Ho va ten
+									<span class="user-level">Quan tri vien</span>
+								</span>
+								@endcan
+								@can('get-quanli')
+								<span>
+									Ho va ten
+									<span class="user-level">Quan li</span>
+								</span>
+								@endcan
+								@can('get-thuctapsinh')
+								<span>
+									Ho va ten
+									<span class="user-level">Thuc tap sinh</span>
+								</span>
+								@endcan
 							</a>
 
 							<div style="margin-right: 50px; " class="collapse in" id="collapseExample">
@@ -79,48 +94,52 @@
 						</div>
 					</div>
 					<ul class="nav nav-primary">
-						<li class="nav-item active">
-							<a data-toggle="collapse" href="#dashboard5" class="collapsed" aria-expanded="false">
-								<i class="fas fa-home"></i>
-								<p>Công ty</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="dashboard5">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="{{route('congty.index')}}">
-											<span class="sub-item">Danh sách công ty</span>
-										</a>
-									</li>
-									<li>
-										<a href="{{route('congty.create')}}"> 
-											<span class="sub-item">Thêm công ty</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#dashboard4" class="collapsed" aria-expanded="false">
-								<i class="fas fa-home"></i>
-								<p>Chức vụ</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="dashboard4">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="{{route('chucvu.index')}}">
-											<span class="sub-item">Danh sách chức vụ</span>
-										</a>
-									</li>
-									<li>
-										<a href="{{route('chucvu.create')}}">
-											<span class="sub-item">Thêm chức vụ</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+						@can('get-quantrivien')
+							<li class="nav-item active">
+								<a data-toggle="collapse" href="#dashboard5" class="collapsed" aria-expanded="false">
+									<i class="fas fa-home"></i>
+									<p>Công ty</p>
+									<span class="caret"></span>
+								</a>
+								<div class="collapse" id="dashboard5">
+									<ul class="nav nav-collapse">
+										<li>
+											<a href="{{route('congty.index')}}">
+												<span class="sub-item">Danh sách công ty</span>
+											</a>
+										</li>
+										<li>
+											<a href="{{route('congty.create')}}"> 
+												<span class="sub-item">Thêm công ty</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="nav-item">
+								<a data-toggle="collapse" href="#dashboard4" class="collapsed" aria-expanded="false">
+									<i class="fas fa-home"></i>
+									<p>Chức vụ</p>
+									<span class="caret"></span>
+								</a>
+								<div class="collapse" id="dashboard4">
+									<ul class="nav nav-collapse">
+										<li>
+											<a href="{{route('chucvu.index')}}">
+												<span class="sub-item">Danh sách chức vụ</span>
+											</a>
+										</li>
+										<li>
+											<a href="{{route('chucvu.create')}}">
+												<span class="sub-item">Thêm chức vụ</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+						@endcan
+						
+						@cannot('get-thuctapsinh')
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard1" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
@@ -134,14 +153,17 @@
 											<span class="sub-item">Danh sách đợt</span>
 										</a>
 									</li>
+									@can('get-quantrivien')
 									<li>
 										<a href="{{route('dotthuctap.create')}}">
 											<span class="sub-item">Thêm đợt thực tập</span>
 										</a>
 									</li>
+									@endcan
 								</ul>
 							</div>
 						</li>
+						
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard2" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
@@ -163,6 +185,7 @@
 								</ul>
 							</div>
 						</li>
+						@endcan
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard6" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
@@ -176,11 +199,13 @@
 											<span class="sub-item">Danh sách thực tập sinh</span>
 										</a>
 									</li>
+									@can('get-quantrivien')
 									<li>
 										<a href="{{route('thuctapsinh.create')}}">
 											<span class="sub-item">Thêm thực tập sinh</span>
 										</a>
 									</li>
+									@endcan
 								</ul>
 							</div>
 						</li>
@@ -197,11 +222,13 @@
 											<span class="sub-item">Danh sách công việc</span>
 										</a>
 									</li>
+									@can('get-thuctapsinh')
 									<li>
 										<a href="{{route('congviec.create')}}">
 											<span class="sub-item">Thêm công việc</span>
 										</a>
 									</li>
+									@endcan
 								</ul>
 							</div>
 						</li>
