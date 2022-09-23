@@ -59,6 +59,7 @@
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								@can('get-quantrivien')
 								<span>
+<<<<<<< HEAD
 									Ho va ten
 									<span class="user-level">Quan tri vien</span>
 								</span>
@@ -75,9 +76,14 @@
 									<span class="user-level">Thuc tap sinh</span>
 								</span>
 								@endcan
+=======
+									Quản Lý Thực Tập Sinh
+									<span class="user-level">Admin</span>
+								</span>
+>>>>>>> 4ba6d1eb9dbc5ada03360f1366ca06a97f69d5a2
 							</a>
 
-							<div style="margin-right: 50px; " class="collapse in" id="collapseExample">
+							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
 										<a href="{{route('taikhoan.index')}}">

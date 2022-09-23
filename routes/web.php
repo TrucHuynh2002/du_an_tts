@@ -7,6 +7,7 @@ use App\Http\Controllers\CongviecController;
 use App\Http\Controllers\DotthuctapController;
 use App\Http\Controllers\NhomController;
 use App\Http\Controllers\TaikhoanController;
+use App\Http\Controllers\ThamgianhomController;
 use App\Http\Controllers\ThuctapsinhController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
 Route::prefix('/')->group(function(){
+=======
+// Route::prefix('/')->middleware(['auth'])->group(function(){
+>>>>>>> 4ba6d1eb9dbc5ada03360f1366ca06a97f69d5a2
     Route::resource('/', AdminController::class);
     Route::resource('dotthuctap', DotthuctapController::class);
     Route::resource('nhom', NhomController::class);
@@ -35,9 +40,10 @@ Route::prefix('/')->group(function(){
     // Route::get('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc'])->name('capnhatdanhmuc');
     // Route::post('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc_'])->name('capnhatdanhmuc');
     Route::resource('thuctapsinh', ThuctapsinhController::class);
+    Route::resource('thamgianhom', ThamgianhomController::class);
 // thuctapsinh.index
 
-});
+// });
 require __DIR__.'/auth.php';
 
 
