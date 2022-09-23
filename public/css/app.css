@@ -21,4 +21,9 @@ h1{
    text-transform: uppercase;
    
 
+}h2{
+    color:red;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 50px;
 }
