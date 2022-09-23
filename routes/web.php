@@ -22,14 +22,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/')->middleware(['auth'])->group(function(){
+// Route::prefix('/')->middleware(['auth'])->group(function(){
     Route::resource('/', AdminController::class);
     Route::resource('dotthuctap', DotthuctapController::class);
     Route::resource('nhom', NhomController::class);
     Route::resource('congviec', CongviecController::class);
     Route::resource('chucvu', ChucvuController::class);
     Route::resource('congty', CongtyController::class);
-    Route::resource('taikhoan', CongtyController::class);
+    Route::resource('taikhoan', TaikhoanController::class);
     // Route::post('/congty/create', [CongtyController::class, 'store']);
     // Route::post('/congty/{id}', [CongtyController::class, 'delete'])->name('deleteCongTy');
     // Route::get('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc'])->name('capnhatdanhmuc');
@@ -37,7 +37,7 @@ Route::prefix('/')->middleware(['auth'])->group(function(){
     Route::resource('thuctapsinh', ThuctapsinhController::class);
 // thuctapsinh.index
 
-});
+// });
 require __DIR__.'/auth.php';
 
 
