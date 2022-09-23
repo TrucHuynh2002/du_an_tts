@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/')->middleware(['auth'])->group(function(){
+// Route::prefix('/')->middleware(['auth'])->group(function(){
     Route::resource('/', AdminController::class);
     Route::resource('dotthuctap', DotthuctapController::class);
     Route::resource('nhom', NhomController::class);
@@ -39,7 +39,7 @@ Route::prefix('/')->middleware(['auth'])->group(function(){
     Route::resource('thamgianhom', ThamgianhomController::class);
 // thuctapsinh.index
 
-});
+// });
 require __DIR__.'/auth.php';
 
 

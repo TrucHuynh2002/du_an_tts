@@ -59,10 +59,10 @@
 								<span>
 									Quản Lý Thực Tập Sinh
 									<span class="user-level">Admin</span>
-									</span>
+								</span>
 							</a>
 
-							<div style="margin-right: 50px; " class="collapse in" id="collapseExample">
+							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
 										<a href="{{route('taikhoan.index')}}">
