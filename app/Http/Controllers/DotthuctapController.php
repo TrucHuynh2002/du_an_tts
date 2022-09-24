@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StudentRequest;
 use App\Models\dot_thuctap;
 use App\Models\congty;
@@ -19,6 +20,7 @@ class DotthuctapController extends Controller
      */
     public function index()
     {
+        
         $title = "Danh sách đợt thực tập";
         $data = dot_thuctap::all();
         $get_congty = congty::all();
@@ -32,10 +34,20 @@ class DotthuctapController extends Controller
      */
     public function create()
     {
-        $title = "Thêm đợt thực tập";
+        if (Gate::allows('get-quantrivien')) {
+            $title = "Thêm đợt thực tập";
         $get_congty = congty::all();
+       
+        } else {
+           return abort(403);
+        }
+
         return view('dotthuctap.add', compact('title','get_congty'));
+<<<<<<< HEAD
         Auth()::user();
+=======
+        
+>>>>>>> f74326ed27a09b35463723873fd80cd230a2864d
     }
 
     /**
@@ -75,9 +87,14 @@ class DotthuctapController extends Controller
      */
     public function edit($id_dot)
     {
+        if (Gate::allows('get-quantrivien')) {
         $title = "Cập nhật đợt thực tập";
         $get_congty= congty::all();
         $t= dot_thuctap::find($id_dot);
+        }
+        else{
+            return abort(403);
+        }
         return view('dotthuctap.edit',compact('t','title','get_congty'));
     }
 
@@ -107,8 +124,12 @@ class DotthuctapController extends Controller
      */
     public function destroy($id_dot)
     {
+        if (Gate::allows('get-quantrivien')) {
         $dot_thuctap= dot_thuctap::find($id_dot);
         $dot_thuctap->delete();
+    } else {
+        return abort(403);
+    }
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
     }
 }
