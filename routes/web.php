@@ -36,7 +36,10 @@ use Illuminate\Support\Facades\Route;
     // Route::get('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc'])->name('capnhatdanhmuc');
     // Route::post('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc_'])->name('capnhatdanhmuc');
     Route::resource('thuctapsinh', ThuctapsinhController::class);
-    Route::resource('thamgianhom', ThamgianhomController::class);
+    // Route::resource('thamgianhom?token={}', ThamgianhomController::class);
+    Route::resource('thamgianhom',ThamgianhomController::class)->middleware('checktokenjoingroup');
+    Route::post('abc',[NhomController::class,'get_Dot'])->name('taolao');
+    Route::post('lay-member',[NhomController::class,'get_memberDot'])->name('getmember');
 // thuctapsinh.index
 
 // });

@@ -34,24 +34,80 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="nhom_truong">Nhóm trưởng</label>
-            <select class="form-control" id="nhom_truong" name="id_nhomtruong">
-                @foreach($get_users as $data)
-                <option value="{{$data->id_sv}}">{{$data->hoten_sv}}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
             <label for="id_dot">ID đợt</label>
             <select class="form-control" id="id_dot" name="id_dot">
+                <option value=""> Chưa chọn đợt</option>
                 @foreach($get_dotthuctap as $data)
-                <option value="{{$data->id_dot}}">{{$data->ten_dot}}</option>
+                    <option  value="{{$data->id_dot}}">{{$data->ten_dot}}</option>
                 @endforeach
             </select>
             @error('id_dot')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
+        <div class="form-group">
+            <label for="nhom_truong">Nhóm trưởng</label>
+            <select class="form-control" id="nhom_truong" name="id_nhomtruong">
+                <option value=''>Chưa chọn nhóm trưởng</option>
+                {{-- @foreach($get_dotthuctap as $data)
+                <option value="{{$data->id_sv}}">{{$data->hoten_sv}}</option>
+                @endforeach --}}
+            </select>
+            @error('id_nhomtruong')
+            <span style="color:red">{{$message}}</span>
+        @enderror
+        </div>
+        
         <button type="submit" class="btn btn-primary btn-block" name="submit">Thêm nhóm thực tập</button>
-    </form>                          
+        <br>
+        @if (session('token'))
+            
+        <input type="text" placeholder="Link tham gia nhóm" class="form-control" value="{{route('thamgianhom.index',['token' => Session::get('token')])}}">
+            
+        @endif
+    </form>   
+    
+  
 @endsection
+
+@push('scripts')
+<script>
+//     function getMember(data) {
+
+//         console.log(data);
+//         // var _token = $('input[name="_token"]').val()
+//         // $.ajax({
+//         //     url:"{{route('getmember')}}",
+//         //     method:"POST",
+//         //     data:{id_member: id_member,_token:_token},
+//         //     success:function(data){
+//         //         // getMember(data);
+//         //         alert(data)
+//         //     }
+//         // })
+//   }
+  
+  $(document).ready(function(){
+    $('#id_dot').change(function(){
+       
+        var _token = $('input[name="_token"]').val()
+        $.ajax({
+            url:"{{route('taolao')}}",
+            method:"POST",
+            data:{id_dot: $('#id_dot').val(),_token:_token},
+            success:function(data){
+                console.log(data);
+                $('#nhom_truong').html(data);
+            }
+        })
+    })
+  })
+
+  
+  
+</script>
+@endpush
+
+
+ 
+

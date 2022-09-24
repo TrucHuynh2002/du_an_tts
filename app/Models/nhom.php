@@ -14,6 +14,7 @@ class nhom extends Model
     'ten_nhom',
     'id_dot',
     'de_tai',
-    'id_nhomtruong'
+    'id_nhomtruong',
+    'token'
     ];
 }

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 use App\Models\dot_thuctap;
 use App\Models\congty;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class DotthuctapController extends Controller
 {
@@ -32,6 +35,7 @@ class DotthuctapController extends Controller
         $title = "Thêm đợt thực tập";
         $get_congty = congty::all();
         return view('dotthuctap.add', compact('title','get_congty'));
+        Auth()::user();
     }
 
     /**

@@ -34,9 +34,23 @@
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
+       
+        <div class="form-group">
+            <label for="id_dot">ID đợt</label>
+            <select class="form-control" id="id_dot" name="id_dot">
+                <option value="">Chưa chọn đợt</option>
+                @foreach($get_dotthuctap as $data)
+                <option {{$t->id_dot == $data->id_dot ? 'selected' : ''}} value="{{$data->id_dot}}">{{$data->ten_dot}}</option>
+                @endforeach
+              </select>
+            @error('id_dot')
+                <span style="color:red">{{$message}}</span>
+            @enderror
+        </div>
         <div class="form-group">
             <label for="nhom_truong">Nhóm trưởng</label>
             <select class="form-control" id="nhom_truong" name="id_nhomtruong" value="">
+                <option value="">Chưa có nhóm trưởng</option>
                 @foreach($get_users as $data)
                 <option {{$t->id_nhomtruong == $data->id_sv ? 'selected' : ''}} value="{{$data->id_sv}}">{{$data->hoten_sv}}</option>
                 @endforeach
@@ -46,15 +60,32 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="id_dot">ID đợt</label>
-            <select class="form-control" id="id_dot" name="id_dot">
-                @foreach($get_dotthuctap as $data)
-                <option {{$t->id_dot == $data->id_dot ? 'selected' : ''}} value="{{$data->id_dot}}">{{$data->ten_dot}}</option>
-                @endforeach
-              </select>
-            @error('id_dot')
-                <span style="color:red">{{$message}}</span>
-            @enderror
+            <label for="nhom_truong">Thành viên</label>
+            <div class="infor-member">
+               @if (count($get_allMember) > 0)
+                        @foreach ($get_allMember as $mb)
+                                        <div class="member-item">
+                                        <div class="container">
+                                            <div class="row" style="justify-content: space-between; align-items:center">
+                                                <div class="member-avt">
+                                                    <img src="{{asset('img/logo.jpg')}}" alt="Logo" width="120px" height="120px" style="object-fit: cover">
+                                                    
+                                                </div>
+                                                <div class="member-name">
+                                                    <p>Nguyễn Minh TRIỂN</p>
+                                                </div>
+
+                                                <div class="member-del">
+                                                    <a href="#"  style="line-height: 8px" class="btn btn-danger">Xóa</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                        @endforeach
+                @else
+                        <p align="center">Chưa có thành viên</p>
+                @endif
+            </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block" name="submit">Sửa nhóm thực tập</button>
     </form>                          
