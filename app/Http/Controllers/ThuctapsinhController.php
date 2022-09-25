@@ -34,13 +34,13 @@ class ThuctapsinhController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('get-quantrivien')) {
+        // if (Gate::allows('get-quantrivien')) {
         $title = "Thêm thực tập sinh";
         $get_dotthuctap = dot_thuctap::all();
         $get_chucvu = chucvu::all();
-        } else {
-            return abort(403);
-        }
+        // } else {
+        //     return abort(403);
+        // }
         return view('thuctapsinh.add', compact('title','get_dotthuctap','get_chucvu'));
     }
 
@@ -94,14 +94,14 @@ class ThuctapsinhController extends Controller
      */
     public function edit($id_sv)
     {
-        if (Gate::allows('get-quantrivien')) {
+        // if (Gate::allows('get-quantrivien')) {
         $title = "Cập nhật thực tập sinh";
         $get_dotthuctap = dot_thuctap::all();
         $get_chucvu = chucvu::all();
         $t= User::find($id_sv);
-        } else {
-            return abort(403);
-        }
+        // } else {
+        //     return abort(403);
+        // }
         return view('thuctapsinh.edit',compact('t','title','get_chucvu','get_dotthuctap'));
     }
 
@@ -144,12 +144,12 @@ class ThuctapsinhController extends Controller
      */
     public function destroy($id_sv)
     {
-        if (Gate::allows('get-quantrivien')) {
+        // if (Gate::allows('get-quantrivien')) {
         $t= User::find($id_sv);
         $t->delete();
-        } else {
-            return abort(403);
-        }
+        // } else {
+        //     return abort(403);
+        // }
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
     }
 }

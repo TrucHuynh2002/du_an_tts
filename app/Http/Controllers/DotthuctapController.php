@@ -34,20 +34,16 @@ class DotthuctapController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('get-quantrivien')) {
+        // if (Gate::allows('get-quantrivien')) {
             $title = "Thêm đợt thực tập";
         $get_congty = congty::all();
        
-        } else {
-           return abort(403);
-        }
+        // } else {
+        //    return abort(403);
+        // }
 
         return view('dotthuctap.add', compact('title','get_congty'));
-<<<<<<< HEAD
-        Auth()::user();
-=======
-        
->>>>>>> f74326ed27a09b35463723873fd80cd230a2864d
+        // Auth()::user();
     }
 
     /**
@@ -87,14 +83,14 @@ class DotthuctapController extends Controller
      */
     public function edit($id_dot)
     {
-        if (Gate::allows('get-quantrivien')) {
+        // if (Gate::allows('get-quantrivien')) {
         $title = "Cập nhật đợt thực tập";
         $get_congty= congty::all();
         $t= dot_thuctap::find($id_dot);
-        }
-        else{
-            return abort(403);
-        }
+        // }
+        // else{
+        //     return abort(403);
+        // }
         return view('dotthuctap.edit',compact('t','title','get_congty'));
     }
 
@@ -124,12 +120,12 @@ class DotthuctapController extends Controller
      */
     public function destroy($id_dot)
     {
-        if (Gate::allows('get-quantrivien')) {
+        // if (Gate::allows('get-quantrivien')) {
         $dot_thuctap= dot_thuctap::find($id_dot);
         $dot_thuctap->delete();
-    } else {
-        return abort(403);
-    }
+    // } else {
+    //     return abort(403);
+    // }
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
     }
 }
