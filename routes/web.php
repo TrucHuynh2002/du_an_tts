@@ -31,18 +31,13 @@ Route::prefix('/')->group(function(){
     Route::resource('chucvu', ChucvuController::class);
     Route::resource('congty', CongtyController::class);
     Route::resource('taikhoan', TaikhoanController::class);
-    // Route::post('/congty/create', [CongtyController::class, 'store']);
-    // Route::post('/congty/{id}', [CongtyController::class, 'delete'])->name('deleteCongTy');
-    // Route::get('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc'])->name('capnhatdanhmuc');
-    // Route::post('/congty/capnhat/{id_congty}', [CongtyController::class, 'capnhatdanhmuc_'])->name('capnhatdanhmuc');
     Route::resource('thuctapsinh', ThuctapsinhController::class);
-    // Route::resource('thamgianhom?token={}', ThamgianhomController::class);
     Route::resource('thamgianhom',ThamgianhomController::class)->middleware('checktokenjoingroup');
     Route::post('abc',[NhomController::class,'get_Dot'])->name('taolao');
-    Route::post('lay-member',[NhomController::class,'get_memberDot'])->name('getmember');
+    Route::get('delete-member',[NhomController::class,'delete_memberGroup'])->name('deleteMember');
 // thuctapsinh.index
 
-// });
+});
 require __DIR__.'/auth.php';
 
 

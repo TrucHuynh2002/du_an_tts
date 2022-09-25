@@ -63,6 +63,13 @@ class NhomController extends Controller
         $t->id_nhomtruong = $request->id_nhomtruong;
         $t->token =  $token;
         $t->save();
+        if($request->id_nhomtruong){
+           $get_nhom = nhom::orderBy('id_nhom','DESC')->first();
+            chitiet_nhom::create([
+                'id_nhom' => $get_nhom->id_nhom,
+                'id_sv' => $request->id_nhomtruong
+            ]);
+        };
         return redirect()->back()->with(['success' => 'Thêm thành công !'])->with(['token' => $token]);
     }
 
@@ -99,10 +106,14 @@ class NhomController extends Controller
 
         $get_allMember = DB::table('chitiet_nhom')
                                                 ->join('users','chitiet_nhom.id_sv','=','users.id_sv')
-                                                ->where('chitiet_nhom.id_nhom','=',$id_nhom)->get();
+                                                ->join('chucvu','users.id_chucvu','=','chucvu.id_chucvu')
+                                                ->where('chitiet_nhom.id_nhom','=',$id_nhom)
+                                                ->where('users.id_chucvu','=','2')
+                                                ->get();
+        $get_leaderGroup = nhom::where('id_nhom',$id_nhom);
         // $get_users = User::all();
         // $get_dotthuctap = dot_thuctap::all();
-        return view('nhom.edit', compact('title','t','get_users','get_dotthuctap','get_allMember'));
+        return view('nhom.edit', compact('title','t','get_users','get_dotthuctap','get_allMember','get_leaderGroup'));
     }
 
     /**
@@ -119,6 +130,7 @@ class NhomController extends Controller
         $t->id_dot = $request->id_dot;
         $t->de_tai = $request->de_tai;
         $t->id_nhomtruong = $request->id_nhomtruong;
+    
         $t->save();
         return redirect(route('nhom.index'))->with(['success' => 'Sửa thành công !']);
     }
@@ -155,6 +167,13 @@ class NhomController extends Controller
         
             
         return $output;
+    }
+
+    public function delete_memberGroup(Request $request){
+        // dd($request->id_sv);
+
+        chitiet_nhom::where('id_sv','=',$request->id_sv)->where('id_nhom','=',$request->id_group)->delete();
+        return redirect()->back();
     }
 
 

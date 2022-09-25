@@ -62,29 +62,42 @@
         <div class="form-group">
             <label for="nhom_truong">Thành viên</label>
             <div class="infor-member">
-               @if (count($get_allMember) > 0)
+            
+                <table class="table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>MSSV</th>
+                        <th>Ảnh đại diện</th>
+                        <th>Họ tên</th>
+                        <th>Chức vụ</th>
+                        <th></th>
+                    
+                      </tr>
+                    </thead>
+                   
+                    <tbody>
+                        @if (count($get_allMember) > 0)
                         @foreach ($get_allMember as $mb)
-                                        <div class="member-item">
-                                        <div class="container">
-                                            <div class="row" style="justify-content: space-between; align-items:center">
-                                                <div class="member-avt">
-                                                    <img src="{{asset('img/logo.jpg')}}" alt="Logo" width="120px" height="120px" style="object-fit: cover">
-                                                    
-                                                </div>
-                                                <div class="member-name">
-                                                    <p>Nguyễn Minh TRIỂN</p>
-                                                </div>
+                        <tr>
+                            <td>PC01552</td>
+                            <td>
+                                <img src="{{asset('img/'.$mb->img)}}" alt="Logo" width="120px" height="120px" style="object-fit: cover">
 
-                                                <div class="member-del">
-                                                    <a href="#"  style="line-height: 8px" class="btn btn-danger">Xóa</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
+                            </td>
+                            <td>
+                                {{$mb->hoten_sv}}
+                            </td>
+                            <td>{{$mb->ten_chucvu}}</td>
+                            <td><a href="{{route('deleteMember')}}?id_sv={{$mb->id_sv}}&&id_group={{$mb->id_nhom}}" class="btn btn-danger">Xóa</a></td>
+                        </tr>  
                         @endforeach
                 @else
-                        <p align="center">Chưa có thành viên</p>
-                @endif
+                        <td colspan="7" align="center">Chưa có thành viên</td>
+                @endif                      
+                                            
+                    </tbody>
+                 
+                </table>
             </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block" name="submit">Sửa nhóm thực tập</button>
