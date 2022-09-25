@@ -42,7 +42,7 @@ Route::prefix('/')->group(function(){
     Route::post('lay-member',[NhomController::class,'get_memberDot'])->name('getmember');
 // thuctapsinh.index
 
-// });
+});
 require __DIR__.'/auth.php';
 
 
