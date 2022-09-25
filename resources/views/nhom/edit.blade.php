@@ -79,9 +79,9 @@
                         @if (count($get_allMember) > 0)
                         @foreach ($get_allMember as $mb)
                         <tr>
-                            <td>PC01552</td>
+                            <td>{{$mb->mssv}}</td>
                             <td>
-                                <img src="{{asset('img/'.$mb->img)}}" alt="Logo" width="120px" height="120px" style="object-fit: cover">
+                                <img src="{{asset('upload/'.$mb->img)}}" alt="Logo" width="120px" height="120px" style="object-fit: cover">
 
                             </td>
                             <td>

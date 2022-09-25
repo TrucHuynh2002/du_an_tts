@@ -36,13 +36,9 @@ Route::prefix('/')->group(function(){
     Route::post('abc',[NhomController::class,'get_Dot'])->name('taolao');
     Route::get('delete-member',[NhomController::class,'delete_memberGroup'])->name('deleteMember');
 // thuctapsinh.index
-<<<<<<< HEAD
-
-=======
     Route::get('sendmailthuctapsinh',function(){
         return view('email.Sendmailthuctapsinh');
     });
->>>>>>> f80d02421d463d74cca9598628fb343dc64e64fa
 });
 require __DIR__.'/auth.php';
 

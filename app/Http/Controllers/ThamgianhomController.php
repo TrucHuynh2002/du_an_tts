@@ -58,12 +58,13 @@ class ThamgianhomController extends Controller
             
             if($get_nhom){
                
-               $checkMember = chitiet_nhom::where('id_nhom','=',$get_nhom->id_nhom)->where('id_sv','=',Auth::user()->id_sv);
+               $checkMember = chitiet_nhom::where('id_nhom','=',$get_nhom->id_nhom)->where('id_sv','=',Auth::user()->id_sv)->first();
                if(!$checkMember){
                     chitiet_nhom::create([
                         'id_nhom' => $get_nhom->id_nhom,
                         'id_sv' => Auth::user()->id_sv
                     ]);
+                    return back();
                }else{
                  abort(403);
                }

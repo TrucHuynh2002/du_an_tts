@@ -72,20 +72,7 @@
 
 @push('scripts')
 <script>
-//     function getMember(data) {
-
-//         console.log(data);
-//         // var _token = $('input[name="_token"]').val()
-//         // $.ajax({
-//         //     url:"{{route('getmember')}}",
-//         //     method:"POST",
-//         //     data:{id_member: id_member,_token:_token},
-//         //     success:function(data){
-//         //         // getMember(data);
-//         //         alert(data)
-//         //     }
-//         // })
-//   }
+    
   
   $(document).ready(function(){
     $('#id_dot').change(function(){
