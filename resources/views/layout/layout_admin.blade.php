@@ -61,8 +61,9 @@
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								@can('get-quantrivien')
+								
 								<span>
+<<<<<<< HEAD
 
 									Ho va ten
 									<span class="user-level">Quan tri vien</span>
@@ -85,6 +86,11 @@
 									<span class="user-level">Admin</span>
 								</span>
 
+=======
+									Quản Lý Thực Tập Sinh
+									<span class="user-level">Admin</span>
+								</span>
+>>>>>>> f3ea34d11d44e3de2a7c69eb424fdb4a4ab7ea71
 							</a>
 
 							<div class="collapse in" id="collapseExample">
@@ -149,7 +155,7 @@
 							</li>
 						@endcan
 						
-						@cannot('get-thuctapsinh')
+						{{-- @cannot('get-thuctapsinh') --}}
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard1" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
@@ -163,13 +169,13 @@
 											<span class="sub-item">Danh sách đợt</span>
 										</a>
 									</li>
-									@can('get-quantrivien')
+									{{-- @can('get-quantrivien') --}}
 									<li>
 										<a href="{{route('dotthuctap.create')}}">
 											<span class="sub-item">Thêm đợt thực tập</span>
 										</a>
 									</li>
-									@endcan
+									{{-- @endcan --}}
 								</ul>
 							</div>
 						</li>
@@ -195,7 +201,7 @@
 								</ul>
 							</div>
 						</li>
-						@endcan
+						{{-- @endcan --}}
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard6" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
@@ -209,13 +215,13 @@
 											<span class="sub-item">Danh sách thực tập sinh</span>
 										</a>
 									</li>
-									@can('get-quantrivien')
+									{{-- @can('get-quantrivien') --}}
 									<li>
 										<a href="{{route('thuctapsinh.create')}}">
 											<span class="sub-item">Thêm thực tập sinh</span>
 										</a>
 									</li>
-									@endcan
+									{{-- @endcan --}}
 								</ul>
 							</div>
 						</li>
@@ -232,13 +238,13 @@
 											<span class="sub-item">Danh sách công việc</span>
 										</a>
 									</li>
-									@can('get-thuctapsinh')
+									{{-- @can('get-thuctapsinh') --}}
 									<li>
 										<a href="{{route('congviec.create')}}">
 											<span class="sub-item">Thêm công việc</span>
 										</a>
 									</li>
-									@endcan
+									{{-- @endcan --}}
 								</ul>
 							</div>
 						</li>
