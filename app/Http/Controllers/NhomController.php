@@ -96,9 +96,12 @@ class NhomController extends Controller
     public function edit($id_nhom)
     {
         $title = "Cập nhật nhóm";
-        $get_dotthuctap = DB::table('dot_thuctap')->join('users','dot_thuctap.id_dot','=','users.id_dot')
-                            // ->groupBy('dot_thuctap.id_dot')
-                                ->where('users.id_chucvu','=',3)
+        $get_dotthuctap = DB::table('users')
+                            ->join('dot_thuctap','dot_thuctap.id_dot','=','users.id_dot')
+                            // ->select('users.id_dot','dot_thuctap.ten_dot')
+                            // ->groupBy('dot_thuctap.id_dot')->groupBy('dot_thuctap.ten_dot')
+                            ->where('users.id_chucvu','=',3)
+                            ->where('users.id_sv','=',Auth::user()->id_sv)
                             ->get();
         $get_users = DB::table('users')
                                         ->join('chitiet_nhom','users.id_sv','chitiet_nhom.id_sv')
