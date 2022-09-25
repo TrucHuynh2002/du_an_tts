@@ -36,7 +36,7 @@
         <p>Thông tin tài khoản của bạn:</p>
         <p>Tài khoản: trienpq123@gmail.com<br>
         Mật khẩu: ******</p>
-        <p>Để tạo mật khẩu mới cho tài khoản này, bạn có thể nhấp <a hef="abc.html">vào đây </a> hoặc sao chép liên kết dưới đây:
+        <p>Để tạo mật khẩu mới cho tài khoản này, bạn có thể nhấp <a href="#">vào đây</a> hoặc sao chép liên kết dưới đây:
         abc.phpzxcxzcx</p>
         
     </div>
