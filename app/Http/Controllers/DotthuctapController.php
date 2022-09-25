@@ -43,7 +43,13 @@ class DotthuctapController extends Controller
         // }
 
         return view('dotthuctap.add', compact('title','get_congty'));
+<<<<<<< HEAD
+
         // Auth()::user();
+
+=======
+        // Auth()::user();
+>>>>>>> f3ea34d11d44e3de2a7c69eb424fdb4a4ab7ea71
     }
 
     /**

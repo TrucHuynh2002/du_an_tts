@@ -36,11 +36,15 @@
 										<i class="fa fa-search search-icon"></i>
 									</button>
 								</div>
-								<input type="text" placeholder="Tìm kiếm ..." class="form-control">
+								<input type="text" placeholder="Tìm kiếm" class="form-control">
 							</div>
+							
 						</form>
 
 					</div>
+					<a href="/" style="color: white;text-decoration: none;">Đăng xuất</a>
+					
+
 				</div>
 			</nav>
 			<!-- End Navbar -->
@@ -59,9 +63,34 @@
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								
 								<span>
+<<<<<<< HEAD
+
+									Ho va ten
+									<span class="user-level">Quan tri vien</span>
+								</span>
+								@endcan
+								@can('get-quanli')
+								<span>
+									Ho va ten
+									<span class="user-level">Quan li</span>
+								</span>
+								@endcan
+								@can('get-thuctapsinh')
+								<span>
+									Ho va ten
+									<span class="user-level">Thuc tap sinh</span>
+								</span>
+								@endcan
+
 									Quản Lý Thực Tập Sinh
 									<span class="user-level">Admin</span>
 								</span>
+
+=======
+									Quản Lý Thực Tập Sinh
+									<span class="user-level">Admin</span>
+								</span>
+>>>>>>> f3ea34d11d44e3de2a7c69eb424fdb4a4ab7ea71
 							</a>
 
 							<div class="collapse in" id="collapseExample">

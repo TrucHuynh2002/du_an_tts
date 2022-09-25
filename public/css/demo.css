@@ -189,6 +189,8 @@ body[data-background-color="dark"] .demo-icon .icon-class {
 
 .form-show-notify .form-control{
 	margin-bottom: 15px;
+}.form-control{
+	margin-left: -30px;
 }
 
 .form-show-notify label{
