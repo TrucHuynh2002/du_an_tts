@@ -11,13 +11,13 @@
 			</div>
     <form style="padding: 30px;" method="POST" action="{{ route('password.confirm') }}">
         @csrf
-        <h1>Confirm password</h1>
+        <h1>Xác nhận mật khẩu</h1>
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <div class="form-group">
-            <label for="pwd">Password*</label>
+            <label for="pwd">Mật khẩu*</label>
             <input class="form-control" placeholder="Password" id="pwd" type="password" name="password"
             required autocomplete="current-password">
         </div>

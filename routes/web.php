@@ -41,7 +41,9 @@ Route::prefix('/')->group(function(){
     Route::post('abc',[NhomController::class,'get_Dot'])->name('taolao');
     Route::post('lay-member',[NhomController::class,'get_memberDot'])->name('getmember');
 // thuctapsinh.index
-
+    Route::get('sendmailthuctapsinh',function(){
+        return view('email.Sendmailthuctapsinh');
+    });
 });
 require __DIR__.'/auth.php';
 

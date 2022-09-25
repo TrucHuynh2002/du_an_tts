@@ -37,10 +37,12 @@ class NhomController extends Controller
     public function create()
     {
         $title = "Thêm nhóm thực tập";
-        $get_dotthuctap = DB::table('dot_thuctap')->join('users','dot_thuctap.id_dot','=','users.id_dot')
-                            // ->groupBy('dot_thuctap.id_dot')
-                                ->where('users.id_chucvu','=',3)
-                            ->get();
+        // $get_dotthuctap = DB::table('dot_thuctap')->join('users','dot_thuctap.id_dot','=','users.id_dot')
+        // ->groupBy('users.id_dot')
+        // ->having('users.id_chucvu','=',3)
+        //                     ->get();
+
+        $get_dotthuctap = dot_thuctap::all();
         $get_users = DB::table('users')->join('chitiet_nhom','users.id_sv','chitiet_nhom.id_sv')->get();
         
      

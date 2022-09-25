@@ -9,7 +9,7 @@
 			</div>
     <form style="padding: 30px;" method="POST" action="{{ route('password.email') }}">
         @csrf
-        <h1>Forgot password</h1>
+        <h1>Quên mật khẩu</h1>
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -18,9 +18,9 @@
 
         <div class="form-group">
             <label for="email">Email*</label>
-            <input class="form-control" placeholder="Your email" id="email" type="email" name="email" :value="old('email')" required autofocus>
+            <input class="form-control" placeholder="Email của bạn" id="email" type="email" name="email" :value="old('email')" required autofocus>
         </div>
 
-        <button  style="width: 100%;" type="submit" value="submit" class="btn btn-primary">{{ __('Email Password Reset Link') }}</button>	
+        <button  style="width: 100%;" type="submit" value="submit" class="btn btn-primary">{{ __('Đặt lại mật khẩu') }}</button>	
     </form></div>
 @endsection
