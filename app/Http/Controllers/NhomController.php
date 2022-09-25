@@ -147,6 +147,7 @@ class NhomController extends Controller
     {
         $t= nhom::find($id_nhom);
         $t->delete();
+        chitiet_nhom::where('id_nhom','=',$id_nhom)->delete();
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
     }
 

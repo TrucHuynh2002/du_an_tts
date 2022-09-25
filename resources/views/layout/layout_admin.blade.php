@@ -63,34 +63,9 @@
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								
 								<span>
-<<<<<<< HEAD
-
-									Ho va ten
-									<span class="user-level">Quan tri vien</span>
-								</span>
-								@endcan
-								@can('get-quanli')
-								<span>
-									Ho va ten
-									<span class="user-level">Quan li</span>
-								</span>
-								@endcan
-								@can('get-thuctapsinh')
-								<span>
-									Ho va ten
-									<span class="user-level">Thuc tap sinh</span>
-								</span>
-								@endcan
-
 									Quản Lý Thực Tập Sinh
 									<span class="user-level">Admin</span>
 								</span>
-
-=======
-									Quản Lý Thực Tập Sinh
-									<span class="user-level">Admin</span>
-								</span>
->>>>>>> f3ea34d11d44e3de2a7c69eb424fdb4a4ab7ea71
 							</a>
 
 							<div class="collapse in" id="collapseExample">
