@@ -28,6 +28,7 @@ class ThamgianhomController extends Controller
                         'chitiet_nhom.id_nhom as ct_idGroup',
                         'users.hoten_sv as member_name'
                     )
+                    
                     ->get();
     
         // dd($get_nhom);
@@ -64,8 +65,9 @@ class ThamgianhomController extends Controller
                         'id_nhom' => $get_nhom->id_nhom,
                         'id_sv' => Auth::user()->id_sv
                     ]);
+                    return redirect()->back();
                }else{
-                 abort(403);
+                 return abort(403);
                }
             }
             
