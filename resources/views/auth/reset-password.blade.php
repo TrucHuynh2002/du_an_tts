@@ -10,26 +10,26 @@
         <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
         @csrf
-        <h1>Reset password</h1>
+        <h1>Đặt lại mật khẩu</h1>
          <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <div class="form-group">
             <label for="email">Email*</label>
-            <input id="email" class="form-control" type="email" name="email" :value="old('email', $request->email)" required autofocus>
+            <input id="email" class="form-control" placeholder="Email" type="email" name="email" :value="old('email', $request->email)" required autofocus>
         </div>
     
         <div class="form-group">
-            <label for="pwd">Password*</label>
-            <input class="form-control" placeholder="Password" id="pwd" type="password" name="password" required>
+            <label for="pwd">Mật khẩu*</label>
+            <input class="form-control" placeholder="Mật khẩu" id="pwd" type="password" name="password" required>
         </div> 
         
         <div class="form-group">
-            <label for="password_confirmation">Confirm Password*</label>
-            <input class="form-control" placeholder="Password" id="password_confirmation" type="password"
+            <label for="password_confirmation">Xác nhận mật khẩu*</label>
+            <input class="form-control" placeholder="Xác nhận mật khẩu" id="password_confirmation" type="password"
             name="password_confirmation" required>
         </div> 
 
-        <button style="width:100%;" type="submit" value="submit" class="btn btn-primary">{{ __('Reset Password') }}</button>		
+        <button style="width:100%;" type="submit" value="submit" class="btn btn-primary">{{ __('Đặt lại mật khẩu') }}</button>		
     </form>
 @endsection
