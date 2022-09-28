@@ -72,7 +72,6 @@
 
 @push('scripts')
 <script>
-    
   
   $(document).ready(function(){
     $('#id_dot').change(function(){
