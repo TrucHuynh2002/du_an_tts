@@ -23,7 +23,10 @@ class NhomController extends Controller
     public function index()
     {
         $title = "Danh sách nhóm thực tập";
-        $get_nhom = nhom::all();
+        $get_nhom = DB::table('nhom')
+                                    ->join('users','nhom.id_sv','=','users.id_sv')
+                                    ->where('users.id_chucvu','=','3')
+                                    ->get();
         $get_dotthuctap = dot_thuctap::all();
         $get_users = User::all();
         return view('nhom.list', compact('title','get_nhom','get_dotthuctap','get_users'));

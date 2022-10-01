@@ -72,19 +72,24 @@ class CongviecController extends Controller
             ]);
             $congviec= congviec::orderBy('id_congviec','DESC')->first();
         
+        foreach($request->id_sv as $id_sv){
             phancongcongviec::create([
-                'id_sv' => $request->id_sv,
+                'id_sv' => $id_sv,
                 'id_congviec' => $congviec->id_congviec,
                 'tien_do' => 0,
                 'trang_thai' => 0,
+                'ghi_chu' => ''
             ]);
         }
-        congviec::create([
-            'ten_congviec' => $request->ten_congviec,
-            'id_nhom' => $request->id_nhom,
-            'created_at' => $request->ngay_batdau,
-            'updated_at' => $request->ngay_ketthuc
-        ]);
+        }
+        else{
+            congviec::create([
+                'ten_congviec' => $request->ten_congviec,
+                'id_nhom' => $request->id_nhom,
+                'created_at' => $request->ngay_batdau,
+                'updated_at' => $request->ngay_ketthuc
+            ]);
+        }   
         return redirect(route('congviec.index'))->with(['success' => 'Thêm thành công !']);
     }
 

@@ -12,7 +12,8 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{asset('css/demo.css')}}">
-	
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 </head>
 <body>
 	<div class="wrapper">
@@ -265,6 +266,12 @@
 	<!-- Atlantis JS -->
 	<script src="{{asset('js/atlantis.min.js')}}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script>
+		$(".select-multiple").select2({
+		//   maximumSelectionLength: 2
+		});
+	</script>
 	@stack('scripts')
 </body>
 </html>
