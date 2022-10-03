@@ -23,21 +23,27 @@ class CongviecController extends Controller
         $get_nhom = nhom::all();
         $get_congviec = congviec::all();
         $get_phancongcongviec = phancongcongviec::all();
-        $get_all = DB::table('congviec')->join('phancong_congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
-                                        ->join('nhom','nhom.id_nhom','congviec.id_nhom')
-                                        ->join('users','users.id_sv','phancong_congviec.id_sv')
-                                        ->select('congviec.ten_congviec',
-                                                'congviec.id_congviec',
-                                                'nhom.ten_nhom',
-                                                'users.hoten_sv',
-                                                'congviec.created_at',
-                                                'congviec.updated_at',
-                                                'phancong_congviec.tien_do',
-                                                'phancong_congviec.trang_thai',
-                                                'phancong_congviec.ghi_chu'
-                                                )
+        // $get_all = DB::table('congviec')->join('phancong_congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
+        //                                 ->join('nhom','nhom.id_nhom','congviec.id_nhom')
+        //                                 ->join('users','users.id_sv','phancong_congviec.id_sv')
+        //                                 ->select('congviec.ten_congviec',
+        //                                         'congviec.id_congviec',
+        //                                         'nhom.ten_nhom',
+        //                                         'users.hoten_sv',
+        //                                         'congviec.created_at',
+        //                                         'congviec.updated_at',
+        //                                         'phancong_congviec.tien_do',
+        //                                         'phancong_congviec.trang_thai',
+        //                                         'phancong_congviec.ghi_chu'
+        //                                         )
+        //                                 ->get();
+
+        $get_all = DB::table('nhom')->join('congviec','congviec.id_nhom','=','nhom.id_nhom')
+                                        ->join('chitiet_nhom','nhom.id_nhom','=','chitiet_nhom.id_nhom')
+                                        ->where('id_sv','=',Auth::user()->id_sv)
                                         ->get();
                                         
+                                  
         return view('congviec.list', compact('title','get_nhom','get_congviec','get_phancongcongviec','get_all'));
     }
 
@@ -111,12 +117,17 @@ class CongviecController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_cv)
+    public function edit($id_cv, Request $request)
     {
         $title = "Cập nhật công việc";
         $t= congviec::find($id_cv);
-        $get_users = User::all();
-        return view('congviec.edit', compact('title','t','get_users'));
+        $get_users = DB::table('chitiet_nhom')->join('users','chitiet_nhom.id_sv','=','users.id_sv')->where('chitiet_nhom.id_nhom','=',$request->id_nhom)->get();
+        // dd($get_users);
+        // $get_userworks = phancongcongviec::where('id_congviec','=',$id_cv)->all();
+        $get_userworks = DB::table('phancong_congviec')->join('users','phancong_congviec.id_sv','=','users.id_sv')
+                                                    ->where('phancong_congviec.id_congviec','=',$id_cv)    
+                                                    ->get();
+        return view('congviec.edit', compact('title','t','get_users','get_userworks'));
     }
 
     /**
@@ -128,7 +139,31 @@ class CongviecController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        // dd($find_idcv);
+        if($request->id_sv){
+            $find_idcv = phancongcongviec::where('id_congviec','=',$id)->get();
+            foreach($request->id_sv as $id_sv){
+                foreach ($find_idcv as $id_cv) {
+                    if(!$id_sv == $id_cv->id_sv){
+                        phancongcongviec::create([
+                            'id_sv' => $id_sv,
+                            'id_congviec' => $id,
+                            'tien_do' => 0,
+                            'trang_thai' => 0,
+                            'ghi_chu' => ''
+                        ]);
+                    }
+                }
+            }
+        }
+
+        $cv = congviec::find($id);
+        $cv->ten_congviec = $request->ten_congviec;
+        $cv->created_at = $request->ngay_batdau;
+        $cv->updated_at = $request->ngay_ketthuc;
+        $cv->save();
+        return redirect()->back()->with('message','Cap nhat thanh cong');
     }
 
     /**
@@ -143,6 +178,20 @@ class CongviecController extends Controller
         $l= phancongcongviec::find($id_cv);
         $l->delete();
         $t->delete();
+        return redirect()->back()->with(['success' => 'Xóa thành công !']);
+    }
+
+    public function detailt(Request $request){
+        $title = "Chi tiet cong viec";
+        // dd($request->id_cv);
+        $get_detailUser = DB::table('phancong_congviec')->join('users','phancong_congviec.id_sv','=','users.id_sv')
+                                                        ->join('congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
+                        ->where('phancong_congviec.id_congviec','=',$request->id_cv)->get();
+        // dd($get_detailUser);
+        return view('congviec.detail',compact('title','get_detailUser'));
+    }
+    public function deleteUserWork($id,Request $request){
+        $find_id = phancongcongviec::where('id_sv','=',$id)->where('id_congviec','=',$request->id_cv)->delete();
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
     }
 }

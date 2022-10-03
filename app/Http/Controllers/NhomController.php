@@ -24,7 +24,7 @@ class NhomController extends Controller
     {
         $title = "Danh sách nhóm thực tập";
         $get_nhom = DB::table('nhom')
-                                    ->join('users','nhom.id_sv','=','users.id_sv')
+                                    ->join('users','nhom.id_nhomtruong','=','users.id_sv')
                                     ->where('users.id_chucvu','=','3')
                                     ->get();
         $get_dotthuctap = dot_thuctap::all();
@@ -40,13 +40,14 @@ class NhomController extends Controller
     public function create()
     {
         $title = "Thêm nhóm thực tập";
-        // $get_dotthuctap = DB::table('dot_thuctap')->join('users','dot_thuctap.id_dot','=','users.id_dot')
-        // ->groupBy('users.id_dot')
-        // ->having('users.id_chucvu','=',3)
-        //                     ->get();
+        $get_dotthuctap = DB::table('dot_thuctap')->join('users','dot_thuctap.id_dot','=','users.id_dot')
+        // ->groupBy('dot_thuctap.id_dot')
+        ->where('users.id_chucvu','=',3)
+        ->get();
 
-        $get_dotthuctap = dot_thuctap::all();
-        $get_users = DB::table('users')->join('chitiet_nhom','users.id_sv','chitiet_nhom.id_sv')->get();
+        // $get_dotthuctap = dot_thuctap::all();
+        $get_users = DB::table('users')->join('chitiet_nhom','users.id_sv','chitiet_nhom.id_sv')
+                                    ->get();
         
      
         return view('nhom.add', compact('title','get_dotthuctap','get_users'));
@@ -61,7 +62,7 @@ class NhomController extends Controller
     public function store(NhomRequest $request)
     {
         $token = Str::random(60);
-        $t = new nhom;
+        $t = new nhom; 
         $t->ten_nhom = $request->ten_nhom;
         $t->id_dot = $request->id_dot;
         $t->de_tai = $request->de_tai;

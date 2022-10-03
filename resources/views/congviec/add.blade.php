@@ -33,7 +33,7 @@
         </div>
         <div class="form-group">
             <label for="nguoi_thuchien">Người thực hiện</label>
-            <select class="form-control select-multiple" id="id_sv" name="id_sv[]" multiple onChange="alert('chi so index select da chon:'+options[selectIndex].value);">
+            <select class="form-control select-multiple" id="id_sv" name="id_sv[]   " multiple onChange="alert('chi so index select da chon:'+options[selectIndex].value);">
                 @foreach($get_users as $data)
                 <option value="{{$data->id_sv}}">{{$data->hoten_sv}}</option>
                 @endforeach

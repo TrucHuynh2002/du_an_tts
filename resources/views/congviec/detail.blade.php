@@ -16,33 +16,41 @@
         <table class="table">
             <thead class="thead-light">
               <tr>
-                <th>ID chi tiết công việc</th>
-                <th>Tên sinh viên</th>
-                <th>Tên công việc</th>
-                <th>Ngày bắt đầu</th>
-                <th>Ngày kết thúc</th>
+                <th>STT</th>
+                <th>Ten cong viec</th>
+                <th>Nguoi thuc hien</th>
+                {{-- <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th> --}}
                 <th>Tiến độ</th>
                 <th>Trạng thái</th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
-            <tbody>                      
-                <tr>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>5</td>
-                  <td>6</td>
-                  <td>7</td>
-                  <td>
-                    <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
-                  </td>
-                  <td>
-                    <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
-                  </td>
-                </tr>                          
+            <tbody> 
+            @if (count($get_detailUser) > 0)
+              @foreach ($get_detailUser as $item)
+              <tr>
+                <td></td>
+                <td>{{$item->ten_congviec}}</td>
+                <td>{{$item->hoten_sv}}</td>
+                <td>{{$item->tien_do}}</td>
+                <td>{{$item->trang_thai == 0 ? 'Chua Hoan thanh' : 'Hoan Thanh'}}</td>
+              
+                {{-- <td>
+                  <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                </td> --}}
+                <td>
+                  <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
+                </td>
+              </tr>        
+              @endforeach 
+            @else
+            <tr>
+              <td colspan="6" align="center">Chua co nguoi thuc hien</td>
+            </tr>
+            @endif                    
+                                
             </tbody>
         </table>
     </div>      

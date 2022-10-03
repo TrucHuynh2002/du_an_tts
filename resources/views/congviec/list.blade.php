@@ -36,13 +36,13 @@
               <tr>
                 <th>ID công việc</th>
                 <th>Tên công việc</th>
-                <th>Nhóm</th>
-                <th>Người thực hiện</th>
+           
+             
                 <th>Ngày bắt đầu</th>
                 <th>Ngày kết thúc</th>
-                <th>Tiến độ</th>
+             
                 <th>Trạng thái</th>
-                <th>Hoàn thành</th>
+                
                 @can('get-thuctapsinh')
                 <th></th>
                 <th></th>
@@ -55,32 +55,28 @@
                 <tr>
                   <td>{{$cv->id_congviec}}</td>
                   <td>{{$cv->ten_congviec}}</td>
-                  <td>
-                    {{$cv->ten_nhom}}
-                  </td>
-                  <td>
-                    {{$cv->hoten_sv}}
-                  </td>
+                 
+               
                   <td>{{$cv->created_at}}</td>
                   <td>{{$cv->updated_at}}</td>
                 
-                  <td>{{$cv->tien_do}}%</td>
+                  
                   <td class="{{$cv->trang_thai == 0 ? 'text-danger' : 'text-success'}}">
                     {{$cv->trang_thai == 0 ? 'Chua hoan thanh' : 'Hoan thanh'}}
                   </td>
-                  <td>{{$cv->ghi_chu}}</td>
-                  @can('get-thuctapsinh')
+               
+                  {{-- @can('get-thuctapsinh') --}}
                   <td>
-                    <a href="congviec/detail"><button type="button" class="btn btn-outline-primary"><i class='bx bxs-detail'></i></button></a>
+                    <a href="xemcongviec?id_cv={{$cv->id_congviec}}">Xem chi tiet</a>
                   </td>
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
-                    {{-- {{route('congviec.edit',['congviec'=>$t->id_cv])}} --}}
+                    <a href="{{route('congviec.edit',['congviec'=>$cv->id_congviec])}}?id_nhom={{$cv->id_nhom}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    
                   </td>
                   <td>
                     <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
                   </td>
-                  @endcan
+                  {{-- @endcan --}}
                 </tr>                          
             </tbody>
             @endforeach
