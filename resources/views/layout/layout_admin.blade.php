@@ -220,6 +220,11 @@
 											<span class="sub-item">Thêm công việc</span>
 										</a>
 									</li>
+									<li>
+										<a href="{{route('detailJob',['id' => Auth::user()->id_sv])}}">
+											<span class="sub-item">cong viec cua ban</span>
+										</a>
+									</li>
 									{{-- @endcan --}}
 								</ul>
 							</div>

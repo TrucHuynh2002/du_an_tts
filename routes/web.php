@@ -29,6 +29,8 @@ Route::prefix('/')->group(function(){
     Route::resource('nhom', NhomController::class);
     Route::get('xemcongviec', [CongviecController::class,'detailt']);
     Route::get('deleteuserwork/{id}',[CongviecController::class,'deleteUserWork'])->name('deleteuserwork');
+    Route::get('cong-viec/{id}',[CongviecController::class,'detailJob'])->name('detailJob');
+    Route::post('cap-nhat-tien-do-cong-viec/{id}',[CongviecController::class,'update_job'])->name('updateJob');
     Route::resource('congviec', CongviecController::class);
     Route::resource('chucvu', ChucvuController::class);
     Route::resource('congty', CongtyController::class);
