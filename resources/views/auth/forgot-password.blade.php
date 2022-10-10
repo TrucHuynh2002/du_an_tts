@@ -14,8 +14,17 @@
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+        {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
+        @if (session('message'))
+            <p class="text-success">
+                {{session('message')}}
+            </p>
+        @endif
+        @if (session('error'))
+            <p class="text-danger">
+                {{session('error')}}
+            </p>
+        @endif
         <div class="form-group">
             <label for="email">Email*</label>
             <input class="form-control" placeholder="Email của bạn" id="email" type="email" name="email" :value="old('email')" required autofocus>

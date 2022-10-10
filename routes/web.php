@@ -49,6 +49,7 @@ Route::prefix('/')->group(function(){
     Route::get('sendmaildoimatkhauthanhcong',function(){
         return view('email.Sendmaildoimatkhauthanhcong');
     });
+    
 });
 require __DIR__.'/auth.php';
 

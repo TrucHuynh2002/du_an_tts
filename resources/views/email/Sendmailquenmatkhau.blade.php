@@ -45,18 +45,15 @@
 </head>
 <body>
     <div class="table">
-    <div class="header">
-    <h1>Tên công ty</h1>
-    <img src="" width="100px" height="100px">
-    </div>
     <div class="body">
         <h2>Đổi mật khẩu</h2>
-        <b>Hello,<br>Triển</b>
-        <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu Quản Lý Thực Tập Sinh của bạn.</p>
-        <p>Nhập mã đặt lại mật khẩu tại đây:</p>
+        <b>Hello,<br>{{$user->hoten_sv}}</b>
+        <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩucủa bạn.</p>
+        {{-- <p>Nhập mã đặt lại mật khẩu tại đây:</p>
         <p class="code">123456</p>
-        <p>Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.</p>
-        <a href="#"><input type="button" class="button" value="Đổi mật khẩu"></a>
+        <p>Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.</p> --}}
+        <p>Nhập đặt lại mật khẩu ngay tại đây:</p>
+        <a href="{{route('password.reset',['token' => $token])}}?email={{$user->email}}" class="button">Đổi mật khẩu</a>
     </div>
     <div class="footer">
         <p>Thân,<br>
