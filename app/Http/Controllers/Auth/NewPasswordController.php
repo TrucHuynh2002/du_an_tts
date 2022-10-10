@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPassAlert;
 use App\Models\password_resets;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
@@ -56,10 +58,10 @@ class NewPasswordController extends Controller
             if($check_user){
                 $check_user->password = Hash::make($request->password);
                 $check_user->save();     
+                Mail::to($request->email)->send(new ResetPassAlert($check_user));
                 password_resets::where('token','=',$request->token)->delete();
                 Auth::login($check_user);
             };
-            
         return redirect(route('login'));
 
         

@@ -9,8 +9,10 @@ use App\Models\chitiet_nhom;
 use App\Models\nhom;
 use App\Models\dot_thuctap;
 use App\Models\User;
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate as FacadesGate;
 use Illuminate\Support\Str;
 
 class NhomController extends Controller
@@ -42,7 +44,8 @@ class NhomController extends Controller
         $title = "Thêm nhóm thực tập";
         $get_dotthuctap = DB::table('dot_thuctap')->join('users','dot_thuctap.id_dot','=','users.id_dot')
         // ->groupBy('dot_thuctap.id_dot')
-        ->where('users.id_chucvu','=',3)
+        ->where('users.id_chucvu','=',Auth::user()->id_chucvu)
+        ->where('dot_thuctap.id_dot','=',Auth::user()->id_dot)
         ->get();
 
         // $get_dotthuctap = dot_thuctap::all();
@@ -61,6 +64,7 @@ class NhomController extends Controller
      */
     public function store(NhomRequest $request)
     {
+        if (FacadesGate::allows('get-quantrivien') || FacadesGate::allows('get-quanli')) {
         $token = Str::random(60);
         $t = new nhom; 
         $t->ten_nhom = $request->ten_nhom;
@@ -76,6 +80,9 @@ class NhomController extends Controller
                 'id_sv' => $request->id_nhomtruong
             ]);
         };
+        } else {
+           return abort(403);
+        }
         return redirect()->back()->with(['success' => 'Thêm thành công !'])->with(['token' => $token]);
     }
 

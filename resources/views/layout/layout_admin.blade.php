@@ -43,7 +43,7 @@
 						</form>
 
 					</div>
-					<a href="/" style="color: white;text-decoration: none;">Đăng xuất</a>
+					<a href="{{route('logout')}}" style="color: white;text-decoration: none;">Đăng xuất</a>
 					
 
 				</div>
