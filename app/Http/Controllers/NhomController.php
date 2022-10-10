@@ -27,8 +27,10 @@ class NhomController extends Controller
         $title = "Danh sách nhóm thực tập";
         $get_nhom = DB::table('nhom')
                                     ->join('users','nhom.id_nhomtruong','=','users.id_sv')
-                                    ->where('users.id_chucvu','=','3')
+                                    ->join('dot_thuctap','dot_thuctap.id_dot','=','users.id_dot')
+                                    ->where('nhom.id_dot','=',Auth::user()->id_dot)
                                     ->get();
+                                    // dd($get_nhom);
         $get_dotthuctap = dot_thuctap::all();
         $get_users = User::all();
         return view('nhom.list', compact('title','get_nhom','get_dotthuctap','get_users'));
@@ -107,13 +109,13 @@ class NhomController extends Controller
     public function edit($id_nhom)
     {
         $title = "Cập nhật nhóm";
-        $get_dotthuctap = DB::table('users')
-                            ->join('dot_thuctap','dot_thuctap.id_dot','=','users.id_dot')
+        $get_dotthuctap = DB::table('dot_thuctap')
+                            // ->join('users','dot_thuctap.id_dot','=','users.id_dot')
                             // ->select('users.id_dot','dot_thuctap.ten_dot')
                             // ->groupBy('dot_thuctap.id_dot')->groupBy('dot_thuctap.ten_dot')
-                            ->where('users.id_chucvu','=',3)
-                            ->where('users.id_sv','=',Auth::user()->id_sv)
+                            ->where('id_dot','=',Auth::user()->id_dot)
                             ->get();
+        // dd($get_dotthuctap);
         $get_users = DB::table('users')
                                         ->join('chitiet_nhom','users.id_sv','chitiet_nhom.id_sv')
                                         ->where('chitiet_nhom.id_nhom','=',$id_nhom)
@@ -143,10 +145,8 @@ class NhomController extends Controller
     {
         $t = nhom::find($id_nhom);
         $t->ten_nhom = $request->ten_nhom;
-        $t->id_dot = $request->id_dot;
         $t->de_tai = $request->de_tai;
         $t->id_nhomtruong = $request->id_nhomtruong;
-    
         $t->save();
         return redirect(route('nhom.index'))->with(['success' => 'Sửa thành công !']);
     }

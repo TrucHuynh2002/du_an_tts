@@ -33,6 +33,7 @@
                 <th>Trưởng nhóm</th>
                 <th>Đợt thực tập</th>
                 <th>Đề tài</th>
+                
                 <th></th>
                 <th></th>
                 <th></th>
@@ -54,6 +55,7 @@
                     @endforeach
                     </td>
                   <td>{{$t->de_tai}}</td>
+                  
                   <td>
                     <a href=""><button type="button" class="btn btn-outline-primary"><i class='bx bxs-detail'></i></button></a>
                   </td>

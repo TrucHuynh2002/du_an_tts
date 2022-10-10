@@ -35,18 +35,7 @@
             @enderror
         </div>
        
-        <div class="form-group">
-            <label for="id_dot">ID đợt</label>
-            <select class="form-control" id="id_dot" name="id_dot">
-                <option value="">Chưa chọn đợt</option>
-                @foreach($get_dotthuctap as $data)
-                <option {{$t->id_dot == $data->id_dot ? 'selected' : ''}} value="{{$data->id_dot}}">{{$data->ten_dot}}</option>
-                @endforeach
-              </select>
-            @error('id_dot')
-                <span style="color:red">{{$message}}</span>
-            @enderror
-        </div>
+       
         <div class="form-group">
             <label for="nhom_truong">Nhóm trưởng</label>
             <select class="form-control" id="nhom_truong" name="id_nhomtruong" value="">
