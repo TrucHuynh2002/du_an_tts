@@ -41,7 +41,7 @@
                 <td>
                     <form action="{{route('updateJob',['id' => $item->id_congviec])}}" method="post">
                         @csrf
-                        <input type="number" value="{{$item->tien_do}}" name="tien_do" style="width: 65px;padding:4px"> <strong>%</strong>
+                        <input type="number"  value="{{$item->tien_do}}" name="tien_do" style="width: 65px;padding:4px"> <strong>%</strong>
                     </form>
                 </td>
                 <td>{{$item->trang_thai == 1 ? 'Hoan thanh' : 'Chua hoan thanh'}}</td>
