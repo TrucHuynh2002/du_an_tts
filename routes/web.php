@@ -6,7 +6,6 @@ use App\Http\Controllers\CongtyController;
 use App\Http\Controllers\CongviecController;
 use App\Http\Controllers\DotthuctapController;
 use App\Http\Controllers\NhomController;
-use App\Http\Controllers\TaikhoanController;
 use App\Http\Controllers\ThamgianhomController;
 use App\Http\Controllers\ThuctapsinhController;
 use Illuminate\Support\Facades\Route;
@@ -27,14 +26,16 @@ Route::prefix('/')->group(function(){
     Route::resource('/', AdminController::class);
     Route::resource('dotthuctap', DotthuctapController::class);
     Route::resource('nhom', NhomController::class);
+    Route::get('chi-tiet-nhom/{id}',[NhomController::class,'detailtGroup'])->name('detailtGroup');
     Route::get('xemcongviec', [CongviecController::class,'detailt']);
     Route::get('deleteuserwork/{id}',[CongviecController::class,'deleteUserWork'])->name('deleteuserwork');
     Route::get('cong-viec/{id}',[CongviecController::class,'detailJob'])->name('detailJob');
+    Route::get('tien-do-cong-viec/{id}',[CongviecController::class,'detailtJobGroup'])->name('detailtJobGroup');
     Route::post('cap-nhat-tien-do-cong-viec/{id}',[CongviecController::class,'update_job'])->name('updateJob');
     Route::resource('congviec', CongviecController::class);
     Route::resource('chucvu', ChucvuController::class);
     Route::resource('congty', CongtyController::class);
-    Route::resource('taikhoan', TaikhoanController::class);
+    Route::get('taikhoan/{id}', [ThuctapsinhController::class,'get_profile'])->name('get_profile');
     Route::resource('thuctapsinh', ThuctapsinhController::class);
     Route::resource('thamgianhom',ThamgianhomController::class)->middleware('checktokenjoingroup');
     Route::post('abc',[NhomController::class,'get_Dot'])->name('taolao');
@@ -52,5 +53,3 @@ Route::prefix('/')->group(function(){
     
 });
 require __DIR__.'/auth.php';
-
-

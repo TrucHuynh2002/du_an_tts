@@ -190,6 +190,14 @@ class CongviecController extends Controller
         // dd($get_detailUser);
         return view('congviec.detail',compact('title','get_detailUser'));
     }
+    public function detailtJobGroup(Request $request , $id){
+        $nhom = nhom::find($id);
+        $title = "tiến độ công việc của nhóm ".$nhom->ten_nhom;
+        $get_detailGroup = congviec::where('id_nhom','=',$id)->get();
+        $get_userJob = DB::table('phancong_congviec')->join('users','phancong_congviec.id_sv','=','users.id_sv')->get();
+                                                    
+        return view('congviec.detailjobgroup',compact('title','get_detailGroup','get_userJob'));
+    }
     public function deleteUserWork($id,Request $request){
         $find_id = phancongcongviec::where('id_sv','=',$id)->where('id_congviec','=',$request->id_cv)->delete();
         return redirect()->back()->with(['success' => 'Xóa thành công !']);

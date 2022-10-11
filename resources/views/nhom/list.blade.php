@@ -33,7 +33,7 @@
                 <th>Trưởng nhóm</th>
                 <th>Đợt thực tập</th>
                 <th>Đề tài</th>
-                
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -57,7 +57,10 @@
                   <td>{{$t->de_tai}}</td>
                   
                   <td>
-                    <a href=""><button type="button" class="btn btn-outline-primary"><i class='bx bxs-detail'></i></button></a>
+                    <a href="{{route('detailtGroup',['id'=>$t->id_nhom])}}">Chi tiết nhóm</a>
+                  </td>
+                  <td>
+                    <a href="{{route('detailtJobGroup',['id'=>$t->id_nhom])}}">Tiến độ làm việc</a>
                   </td>
                   <td>
                     <a href="{{route('nhom.edit',['nhom'=>$t->id_nhom])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>

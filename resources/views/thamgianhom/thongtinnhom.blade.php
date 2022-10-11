@@ -34,6 +34,13 @@
                     @endforeach
                 </textarea>
             </div>
+            @if (session('error'))
+                <span class="text-danger">{{session('error')}}</span>
+            @endif
+            @if (session('success'))
+                <span class="text-danger">{{session('success')}}</span>
+            @endif
+            <br>
             <button type="submit" class="btn btn-success">Tham gia nhóm</button>
         </form>
     </div>

@@ -54,22 +54,26 @@ class ThamgianhomController extends Controller
      */
     public function store(Request $request)
     {
+        // $check_group = chitiet_nhom::where('id_sv','=',Auth::user()->id_sv);
+       
             $token = $request->token;
             $get_nhom = nhom::where('token',$token)->first();
             
-            if($get_nhom){
-               
+        
+                
                $checkMember = chitiet_nhom::where('id_nhom','=',$get_nhom->id_nhom)->where('id_sv','=',Auth::user()->id_sv)->first();
                if(!$checkMember){
                     chitiet_nhom::create([
                         'id_nhom' => $get_nhom->id_nhom,
                         'id_sv' => Auth::user()->id_sv
                     ]);
-                    return back();
+                    return back()->with(['success' => 'Tham gia nhóm thành công']);
                }else{
-                 return abort(403);
+                 return back()->with(['error' => 'Bạn đã có nhóm']);
                }
-            }
+            
+        
+          
             
     }
 

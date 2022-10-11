@@ -57,33 +57,17 @@
 			<div class="sidebar-wrapper scrollbar scrollbar-inner">
 				<div class="sidebar-content">
 					<div class="user">
-						<div class="avatar-sm float-left mr-2">
-							<img src="/img/blogpost.jpg" alt="hình ảnh" class="avatar-img rounded-circle">
-						</div>
-						<div class="info">
-							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								
-								<span>
-									Quản Lý Thực Tập Sinh
-									<span class="user-level">Admin</span>
-								</span>
-							</a>
-
-							<div class="collapse in" id="collapseExample">
-								<ul class="nav">
-									<li>
-										<a href="{{route('taikhoan.index')}}">
-											<span class="link-collapse">Xem thông tin</span>
-										</a>
-									</li>
-									<li>
-										<a href="{{route('taikhoan.index')}}">
-											<span class="link-collapse">Cập nhật thông tin</span>
-										</a>
-									</li>
-								</ul>
+						<a href="{{route('get_profile',['id' => Auth::user()->id_sv])}}">
+							<div class="avatar-sm float-left mr-2">
+								<img src="{{asset('upload/'.Auth::user()->img)}}" alt="{{Auth::user()->hoten_sv}}" class="avatar-img rounded-circle">
 							</div>
-						</div>
+							<div class="info">
+									<span>
+										{{Auth::user()->hoten_sv}}
+										{{-- <span class="user-level">{{$get_profile->ten_chucvu}}</span> --}}
+									</span>
+							</div>
+						</a>
 					</div>
 					<ul class="nav nav-primary">
 						@can('get-quantrivien')

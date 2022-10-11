@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 use App\Models\dot_thuctap;
 use App\Models\chucvu;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\MailSendAccount;
+use Illuminate\Support\Facades\Mail;
 
 class ThuctapsinhController extends Controller
 {
@@ -20,7 +23,7 @@ class ThuctapsinhController extends Controller
     public function index()
     {
         $title = "Danh sách thực tập sinh";
-        $data = User::all();
+        $data = User::where('id_chucvu','=',2)->paginate(4);
         // $data = DB::table('users')->join('dot_thuctap','users.id_dot','=','dot_thuctap.id_dot')->select();
         $get_dotthuctap = dot_thuctap::all();
         $get_chucvu = chucvu::all();
@@ -71,6 +74,7 @@ class ThuctapsinhController extends Controller
         $t->id_chucvu = $request->id_chucvu;
         $t->id_dot = $request->id_dot;
         $t->save();
+        Mail::to($request->email)->send(new MailSendAccount($request->hoten_sv,$request->email,$request->password));
         return redirect(route('thuctapsinh.index'))->with(['success' => 'Thêm thành công !']);
     }
 
@@ -151,5 +155,11 @@ class ThuctapsinhController extends Controller
         //     return abort(403);
         // }
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
+    }
+
+    public function get_profile($id){
+        $title = "Thông tin tài khoản";
+        $get_profile = DB::table('users')->join('chucvu','users.id_chucvu','=','chucvu.id_chucvu')->where('users.id_sv','=',$id)->first();
+        return view('taikhoan.thongtin', compact('title','get_profile'));
     }
 }

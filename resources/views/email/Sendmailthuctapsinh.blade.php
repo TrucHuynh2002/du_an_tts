@@ -26,23 +26,24 @@
 <body>
     <div class="table">
     <div class="header">
-    <h1>Tên công ty</h1>
-    <img src="" width="100px" height="100px">
+    <h1>{{env('APP_NAME')}}
+        
+</h1>
+    <img src="{{asset('')}}" width="100px" height="100px">
     </div>
     <div class="body">
         <h2>Xác nhận mật khẩu</h2>
-        <b>Hello,<br>Triển</b>
-        <p>Chào mừng bạn gia nhập công ty Tên công ty với vai trò là thực tập sinh.</p>
+        <b>Hello, {{$hoten_sv}}</b>
+        <p>Chào mừng bạn gia nhập công ty {{env('APP_NAME')}} với vai trò là thực tập sinh.</p>
         <p>Thông tin tài khoản của bạn:</p>
-        <p>Tài khoản: trienpq123@gmail.com<br>
-        Mật khẩu: ******</p>
-        <p>Để tạo mật khẩu mới cho tài khoản này, bạn có thể nhấp <a href="#">vào đây</a> hoặc sao chép liên kết dưới đây:
-        abc.phpzxcxzcx</p>
+        <p>Tài khoản: {{$email}}<br>
+        Mật khẩu: {{$password}}<p>
+        <p>Vui lòng nhấp <a href="{{route('login')}}">vào đây</a> để đăng nhập vào tài khoản.</p>
         
     </div>
     <div class="footer">
         <p>Thân,<br>
-        Tên công ty</p>
+        {{env('APP_NAME')}}</p>
     </div>
     </div>
 </body>

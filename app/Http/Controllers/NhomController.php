@@ -193,7 +193,14 @@ class NhomController extends Controller
         return redirect()->back();
     }
 
-
+    public function detailtGroup(Request $request , $id){
+        $nhom = nhom::find($id);
+        $title = "Chi tiết nhóm ".$nhom->ten_nhom;
+        $get_member = DB::table('chitiet_nhom')->join('users','chitiet_nhom.id_sv','=','users.id_sv')
+                                        ->where('chitiet_nhom.id_nhom' ,'=',$id)->get();
+        $get_leader = nhom::find($id);                                         
+        return view('nhom.detailgroup',compact('title','get_member','get_leader'));
+    }
 
     
 }

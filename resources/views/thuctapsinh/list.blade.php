@@ -80,5 +80,6 @@
             </tbody>
             @endforeach
         </table>
+        {{-- {!! $data->links() !!} --}}
     </div>  
 @endsection

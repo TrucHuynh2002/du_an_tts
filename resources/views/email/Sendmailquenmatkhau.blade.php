@@ -47,8 +47,8 @@
     <div class="table">
     <div class="body">
         <h2>Đổi mật khẩu</h2>
-        <b>Hello,<br>{{$user->hoten_sv}}</b>
-        <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩucủa bạn.</p>
+        <b>Hello, {{$user->hoten_sv}}</b>
+        <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu của bạn.</p>
         {{-- <p>Nhập mã đặt lại mật khẩu tại đây:</p>
         <p class="code">123456</p>
         <p>Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.</p> --}}
@@ -57,7 +57,7 @@
     </div>
     <div class="footer">
         <p>Thân,<br>
-        Tên công ty</p>
+        {{env('APP_NAME')}}</p>
     </div>
     </div>
 </body>
