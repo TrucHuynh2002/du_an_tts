@@ -28,6 +28,6 @@ class ResetPassAlert extends Mailable
      */
     public function build()
     {
-        return $this->subject('Đổi mật khẩu thành công')->view('email.Sendmaildoimatkhau')->with(['user'=>$this->user]);
+        return $this->subject('Đổi mật khẩu thành công')->view('email.Sendmaildoimatkhauthanhcong')->with(['user'=>$this->user]);
     }
 }

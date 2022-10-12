@@ -50,13 +50,15 @@
                 @endcan
               </tr>
             </thead>
-            @foreach($get_all as $cv)
-            <tbody>                      
+            <tbody>
+            @foreach($get_congviec as $cv)
+                               
+                @if ($cv->id_nhom == $get_nhom->id_nhom)
                 <tr>
                   <td>{{$cv->id_congviec}}</td>
                   <td>{{$cv->ten_congviec}}</td>
-                 
-               
+                
+              
                   <td>{{$cv->created_at}}</td>
                   <td>{{$cv->updated_at}}</td>
                 
@@ -64,7 +66,7 @@
                   <td class="{{$cv->trang_thai == 0 ? 'text-danger' : 'text-success'}}">
                     {{$cv->trang_thai == 0 ? 'Chua hoan thanh' : 'Hoan thanh'}}
                   </td>
-               
+              
                   {{-- @can('get-thuctapsinh') --}}
                   <td>
                     <a href="xemcongviec?id_cv={{$cv->id_congviec}}">Xem chi tiet</a>
@@ -77,9 +79,10 @@
                     <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
                   </td>
                   {{-- @endcan --}}
-                </tr>                          
-            </tbody>
+                </tr>    
+                @endif                      
             @endforeach
+            </tbody>
         </table>
     </div>      
 @endsection

@@ -11,6 +11,7 @@ use App\Models\chucvu;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\MailSendAccount;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class ThuctapsinhController extends Controller
@@ -23,11 +24,19 @@ class ThuctapsinhController extends Controller
     public function index()
     {
         $title = "Danh sách thực tập sinh";
-        $data = User::where('id_chucvu','=',2)->paginate(4);
+        // $data = User::where('id_chucvu','=',7)->paginate(4);
+        if (Gate::allows('get-quantrivien')) {
+            $data = User::whereNot(function ($query){
+                $query->where('id_chucvu','=',5);
+            })->get();
+        }else {
+            $data = User::where('id_chucvu','=',7)->where('id_dot','=',Auth::User()->id_dot)->get();
+        }
         // $data = DB::table('users')->join('dot_thuctap','users.id_dot','=','dot_thuctap.id_dot')->select();
         $get_dotthuctap = dot_thuctap::all();
         $get_chucvu = chucvu::all();
         return view('thuctapsinh.list', compact('title','data','get_dotthuctap','get_chucvu'));
+        
     }
 
     /**

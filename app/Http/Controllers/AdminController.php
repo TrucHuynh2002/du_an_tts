@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         $title = "Trang chủ Admin";
         
-        $user = User::findOrFail(1);
+        // $user = User::findOrFail(1);
         // if (Gate::allows('get-quantrivien', $user)) {
         //     echo "Ban la quan tri vien";
         // } elseif (Gate::allows('get-quanli', $user)) {
@@ -24,7 +24,7 @@ class AdminController extends Controller
         // } else {
         //     echo "Ban la thuc tap sinh";
         // }
-        return view('layout.layout_admin', compact('title','user'));
+        return view('layout.layout_admin', compact('title'));
     }
 
     /**

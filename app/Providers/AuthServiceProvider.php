@@ -31,13 +31,13 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('get-quantrivien', function ($user) {
-            return $user->id_chucvu == 4;
+            return $user->id_chucvu == 5;
         });
         Gate::define('get-quanli', function ($user) {
-            return $user->id_chucvu == 3;
+            return $user->id_chucvu == 6;
         });
         Gate::define('get-thuctapsinh', function ($user) {
-            return $user->id_chucvu == 2;
+            return $user->id_chucvu == 7;
         });
         //
     }

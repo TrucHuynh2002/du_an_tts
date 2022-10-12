@@ -34,8 +34,13 @@
         <div class="form-group">
             <label for="nguoi_thuchien">Người thực hiện</label>
             <select class="form-control select-multiple" id="id_sv" name="id_sv[]   " multiple onChange="alert('chi so index select da chon:'+options[selectIndex].value);">
+               
+                <option value="">Chưa chọn thành viên</option>
                 @foreach($get_users as $data)
+                @if ($data->id_nhom == $get_nhom->id_nhom)
                 <option value="{{$data->id_sv}}">{{$data->hoten_sv}}</option>
+                @endif
+                
                 @endforeach
             </select>
             @error('nguoi_thuchien')

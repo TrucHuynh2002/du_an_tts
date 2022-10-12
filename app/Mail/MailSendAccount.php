@@ -32,7 +32,7 @@ class MailSendAccount extends Mailable
      */
     public function build()
     {
-        return $this->subject('Thêm thực tập sinh thành công')->view('email.Sendmailthuctapsinh')
+        return $this->subject('['.env('APP_NAME').'] CHÀO MỪNG BẠN ĐẾN VỚI CÔNG TY')->view('email.Sendmailthuctapsinh')
         ->with(['email'=>$this->email, 'password'=>$this->password, 'hoten_sv'=>$this->hoten_sv]);
     }
 }

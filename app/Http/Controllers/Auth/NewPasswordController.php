@@ -62,7 +62,7 @@ class NewPasswordController extends Controller
                 password_resets::where('token','=',$request->token)->delete();
                 Auth::login($check_user);
             };
-        return redirect(route('login'));
+        return redirect('/');
 
         
 

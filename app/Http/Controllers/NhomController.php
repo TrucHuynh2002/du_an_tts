@@ -9,7 +9,7 @@ use App\Models\chitiet_nhom;
 use App\Models\nhom;
 use App\Models\dot_thuctap;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Access\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate as FacadesGate;
@@ -25,12 +25,19 @@ class NhomController extends Controller
     public function index()
     {
         $title = "Danh sách nhóm thực tập";
-        $get_nhom = DB::table('nhom')
-                                    ->join('users','nhom.id_nhomtruong','=','users.id_sv')
-                                    ->join('dot_thuctap','dot_thuctap.id_dot','=','users.id_dot')
-                                    ->where('nhom.id_dot','=',Auth::user()->id_dot)
-                                    ->get();
-                                    // dd($get_nhom);
+            if (Gate::allows('get-quantrivien')) {
+                $get_nhom = DB::table('nhom')
+                ->join('users','nhom.id_nhomtruong','=','users.id_sv')
+                ->join('dot_thuctap','dot_thuctap.id_dot','=','users.id_dot')
+                ->get();
+            }else {
+                $get_nhom = DB::table('nhom')
+                ->join('users','nhom.id_nhomtruong','=','users.id_sv')
+                ->join('dot_thuctap','dot_thuctap.id_dot','=','users.id_dot')
+                ->where('nhom.id_dot','=',Auth::user()->id_dot)
+                ->get();
+            }
+            // dd($get_nhom);
         $get_dotthuctap = dot_thuctap::all();
         $get_users = User::all();
         return view('nhom.list', compact('title','get_nhom','get_dotthuctap','get_users'));
@@ -44,10 +51,8 @@ class NhomController extends Controller
     public function create()
     {
         $title = "Thêm nhóm thực tập";
-        $get_dotthuctap = DB::table('dot_thuctap')->join('users','dot_thuctap.id_dot','=','users.id_dot')
+        $get_dotthuctap = dot_thuctap::find(Auth::user()->id_dot)
         // ->groupBy('dot_thuctap.id_dot')
-        ->where('users.id_chucvu','=',Auth::user()->id_chucvu)
-        ->where('dot_thuctap.id_dot','=',Auth::user()->id_dot)
         ->get();
 
         // $get_dotthuctap = dot_thuctap::all();
@@ -126,7 +131,7 @@ class NhomController extends Controller
                                                 ->join('users','chitiet_nhom.id_sv','=','users.id_sv')
                                                 ->join('chucvu','users.id_chucvu','=','chucvu.id_chucvu')
                                                 ->where('chitiet_nhom.id_nhom','=',$id_nhom)
-                                                ->where('users.id_chucvu','=','2')
+                                                ->where('users.id_chucvu','=','7')
                                                 ->get();
         $get_leaderGroup = nhom::where('id_nhom',$id_nhom);
         // $get_users = User::all();
@@ -166,7 +171,7 @@ class NhomController extends Controller
     }
 
     public function get_Dot(Request $request){
-        $get_user = User::where('id_dot','=',$request->id_dot)->where('id_chucvu','=','2')->get();
+        $get_user = User::where('id_dot','=',$request->id_dot)->where('id_chucvu','=',7)->get();
     
         $output = '';
         $output .= '<option value="">Chưa có nhóm trưởng</option>';

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\chitiet_nhom;
 use Illuminate\Http\Request;
 use App\Models\nhom;
 use App\Models\congviec;
@@ -20,9 +21,9 @@ class CongviecController extends Controller
     public function index()
     {
         $title = "Danh sách công việc";
-        $get_nhom = nhom::all();
+        $get_nhom = chitiet_nhom::where('id_sv','=',Auth::user()->id_sv)->first();
         $get_congviec = congviec::all();
-        $get_phancongcongviec = phancongcongviec::all();
+        // $get_phancongcongviec = phancongcongviec::all();
         // $get_all = DB::table('congviec')->join('phancong_congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
         //                                 ->join('nhom','nhom.id_nhom','congviec.id_nhom')
         //                                 ->join('users','users.id_sv','phancong_congviec.id_sv')
@@ -38,13 +39,12 @@ class CongviecController extends Controller
         //                                         )
         //                                 ->get();
 
-        $get_all = DB::table('nhom')->join('congviec','congviec.id_nhom','=','nhom.id_nhom')
-                                        ->join('chitiet_nhom','nhom.id_nhom','=','chitiet_nhom.id_nhom')
-                                        ->where('id_sv','=',Auth::user()->id_sv)
-                                        ->get();
+        // $get_all = DB::table('nhom')->join('congviec','congviec.id_nhom','=','nhom.id_nhom')
+        //                                 ->join('chitiet_nhom','nhom.id_nhom','=','chitiet_nhom.id_nhom')
+        //                                 ->get();
                                         
                                   
-        return view('congviec.list', compact('title','get_nhom','get_congviec','get_phancongcongviec','get_all'));
+        return view('congviec.list', compact('title','get_nhom','get_congviec'));
     }
 
     /**
@@ -56,7 +56,9 @@ class CongviecController extends Controller
     {
         $title = "Thêm công việc";
         $get_nhom = nhom::where('id_nhomtruong','=',Auth::user()->id_sv)->first();
-        $get_users = User::all();
+        $get_users = DB::table('users')
+            ->join('chitiet_nhom','users.id_sv','=','chitiet_nhom.id_sv')
+            ->get();
         
         return view('congviec.add', compact('title','get_users','get_nhom'));
     }
