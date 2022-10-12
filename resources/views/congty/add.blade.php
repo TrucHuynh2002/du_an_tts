@@ -42,6 +42,6 @@
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary btn-block" name="submit">Thêm công ty</button>
+        <button type="submit" id="button" class="btn btn-primary btn-block" name="submit">Thêm công ty</button>
     </form>                          
 @endsection
