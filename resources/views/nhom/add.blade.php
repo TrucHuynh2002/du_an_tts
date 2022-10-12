@@ -58,7 +58,7 @@
         @enderror
         </div>
         
-        <button type="submit" class="btn btn-primary btn-block" name="submit">Thêm nhóm thực tập</button>
+        <button type="submit" id="button" class="btn btn-primary btn-block" name="submit">Thêm nhóm thực tập</button>
         <br>
         @if (session('token'))
             
