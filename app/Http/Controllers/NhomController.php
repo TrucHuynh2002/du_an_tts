@@ -207,5 +207,13 @@ class NhomController extends Controller
         return view('nhom.detailgroup',compact('title','get_member','get_leader'));
     }
 
-    
+    public function downloadQL(){
+        $title = "Download file quản lý";
+        return view('nhom.download_ql', compact('title'));
+    }
+
+    public function downloadNT(){
+        $title = "Download file nhóm trưởng";
+        return view('nhom.download_nt', compact('title'));
+    }
 }

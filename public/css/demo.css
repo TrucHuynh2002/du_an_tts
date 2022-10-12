@@ -125,7 +125,10 @@
 .demo .btn, .demo .progress{
 	margin-bottom: 15px !important;
 }
-
+#button{
+	width: 1268px;
+	margin-left: 10px;
+}
 .demo .form-check-label, .demo .form-radio-label{
 	margin-right: 15px;
 }
@@ -189,8 +192,6 @@ body[data-background-color="dark"] .demo-icon .icon-class {
 
 .form-show-notify .form-control{
 	margin-bottom: 15px;
-}.form-control{
-	margin-left: -30px;
 }
 
 .form-show-notify label{

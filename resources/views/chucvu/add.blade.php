@@ -26,6 +26,6 @@
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary btn-block" name="submit">Thêm chức vụ</button>
+        <button id="button" type="submit" class="btn btn-primary btn-block"  name="submit">Thêm chức vụ</button>
     </form>                          
 @endsection

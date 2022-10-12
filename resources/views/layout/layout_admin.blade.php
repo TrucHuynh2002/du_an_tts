@@ -74,7 +74,7 @@
 							<li class="nav-item active">
 								<a data-toggle="collapse" href="#dashboard5" class="collapsed" aria-expanded="false">
 									<i class="fas fa-home"></i>
-									<p>Công ty</p>
+									<p><i class='bx bx-building-house'></i>Công ty</p>
 									<span class="caret"></span>
 								</a>
 								<div class="collapse" id="dashboard5">
@@ -95,7 +95,7 @@
 							<li class="nav-item">
 								<a data-toggle="collapse" href="#dashboard4" class="collapsed" aria-expanded="false">
 									<i class="fas fa-home"></i>
-									<p>Chức vụ</p>
+									<p><i class='bx bx-male-female'></i>Chức vụ</p>
 									<span class="caret"></span>
 								</a>
 								<div class="collapse" id="dashboard4">
@@ -119,7 +119,7 @@
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard1" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
-								<p>Đợt</p>
+								<p><i class='bx bx-bar-chart-alt-2'></i>Đợt</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="dashboard1">
@@ -143,7 +143,7 @@
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard2" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
-								<p>Nhóm</p>
+								<p><i class='bx bxs-group'></i>Nhóm</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="dashboard2">
@@ -165,7 +165,7 @@
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard6" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
-								<p>Thực tập sinh</p>
+								<p><i class='bx bx-user-circle'></i>Thực tập sinh</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="dashboard6">
@@ -188,7 +188,7 @@
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard3" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
-								<p>Công việc</p>
+								<p><i class='bx bx-spreadsheet'></i>Công việc</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="dashboard3">
@@ -212,6 +212,18 @@
 									{{-- @endcan --}}
 								</ul>
 							</div>
+						</li>
+						{{-- download file nhóm trưởng --}}
+						<li class="nav-item" style="margin-left: 40px">						
+							<a class="nav-link" href="{{route('downloadNT')}}">
+								<i class='bx bx-edit-alt'></i> Nộp bài
+							</a>
+						</li>
+						{{-- download file quản lý --}}
+						<li class="nav-item" style="margin-left: 40px">
+							<a href="{{route('downloadQL')}}">
+								<i class='bx bx-notepad'></i> Quản lý file
+							</a>
 						</li>
 					</ul>
 				</div>
