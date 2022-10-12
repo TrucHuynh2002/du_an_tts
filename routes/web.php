@@ -26,6 +26,8 @@ Route::prefix('/')->group(function(){
     Route::resource('/', AdminController::class);
     Route::resource('dotthuctap', DotthuctapController::class);
     Route::resource('nhom', NhomController::class);
+    Route::get('fileQL',[NhomController::class,'downloadQL'])->name('downloadQL');
+    Route::get('fileNT',[NhomController::class,'downloadNT'])->name('downloadNT');
     Route::get('chi-tiet-nhom/{id}',[NhomController::class,'detailtGroup'])->name('detailtGroup');
     Route::get('xemcongviec', [CongviecController::class,'detailt']);
     Route::get('deleteuserwork/{id}',[CongviecController::class,'deleteUserWork'])->name('deleteuserwork');

@@ -213,6 +213,18 @@
 								</ul>
 							</div>
 						</li>
+						{{-- download file nhóm trưởng --}}
+						<li class="nav-item" style="margin-left: 40px">							
+							<a href="{{route('downloadNT')}}">
+								<span class="sub-item">Nộp bài</span>
+							</a>
+						</li>
+						{{-- download file quản lý --}}
+						<li class="nav-item" style="margin-left: 40px">
+							<a href="{{route('downloadQL')}}">
+								<span class="sub-item">Quản lý file</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
