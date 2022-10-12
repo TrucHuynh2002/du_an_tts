@@ -64,6 +64,34 @@ class ThuctapsinhController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'hoten_sv'=> 'required',
+            'mssv'=> 'required|unique:users',
+            'email'=> 'required|unique:users|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'password'=> 'required',
+            'sdt'=> 'required|unique:users|min:10|max:12',
+            'img'=> 'required',
+            'dia_chi'=> 'required',
+            'id_dot'=> 'required',
+            'id_chucvu'=> 'required'
+        ],[
+            'hoten_sv.required' => 'Họ tên không được bỏ trống',
+            'mssv.required' => 'Mã số sinh viên không được bỏ trống',
+            'mssv.unique' => 'Mã số sinh viên đã tồn tại',
+            'email.required' => 'Email không được bỏ trống',
+            'email.unique' => 'Email đã tồn tại',
+            'email.regex' => 'Email không đúng định dạng. Vd: abc@example.com',
+            'password.required' => 'Mật khẩu không được bỏ trống',
+            'sdt.required' => 'Số điện thoại không được bỏ trống',
+            'sdt.unique' => 'Số điện thoại đã tồn tại',
+            'sdt.min' => 'Số điện thoại phải từ 10 số',
+            'sdt.max' => 'Số điện thoại không đúng',
+            // 'sdt.number' => 'Số điện thoại không đúng',
+            'img.required' => 'Ảnh không được bỏ trống',
+            'dia_chi.required' => 'Địa chỉ không được bỏ trống',
+            'id_dot.required' => 'Đợt thực tập không được bỏ trống',
+            'id_chucvu.required' => 'Chức vụ không được bỏ trống'
+        ]);
         $t = new User;
         $t->hoten_sv = $request->hoten_sv;
         $t->mssv = $request->mssv;
@@ -127,6 +155,34 @@ class ThuctapsinhController extends Controller
      */
     public function update(Request $request, $id_user)
     {
+        $request->validate([
+            'hoten_sv'=> 'required',
+            'mssv'=> 'required|unique:users',
+            'email'=> 'required|unique:users|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'password'=> 'required',
+            'sdt'=> 'required|unique:users|min:10|max:12',
+            // 'img'=> 'required',
+            'dia_chi'=> 'required',
+            'id_dot'=> 'required',
+            'id_chucvu'=> 'required'
+        ],[
+            'hoten_sv.required' => 'Họ tên không được bỏ trống',
+            'mssv.required' => 'Mã số sinh viên không được bỏ trống',
+            'mssv.unique' => 'Mã số sinh viên đã tồn tại',
+            'email.required' => 'Email không được bỏ trống',
+            'email.unique' => 'Email đã tồn tại',
+            'email.regex' => 'Email không đúng định dạng. Vd: abc@example.com',
+            'password.required' => 'Mật khẩu không được bỏ trống',
+            'sdt.required' => 'Số điện thoại không được bỏ trống',
+            'sdt.unique' => 'Số điện thoại đã tồn tại',
+            'sdt.min' => 'Số điện thoại phải từ 10 số',
+            'sdt.max' => 'Số điện thoại không đúng',
+            // 'sdt.number' => 'Số điện thoại không đúng',
+            // 'img.required' => 'Ảnh không được bỏ trống',
+            'dia_chi.required' => 'Địa chỉ không được bỏ trống',
+            'id_dot.required' => 'Đợt thực tập không được bỏ trống',
+            'id_chucvu.required' => 'Chức vụ không được bỏ trống'
+        ]);
         $t= User::find($id_user);
         $t->hoten_sv = $request->hoten_sv;
         $t->mssv = $request->mssv;

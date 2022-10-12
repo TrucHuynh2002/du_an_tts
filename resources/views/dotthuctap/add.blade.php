@@ -43,6 +43,7 @@
         <div class="form-group">
             <label for="id_congty">Tên công ty</label>
             <select class="form-control" id="id_congty" name="id_congty">
+                <option value="">Chưa chọn công ty</option>
                 @foreach($get_congty as $t)
                 <option value="{{$t->id_congty}}">{{$t->ten_congty}}</option>
                 @endforeach

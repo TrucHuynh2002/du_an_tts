@@ -56,6 +56,18 @@ class DotthuctapController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'ten_dot'=> 'required|unique:dot_thuctap',
+            'ngay_batdau'=> 'required',
+            'ngay_ketthuc'=> 'required',
+            'id_congty'=> 'required'
+        ],[
+            'ten_dot.required' => 'Tên đợt không được bỏ trống',
+            'ten_dot.unique' => 'Tên đợt đã tồn tại',
+            'ngay_batdau.required' => 'Ngày bắt đầu không được bỏ trống',
+            'ngay_ketthuc.required' => 'Ngày kết thúc không được bỏ trống',
+            'id_congty.required' => 'Chưa chọn công ty'
+        ]);
         $t = new dot_thuctap;
         $t->ten_dot = $request->ten_dot;
         $t->id_congty = $request->id_congty;
@@ -105,6 +117,18 @@ class DotthuctapController extends Controller
      */
     public function update(Request $request, $id_dot)
     {
+        $request->validate([
+            'ten_dot'=> 'required|unique:dot_thuctap',
+            'ngay_batdau'=> 'required',
+            'ngay_ketthuc'=> 'required',
+            'id_congty'=> 'required'
+        ],[
+            'ten_dot.required' => 'Tên đợt không được bỏ trống',
+            'ten_dot.unique' => 'Tên đợt đã tồn tại',
+            'ngay_batdau.required' => 'Ngày bắt đầu không được bỏ trống',
+            'ngay_ketthuc.required' => 'Ngày kết thúc không được bỏ trống',
+            'id_congty.required' => 'Chưa chọn công ty'
+        ]);
         $t= dot_thuctap::find($id_dot);
         $t->ten_dot = $request->ten_dot;
         $t->id_congty = $request->id_congty;

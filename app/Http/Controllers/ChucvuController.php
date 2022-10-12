@@ -47,6 +47,13 @@ class ChucvuController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'ten_chucvu'=> 'required|min:3|unique:chucvu'
+        ],[
+            'ten_chucvu.required' => 'Chức vụ không được bỏ trống',
+            'ten_chucvu.min' => 'Tên chức vụ quá ngắn. Ít nhất 3 kí tự',
+            'ten_chucvu.unique' => 'Tên chức vụ đã tồn tại'
+        ]);
         $t = new chucvu;
         $t->ten_chucvu = $request->ten_chucvu;
         $t->save();   
@@ -91,7 +98,13 @@ class ChucvuController extends Controller
      */
     public function update(Request $request, $id_chucvu)
     {
-        
+        $request->validate([
+            'ten_chucvu'=> 'required|min:3|unique:chucvu'
+        ],[
+            'ten_chucvu.required' => 'Chức vụ không được bỏ trống',
+            'ten_chucvu.min' => 'Tên chức vụ quá ngắn. Ít nhất 3 kí tự',
+            'ten_chucvu.unique' => 'Tên chức vụ đã tồn tại'
+        ]);
         $t= chucvu::find($id_chucvu);
         $t->ten_chucvu = $request->ten_chucvu;
         $t->save();

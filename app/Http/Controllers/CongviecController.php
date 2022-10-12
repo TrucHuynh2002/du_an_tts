@@ -71,6 +71,7 @@ class CongviecController extends Controller
      */
     public function store(Request $request)
     {
+        
         if($request->id_sv){
             congviec::create([
                 'ten_congviec' => $request->ten_congviec,
