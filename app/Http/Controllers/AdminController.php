@@ -24,11 +24,8 @@ class AdminController extends Controller
         // } else {
         //     echo "Ban la thuc tap sinh";
         // }
-<<<<<<< HEAD
         return view('layout.layout_admin', compact('title'));
-=======
         return view('layout.layout_admin', compact('title',));
->>>>>>> c7886be4800ec728c37e02f47893fa8213339607
     }
 
     /**
