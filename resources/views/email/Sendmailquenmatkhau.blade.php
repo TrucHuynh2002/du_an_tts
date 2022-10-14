@@ -46,14 +46,16 @@
 <body>
     <div class="table">
     <div class="body">
-        <h2>Đổi mật khẩu</h2>
+        
+        <h2>ĐỔI MẬT KHẨU</h2>
         <b>Hello, {{$user->hoten_sv}}</b>
         <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu của bạn.</p>
         {{-- <p>Nhập mã đặt lại mật khẩu tại đây:</p>
         <p class="code">123456</p>
         <p>Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.</p> --}}
         <p>Nhập đặt lại mật khẩu ngay tại đây:</p>
-        <a href="{{route('password.reset',['token' => $token])}}?email={{$user->email}}" class="button">Đổi mật khẩu</a>
+        <a href="{{route('password.reset',['token' => $token])}}?email={{$user->email}}" style="    margin-left: 274px;
+    background-color: white;" class="button">Đổi mật khẩu</a>
     </div>
     <div class="footer">
         <p>Thân,<br>

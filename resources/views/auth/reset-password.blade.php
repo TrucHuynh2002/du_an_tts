@@ -1,12 +1,13 @@
 @extends('layout.layout_acount')
 @section('title', 'Đổi mật khẩu')
 @section('main_acount')
+
 <div class="logo-header" data-background-color="blue">				
 				<a href="/" class="logo">
-					<img style="width: 100%; height:200px; margin-top: -100px;" src="/img/logo.PNG" alt="logo" class="logo">
+					<img style="width: 100%; height:200px; margin-top: -550px; margin-left: -60px;" src="/img/logo.PNG" alt="logo" class="logo">
 				</a>
 			</div>
-    <form method="POST" action="{{ route('password.update') }}">
+    <form style="margin-left: -450px;" method="POST" action="{{ route('password.update') }}">
         <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{$token}}">
         <input id="email"  class="form-control" placeholder="Email" type="hidden" name="email"  value="{{$email ? $email : old('email')}}">
@@ -42,4 +43,5 @@
 
         <button style="width:100%;" type="submit" value="submit" class="btn btn-primary">{{ __('Đặt lại mật khẩu') }}</button>		
     </form>
+    
 @endsection

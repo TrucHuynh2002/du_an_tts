@@ -27,7 +27,7 @@
 <body>
     <div class="table">
     <div class="header">
-    <h1>Tên công ty</h1>
+    <h1>ORACLE</h1>
     <img src="" width="100px" height="100px">
     </div>
     <div class="body">
@@ -40,7 +40,7 @@
     </div>
     <div class="footer">
         <p>Thân,<br>
-        Tên công ty</p>
+        ORACLE</p>
     </div>
     </div>
 </body>
