@@ -45,8 +45,9 @@
                 <tr>
                   <td>{{$t->id_dot}}</td>
                   <td>{{$t->ten_dot}}</td>
+                   <td>{{$t->created_at}}</td>
                   <td>{{$t->updated_at}}</td>
-                  <td>{{$t->created_at}}</td>
+                 
                   @can('get-quantrivien')
                   <td>
                     @foreach($get_congty as $b)

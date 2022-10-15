@@ -206,7 +206,7 @@
 									</li>
 									<li>
 										<a href="{{route('detailJob',['id' => Auth::user()->id_sv])}}">
-											<span class="sub-item">cong viec cua ban</span>
+											<span class="sub-item">Công việc của bạn</span>
 										</a>
 									</li>
 									{{-- @endcan --}}

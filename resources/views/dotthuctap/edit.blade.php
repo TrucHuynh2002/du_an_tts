@@ -28,19 +28,20 @@
             @enderror
         </div>
         <div class="form-group">
-            <h5>Ngày bắt đầu</h5>                       
-            <input class="form-control" type="date" name="ngay_batdau" value="{{$t->ngay_batdau}}">
+            <h5>Ngày bắt đầu</h5>                     
+            <input type="date" name="ngay_batdau" class="form-control" value="{{ date_format(date_create($t->created_at), 'Y-m-d') }}" >
             @error('ngay_batdau')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
             <h5>Ngày kết thúc</h5>                       
-            <input class="form-control" type="date" name="ngay_ketthuc" value="{{$t->ngay_ketthuc}}">
+            <input class="form-control" type="date" name="ngay_ketthuc" value="{{ date_format(date_create($t->updated_at), 'Y-m-d') }}">
             @error('ngay_ketthuc')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
+        
         <div class="form-group">
             <label for="id_congty">Tên công ty</label>
             <select class="form-control" id="id_congty" name="id_congty">

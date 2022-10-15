@@ -51,18 +51,18 @@
           </tr>
         </tbody>
         <td>
-          <a href="#"><button type="button" class="btn btn-outline-primary">Download</button></a>
+          <a href="#"><button type="button" class="btn btn-outline-primary">Tải về</button></a>
         </td>
       </table>
 
       <form action="" method="">
         <div class="row">
-            <div class="form-group">
-                <label for="upload">Upload File</label>
+            <div style="margin-left: 15px;" class="form-group">
+                <label for="upload">Tải thư mục lên</label>
                 <input type="file" class="form-control" id="upload" name="upload">
             </div>                  
         </div>
-        <button type="submit" class="btn btn-primary" name="sub_mit">Upload</button>               
+        <button style="margin-left: 15px;" type="submit" class="btn btn-primary" name="sub_mit">Tải lên</button>               
       </form>
 
 @endsection

@@ -208,12 +208,12 @@ class NhomController extends Controller
     }
 
     public function downloadQL(){
-        $title = "Download file quản lý";
+        $title = "Quản lý thư mục của nhóm";
         return view('nhom.download_ql', compact('title'));
     }
 
     public function downloadNT(){
-        $title = "Download file nhóm trưởng";
+        $title = "Quản lý thư mục của thành viên";
         return view('nhom.download_nt', compact('title'));
     }
 }

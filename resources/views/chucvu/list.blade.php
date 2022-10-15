@@ -44,12 +44,13 @@
                   <td>{{$t->ten_chucvu}}</td>
                   <td>
                     <a href="{{route('chucvu.edit',['chucvu'=>$t->id_chucvu])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
                   </td>
                   <td>
                     <form action="{{route('chucvu.destroy',['chucvu' => $t->id_chucvu])}}" method="post">
                       @method('DELETE')
                       @csrf
-                      <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
+                      
                     </form>
                   </td>
                 </tr>                          
