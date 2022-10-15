@@ -40,13 +40,13 @@
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="email">Mật khẩu</label>
             <input class="form-control" type="password" id="password" name="password" value="{{old('password')}}">
             @error('password')
                 <span style="color:red">{{$message}}</span>
             @enderror
-        </div>
+        </div> --}}
         <div class="form-group">
             <label for="sdt">Số điện thoại</label>
             <input class="form-control" type="text" id="sdt" name="sdt" value="{{old('sdt')}}">

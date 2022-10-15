@@ -215,13 +215,13 @@
 						</li>
 						{{-- download file nhóm trưởng --}}
 						<li class="nav-item" style="margin-left: 40px">						
-							<a class="nav-link" href="{{route('downloadNT')}}">
+							<a class="nav-link" href="{{route('file.index')}}">
 								<i class='bx bx-edit-alt'></i> Nộp bài
 							</a>
 						</li>
 						{{-- download file quản lý --}}
 						<li class="nav-item" style="margin-left: 40px">
-							<a href="{{route('downloadQL')}}">
+							<a href="">
 								<i class='bx bx-notepad'></i> Quản lý file
 							</a>
 						</li>

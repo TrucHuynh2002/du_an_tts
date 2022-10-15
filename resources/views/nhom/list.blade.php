@@ -40,7 +40,8 @@
               </tr>
             </thead>
             @foreach($get_nhom as $t)
-            <tbody>                      
+            <tbody>       
+         
                 <tr>
                   <td>{{$t->id_nhom}}</td>
                   <td>{{$t->ten_nhom}}</td>
@@ -72,7 +73,9 @@
                       <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
                     </form>
                   </td>
-                </tr>                          
+                </tr>         
+                  
+                               
             </tbody>
             @endforeach
         </table>

@@ -53,10 +53,10 @@ class CongtyController extends Controller
         // $t->img = $request->file('img');
         $get_image = $request->file('img');
         if ($get_image) {
-                $get_name_image = $get_image->getClientOriginalName();
-                $path = 'upload/';
-                $name_image  = current(explode('.',$get_name_image));
-                $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension();
+                $get_name_image = $get_image->getClientOriginalName(); //lay ten file
+                $path = 'upload/';  //duong dan den file
+                $name_image  = current(explode('.',$get_name_image)); //tach mang sau dau .
+                $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension(); //
                 $get_image->move($path,$new_image);
                 $t->img = $new_image;
         }

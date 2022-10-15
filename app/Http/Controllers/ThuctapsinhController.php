@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\dot_thuctap;
 use App\Models\chucvu;
@@ -68,7 +69,7 @@ class ThuctapsinhController extends Controller
             'hoten_sv'=> 'required',
             'mssv'=> 'required|unique:users',
             'email'=> 'required|unique:users|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
-            'password'=> 'required',
+            // 'password'=> 'required',
             'sdt'=> 'required|unique:users|min:10|max:12',
             'img'=> 'required',
             'dia_chi'=> 'required',
@@ -81,7 +82,7 @@ class ThuctapsinhController extends Controller
             'email.required' => 'Email không được bỏ trống',
             'email.unique' => 'Email đã tồn tại',
             'email.regex' => 'Email không đúng định dạng. Vd: abc@example.com',
-            'password.required' => 'Mật khẩu không được bỏ trống',
+            // 'password.required' => 'Mật khẩu không được bỏ trống',
             'sdt.required' => 'Số điện thoại không được bỏ trống',
             'sdt.unique' => 'Số điện thoại đã tồn tại',
             'sdt.min' => 'Số điện thoại phải từ 10 số',
@@ -96,7 +97,8 @@ class ThuctapsinhController extends Controller
         $t->hoten_sv = $request->hoten_sv;
         $t->mssv = $request->mssv;
         $t->email = $request->email;
-        $t->password = Hash::make($request->password);
+        $mk = Str::random(10);
+        $t->password = Hash::make($mk);
         $t->sdt = $request->sdt;
         $get_image = $request->file('img');
         if ($get_image) {
@@ -111,7 +113,7 @@ class ThuctapsinhController extends Controller
         $t->id_chucvu = $request->id_chucvu;
         $t->id_dot = $request->id_dot;
         $t->save();
-        Mail::to($request->email)->send(new MailSendAccount($request->hoten_sv,$request->email,$request->password));
+        Mail::to($request->email)->send(new MailSendAccount($request->hoten_sv,$request->email,$mk));
         return redirect(route('thuctapsinh.index'))->with(['success' => 'Thêm thành công !']);
     }
 
