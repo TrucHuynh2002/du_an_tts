@@ -45,8 +45,9 @@
                 <tr>
                   <td>{{$t->id_dot}}</td>
                   <td>{{$t->ten_dot}}</td>
+                   <td>{{$t->created_at}}</td>
                   <td>{{$t->updated_at}}</td>
-                  <td>{{$t->created_at}}</td>
+                 
                   @can('get-quantrivien')
                   <td>
                     @foreach($get_congty as $b)
@@ -54,10 +55,10 @@
                     @endforeach
                   </td>
                   <td>
-                    <a href="{{route('dotthuctap.edit',['dotthuctap'=>$t->id_dot])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                    <a href="{{route('qtv.dotthuctap.edit',['dotthuctap'=>$t->id_dot])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>
                   <td>
-                    <form action="{{route('dotthuctap.destroy',['dotthuctap' => $t->id_dot])}}" method="post">
+                    <form action="{{route('qtv.dotthuctap.destroy',['dotthuctap' => $t->id_dot])}}" method="post">
                       @method('DELETE')
                       @csrf
                       <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>

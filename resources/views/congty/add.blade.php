@@ -18,7 +18,7 @@
     @endif
 
     <!-- Nội dung -->
-    <form action="{{route('congty.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('qtv.congty.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="ten_congty">Tên công ty</label>

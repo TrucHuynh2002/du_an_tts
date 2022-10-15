@@ -73,10 +73,10 @@
                     </td>
                     @endcan
                     <td>
-                      <a href="{{route('thuctapsinh.edit',['thuctapsinh'=>$t->id_sv])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                      <a href="{{route('qtv.thuctapsinh.edit',['thuctapsinh'=>$t->id_sv])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                     </td>
                     <td>
-                      <form action="{{route('thuctapsinh.destroy',['thuctapsinh' => $t->id_sv])}}" method="post">
+                      <form action="{{route('qtv.thuctapsinh.destroy',['thuctapsinh' => $t->id_sv])}}" method="post">
                         @method('DELETE')
                         @csrf
                         <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>

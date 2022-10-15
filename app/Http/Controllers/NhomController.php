@@ -60,7 +60,7 @@ class NhomController extends Controller
                                     ->get();
         
      
-        return view('nhom.add', compact('title','get_dotthuctap','get_users'));
+        return view('ql.nhom.add', compact('title','get_dotthuctap','get_users'));
     }
 
     /**
@@ -71,6 +71,16 @@ class NhomController extends Controller
      */
     public function store(NhomRequest $request)
     {
+        $request->validate([
+            'ten_nhom'=> 'required|unique',
+            'de_tai'=> 'required',
+            'id_nhomtruong'=>'required'
+        ],[
+            'ten_nhom.required' => 'Tên nhóm không được bỏ trống',
+            'ten_nhom.unique' => 'Tên nhóm đã tồn tại',
+            'de_tai.required' => 'Đề tài không được bỏ trống',
+            'id_nhomtruong.required' => 'Nhóm trưởng không được bỏ trống'
+        ]);
         if (FacadesGate::allows('get-quantrivien') || FacadesGate::allows('get-quanli')) {
         $token = Str::random(60);
         $t = new nhom; 
@@ -125,6 +135,7 @@ class NhomController extends Controller
                                         ->join('chitiet_nhom','users.id_sv','chitiet_nhom.id_sv')
                                         ->where('chitiet_nhom.id_nhom','=',$id_nhom)
                                         ->get();
+                                        // dd($get_users);
         $t= nhom::find($id_nhom);
 
         $get_allMember = DB::table('chitiet_nhom')
@@ -146,14 +157,25 @@ class NhomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(NhomRequest $request, $id_nhom)
+    public function update(Request $request, $id_nhom)
     {
+        
+        $request->validate([
+            'ten_nhom'=> 'required',
+            'de_tai'=> 'required',
+            'id_nhomtruong'=>'required'
+        ],[
+            'ten_nhom.required' => 'Tên nhóm không được bỏ trống',
+            // 'ten_nhom.unique' => 'Tên nhóm đã tồn tại',
+            'de_tai.required' => 'Đề tài không được bỏ trống',
+            'id_nhomtruong.required' => 'Nhóm trưởng không được bỏ trống'
+        ]);
         $t = nhom::find($id_nhom);
         $t->ten_nhom = $request->ten_nhom;
         $t->de_tai = $request->de_tai;
         $t->id_nhomtruong = $request->id_nhomtruong;
         $t->save();
-        return redirect(route('nhom.index'))->with(['success' => 'Sửa thành công !']);
+        return redirect(route('ql.nhom.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**
@@ -208,12 +230,12 @@ class NhomController extends Controller
     }
 
     public function downloadQL(){
-        $title = "Download file quản lý";
+        $title = "Quản lý thư mục của nhóm";
         return view('nhom.download_ql', compact('title'));
     }
 
     public function downloadNT(){
-        $title = "Download file nhóm trưởng";
+        $title = "Quản lý thư mục của thành viên";
         return view('nhom.download_nt', compact('title'));
     }
 }

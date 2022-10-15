@@ -17,9 +17,9 @@
     @endif
 
     <!-- Nội dung -->
-    <form action="{{route('nhom.update',['nhom' => $t->id_nhom])}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('nhom.update',['nhom' => $t->id_nhom])}}" method="POST">
+        @method('PUT')
         @csrf
-        @method('put')
         <div class="form-group">
             <label for="ten_nhom">Tên nhóm</label>
             <input class="form-control" type="text" id="ten_nhom" name="ten_nhom" value="{{$t->ten_nhom}}">
@@ -38,13 +38,13 @@
        
         <div class="form-group">
             <label for="nhom_truong">Nhóm trưởng</label>
-            <select class="form-control" id="nhom_truong" name="id_nhomtruong" value="">
+            <select class="form-control" id="nhom_truong" name="id_nhomtruong" >
                 <option value="">Chưa có nhóm trưởng</option>
                 @foreach($get_users as $data)
                 <option {{$t->id_nhomtruong == $data->id_sv ? 'selected' : ''}} value="{{$data->id_sv}}">{{$data->hoten_sv}}</option>
                 @endforeach
             </select>
-            @error('nhom_truong')
+            @error('id_nhomtruong')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
@@ -89,6 +89,6 @@
                 </table>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block" name="submit">Sửa nhóm thực tập</button>
+        <button class="btn btn-primary btn-block" name="submit">Sửa nhóm thực tập</button>
     </form>                          
 @endsection

@@ -15,12 +15,12 @@ class CongtyController extends Controller
      */
     public function index()
     {
-        // if (Gate::allows('get-quantrivien')) {
+        if (Gate::allows('get-quantrivien')) {
         $title = "Danh sách công ty";
         $data = congty::all();
-        // } else {
-        //     return abort(403);
-        // }
+        } else {
+            return abort(403);
+        }
         return view('congty.list', compact('title'),['data'=>$data]);
     }
 
@@ -31,11 +31,11 @@ class CongtyController extends Controller
      */
     public function create(request $request)
     {
-        // if (Gate::allows('get-quantrivien')) {
+        if (Gate::allows('get-quantrivien')) {
         $title = "Thêm công ty";
-        // } else {
-        //     return abort(403);
-        // }
+        } else {
+            return abort(403);
+        }
         return view('congty.add', compact('title'));
     }
 
@@ -45,8 +45,16 @@ class CongtyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StudentRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'ten_congty'=> 'required|unique:congty',
+            'dia_chi'=> 'required'
+        ],[
+            'ten_congty.required' => 'Tên công ty không được bỏ trống',
+            'ten_congty.unique' => 'Tên công ty đã tồn tại',
+            'dia_chi.required' => 'Địa chỉ không được bỏ trống'
+        ]);
         $t = new congty;
         $t->ten_congty = $request->ten_congty;
         $t->dia_chi = $request->dia_chi;
@@ -61,7 +69,7 @@ class CongtyController extends Controller
                 $t->img = $new_image;
         }
         $t->save();
-        return redirect(route('congty.index'))->with(['success' => 'Thêm công ty thành công !']);
+        return redirect(route('qtv.congty.index'))->with(['success' => 'Thêm công ty thành công !']);
         // $title = "Danh sách công ty";
         // $data = congty::all();
         // return view('congty.list', compact('title'),['data'=>$data]);
@@ -78,7 +86,7 @@ class CongtyController extends Controller
         
         $title = "Cập nhật công ty";
         
-        return view('congty.edit', compact('title'));
+        return view('qtv.congty.edit', compact('title'));
     }
 
     /**
@@ -95,7 +103,7 @@ class CongtyController extends Controller
         // } else {
         //     return abort(403);
         // }
-        return view('congty.edit',compact('t','title'));
+        return view('qtv.congty.edit',compact('t','title'));
     }
 
     /**
@@ -107,6 +115,14 @@ class CongtyController extends Controller
      */
     public function update(Request $request, $id_congty)
     {
+        $request->validate([
+            'ten_congty'=> 'required|unique',
+            'dia_chi'=> 'required'
+        ],[
+            'ten_congty.required' => 'Tên công ty không được bỏ trống',
+            'ten_congty.unique' => 'Tên công ty đã tồn tại',
+            'dia_chi.required' => 'Địa chỉ không được bỏ trống'
+        ]);
         $t= congty::find($id_congty);
         $t->ten_congty = $request->ten_congty;
         $t->dia_chi = $request->dia_chi;
@@ -121,7 +137,7 @@ class CongtyController extends Controller
                 $t->img = $new_image;
         }
         $t->save();
-        return redirect(route('congty.index'))->with(['success' => 'Sửa thành công !']);
+        return redirect(route('qtv.congty.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**

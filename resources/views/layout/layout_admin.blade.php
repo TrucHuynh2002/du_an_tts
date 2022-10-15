@@ -80,12 +80,12 @@
 								<div class="collapse" id="dashboard5">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="{{route('congty.index')}}">
+											<a href="{{route('qtv.congty.index')}}">
 												<span class="sub-item">Danh sách công ty</span>
 											</a>
 										</li>
 										<li>
-											<a href="{{route('congty.create')}}"> 
+											<a href="{{route('qtv.congty.create')}}"> 
 												<span class="sub-item">Thêm công ty</span>
 											</a>
 										</li>
@@ -101,12 +101,12 @@
 								<div class="collapse" id="dashboard4">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="{{route('chucvu.index')}}">
+											<a href="{{route('qtv.chucvu.index')}}">
 												<span class="sub-item">Danh sách chức vụ</span>
 											</a>
 										</li>
 										<li>
-											<a href="{{route('chucvu.create')}}">
+											<a href="{{route('qtv.chucvu.create')}}">
 												<span class="sub-item">Thêm chức vụ</span>
 											</a>
 										</li>
@@ -125,13 +125,13 @@
 							<div class="collapse" id="dashboard1">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="{{route('dotthuctap.index')}}">
+										<a href="{{route('qtv.dotthuctap.index')}}">
 											<span class="sub-item">Danh sách đợt</span>
 										</a>
 									</li>
 									{{-- @can('get-quantrivien') --}}
 									<li>
-										<a href="{{route('dotthuctap.create')}}">
+										<a href="{{route('qtv.dotthuctap.create')}}">
 											<span class="sub-item">Thêm đợt thực tập</span>
 										</a>
 									</li>
@@ -171,13 +171,13 @@
 							<div class="collapse" id="dashboard6">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="{{route('thuctapsinh.index')}}">
+										<a href="{{route('qtv.thuctapsinh.index')}}">
 											<span class="sub-item">Danh sách thực tập sinh</span>
 										</a>
 									</li>
 									{{-- @can('get-quantrivien') --}}
 									<li>
-										<a href="{{route('thuctapsinh.create')}}">
+										<a href="{{route('qtv.thuctapsinh.create')}}">
 											<span class="sub-item">Thêm thực tập sinh</span>
 										</a>
 									</li>
@@ -206,7 +206,7 @@
 									</li>
 									<li>
 										<a href="{{route('detailJob',['id' => Auth::user()->id_sv])}}">
-											<span class="sub-item">cong viec cua ban</span>
+											<span class="sub-item">Công việc của bạn</span>
 										</a>
 									</li>
 									{{-- @endcan --}}

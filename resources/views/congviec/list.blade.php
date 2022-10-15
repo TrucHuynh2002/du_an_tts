@@ -64,12 +64,12 @@
                 
                   
                   <td class="{{$cv->trang_thai == 0 ? 'text-danger' : 'text-success'}}">
-                    {{$cv->trang_thai == 0 ? 'Chua hoan thanh' : 'Hoan thanh'}}
+                    {{$cv->trang_thai == 0 ? 'Chưa hoàn thành' : 'Hoàn thành'}}
                   </td>
               
                   {{-- @can('get-thuctapsinh') --}}
                   <td>
-                    <a href="xemcongviec?id_cv={{$cv->id_congviec}}">Xem chi tiet</a>
+                    <a href="xemcongviec?id_cv={{$cv->id_congviec}}">Xem chi tiết</a>
                   </td>
                   <td>
                     <a href="{{route('congviec.edit',['congviec'=>$cv->id_congviec])}}?id_nhom={{$cv->id_nhom}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>

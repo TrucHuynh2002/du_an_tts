@@ -21,7 +21,7 @@ class ChucvuController extends Controller
     // } else {
     //     return abort(403);
     //  }
-        return view('chucvu.list', compact('title'),['data'=>$data]);
+        return view('qtv.chucvu.list', compact('title'),['data'=>$data]);
     }
 
     /**
@@ -36,7 +36,7 @@ class ChucvuController extends Controller
     // } else {
     //     return abort(403);
     // }
-        return view('chucvu.add', compact('title'));
+        return view('qtv.chucvu.add', compact('title'));
     }
 
     /**
@@ -57,7 +57,7 @@ class ChucvuController extends Controller
         $t = new chucvu;
         $t->ten_chucvu = $request->ten_chucvu;
         $t->save();   
-        return redirect(route('chucvu.index'))->with(['success' => 'Thêm thành công !']);
+        return redirect(route('qtv.chucvu.index'))->with(['success' => 'Thêm thành công !']);
     }
 
     /**
@@ -69,7 +69,7 @@ class ChucvuController extends Controller
     public function show($id)
     {
         $title = "Cập nhật chức vụ";
-        return view('chucvu.edit', compact('title'));
+        return view('qtv.chucvu.edit', compact('title'));
     }
 
     /**
@@ -86,7 +86,7 @@ class ChucvuController extends Controller
         // } else {
         //     return abort(403);
         // }
-        return view('chucvu.edit',compact('t','title'));
+        return view('qtv.chucvu.edit',compact('t','title'));
     }
 
     /**
@@ -109,7 +109,7 @@ class ChucvuController extends Controller
         $t->ten_chucvu = $request->ten_chucvu;
         $t->save();
         
-        return redirect(route('chucvu.index'))->with(['success' => 'Sửa thành công !']);
+        return redirect(route('qtv.chucvu.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**
@@ -126,6 +126,6 @@ class ChucvuController extends Controller
         // } else {
         //     return abort(403);
         // }
-        return redirect(route('chucvu.index'))->with(['success' => 'Xóa thành công !']);
+        return redirect(route('qtv.chucvu.index'))->with(['success' => 'Xóa thành công !']);
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http;
+
+use App\Http\Middleware\QuanTriVien;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -35,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // \App\Http\Middleware\QuanTriVien::class,
         ],
 
         'api' => [
@@ -63,5 +66,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checktokenjoingroup' => \App\Http\Middleware\checkJoinGroup::class,
+        'auth.qtv' =>  \App\Http\Middleware\QuanTriVien::class,
+        'auth.qly' =>  \App\Http\Middleware\QuanLy::class,
+      
     ];
 }

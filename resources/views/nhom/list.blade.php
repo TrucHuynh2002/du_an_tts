@@ -74,7 +74,7 @@
                     </form>
                   </td>
                 </tr>         
-                  
+              </form>               
                                
             </tbody>
             @endforeach

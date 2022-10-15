@@ -54,7 +54,7 @@ class ThuctapsinhController extends Controller
         // } else {
         //     return abort(403);
         // }
-        return view('thuctapsinh.add', compact('title','get_dotthuctap','get_chucvu'));
+        return view('qtv.thuctapsinh.add', compact('title','get_dotthuctap','get_chucvu'));
     }
 
     /**
@@ -114,7 +114,7 @@ class ThuctapsinhController extends Controller
         $t->id_dot = $request->id_dot;
         $t->save();
         Mail::to($request->email)->send(new MailSendAccount($request->hoten_sv,$request->email,$mk));
-        return redirect(route('thuctapsinh.index'))->with(['success' => 'Thêm thành công !']);
+        return redirect(route('qtv.thuctapsinh.index'))->with(['success' => 'Thêm thành công !']);
     }
 
     /**
@@ -126,7 +126,7 @@ class ThuctapsinhController extends Controller
     public function show($id)
     {
         $title = "Cập nhật thực tập sinh";
-        return view('thuctapsinh.edit', compact('title'));
+        return view('qtv.thuctapsinh.edit', compact('title'));
     }
 
     /**
@@ -145,7 +145,7 @@ class ThuctapsinhController extends Controller
         // } else {
         //     return abort(403);
         // }
-        return view('thuctapsinh.edit',compact('t','title','get_chucvu','get_dotthuctap'));
+        return view('qtv.thuctapsinh.edit',compact('t','title','get_chucvu','get_dotthuctap'));
     }
 
     /**
@@ -159,10 +159,9 @@ class ThuctapsinhController extends Controller
     {
         $request->validate([
             'hoten_sv'=> 'required',
-            'mssv'=> 'required|unique:users',
-            'email'=> 'required|unique:users|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
-            'password'=> 'required',
-            'sdt'=> 'required|unique:users|min:10|max:12',
+            'mssv'=> 'required|',
+            'email'=> 'required|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'sdt'=> 'required|min:10|max:12',
             // 'img'=> 'required',
             'dia_chi'=> 'required',
             'id_dot'=> 'required',
@@ -170,13 +169,12 @@ class ThuctapsinhController extends Controller
         ],[
             'hoten_sv.required' => 'Họ tên không được bỏ trống',
             'mssv.required' => 'Mã số sinh viên không được bỏ trống',
-            'mssv.unique' => 'Mã số sinh viên đã tồn tại',
+            // 'mssv.unique' => 'Mã số sinh viên đã tồn tại',
             'email.required' => 'Email không được bỏ trống',
-            'email.unique' => 'Email đã tồn tại',
+            // 'email.unique' => 'Email đã tồn tại',
             'email.regex' => 'Email không đúng định dạng. Vd: abc@example.com',
-            'password.required' => 'Mật khẩu không được bỏ trống',
             'sdt.required' => 'Số điện thoại không được bỏ trống',
-            'sdt.unique' => 'Số điện thoại đã tồn tại',
+            // 'sdt.unique' => 'Số điện thoại đã tồn tại',
             'sdt.min' => 'Số điện thoại phải từ 10 số',
             'sdt.max' => 'Số điện thoại không đúng',
             // 'sdt.number' => 'Số điện thoại không đúng',
@@ -189,7 +187,7 @@ class ThuctapsinhController extends Controller
         $t->hoten_sv = $request->hoten_sv;
         $t->mssv = $request->mssv;
         $t->email = $request->email;
-        $t->password = Hash::make($request->password);
+        // $t->password = Hash::make($request->password);
         $t->sdt = $request->sdt;
         $get_image = $request->file('img');
         if ($get_image) {
@@ -204,7 +202,7 @@ class ThuctapsinhController extends Controller
         $t->id_chucvu = "$request->id_chucvu";
         $t->id_dot = $request->id_dot;
         $t->save();
-        return redirect(route('thuctapsinh.index'))->with(['success' => 'Sửa thành công !']);
+        return redirect(route('qtv.thuctapsinh.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**

@@ -24,7 +24,7 @@ class DotthuctapController extends Controller
         $title = "Danh sách đợt thực tập";
         $data = dot_thuctap::all();
         $get_congty = congty::all();
-        return view('dotthuctap.list', compact('title','get_congty','data'));
+        return view('qtv.dotthuctap.list', compact('title','get_congty','data'));
     }
 
     /**
@@ -42,7 +42,7 @@ class DotthuctapController extends Controller
         //    return abort(403);
         // }
 
-        return view('dotthuctap.add', compact('title','get_congty'));
+        return view('qtv.dotthuctap.add', compact('title','get_congty'));
 
         // Auth()::user();
 
@@ -74,7 +74,7 @@ class DotthuctapController extends Controller
         $t->created_at = $request->ngay_batdau;
         $t->updated_at = $request->ngay_ketthuc;
         $t->save();
-        return redirect(route('dotthuctap.index'))->with(['success' => 'Thêm thành công !']);
+        return redirect(route('qtv.dotthuctap.index'))->with(['success' => 'Thêm thành công !']);
     }
 
     /**
@@ -86,7 +86,7 @@ class DotthuctapController extends Controller
     public function show($id)
     {
         $title = "Cập nhật đợt thực tập";
-        return view('dotthuctap.edit', compact('title'));
+        return view('qtv.dotthuctap.edit', compact('title'));
     }
 
     /**
@@ -105,7 +105,7 @@ class DotthuctapController extends Controller
         // else{
         //     return abort(403);
         // }
-        return view('dotthuctap.edit',compact('t','title','get_congty'));
+        return view('qtv.dotthuctap.edit',compact('t','title','get_congty'));
     }
 
     /**
@@ -135,7 +135,7 @@ class DotthuctapController extends Controller
         $t->created_at = $request->ngay_batdau;
         $t->updated_at = $request->ngay_ketthuc;
         $t->save();
-        return redirect(route('dotthuctap.index'))->with(['success' => 'Sửa thành công !']);
+        return redirect(route('qtv.dotthuctap.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**

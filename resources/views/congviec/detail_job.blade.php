@@ -44,7 +44,7 @@
                         <input type="number"  value="{{$item->tien_do}}" name="tien_do" style="width: 65px;padding:4px"> <strong>%</strong>
                     </form>
                 </td>
-                <td>{{$item->trang_thai == 1 ? 'Hoan thanh' : 'Chua hoan thanh'}}</td>
+                <td>{{$item->trang_thai == 1 ? 'Hoan thanh' : 'Chưa hoàn thnh'}}</td>
                 <td>12/12/2000</td>
                 <td>12/12/2000</td>
                 {{-- <td>
@@ -55,10 +55,11 @@
                 </td> --}}
               </tr>        
             @endforeach
+           
             <tr>
-              <td colspan="6" align="center">Chua co nguoi thuc hien</td>
+              <td colspan="9" align="center">Chưa có người thực hiện</td>
             </tr>
-      +                   
+                        
                                 
             </tbody>
         </table>

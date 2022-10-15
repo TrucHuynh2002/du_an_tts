@@ -54,8 +54,12 @@
           
         </tbody>
         <td>
+<<<<<<< HEAD
           <button class="btn btn-outline-primary" id="download">Download</button>
           
+=======
+          <a href="#"><button type="button" class="btn btn-outline-primary">Tải về</button></a>
+>>>>>>> b97a95a2b2f0cc276a2f0be86f7b96b60da1d69e
         </td>
       </form>
       </table>
@@ -63,15 +67,15 @@
       <form action="{{route('file.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="form-group">
-                <label for="upload">Upload File</label>
+            <div style="margin-left: 15px;" class="form-group">
+                <label for="upload">Tải thư mục lên</label>
                 <input type="file" class="form-control" id="upload" name="upload">
                 @error('upload')
                 <span style="color:red">{{$message}}</span>
                 @enderror
             </div>                  
         </div>
-        <button type="submit" class="btn btn-primary" name="sub_mit">Upload</button>               
+        <button style="margin-left: 15px;" type="submit" class="btn btn-primary" name="sub_mit">Tải lên</button>               
       </form>
 
 @endsection

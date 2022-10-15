@@ -17,7 +17,7 @@
     @endif
 
     <!-- Nội dung -->
-    <form action="{{route('dotthuctap.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('qtv.dotthuctap.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="ten_dot">Tên đợt thực tập</label>

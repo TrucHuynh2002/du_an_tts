@@ -207,7 +207,7 @@ class CongviecController extends Controller
     }
 
     public function detailJob(){
-        $title = "Chi tiet cong viec cua ban";
+        $title = "Chi tiết công việc của bạn";
         $detail_yourJob = DB::table('congviec')->join('phancong_congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
                                                 ->join('users', 'phancong_congviec.id_sv' ,'=', 'users.id_sv')
                                                 ->select(
