@@ -8,6 +8,7 @@
     <style>
         body{
             padding: 50px 500px 50px 500px;
+           
         }
         .table{
             background-color: aliceblue;
@@ -44,8 +45,8 @@
     </style>
 </head>
 <body>
-    <div class="table">
-    <div class="body">
+    <div style=" height: 400px;" class="table">
+    <div style="margin-bottom: 100px;" class="body">
         
         <h2>ĐỔI MẬT KHẨU</h2>
         <b>Hello, {{$user->hoten_sv}}</b>
@@ -54,8 +55,8 @@
         <p class="code">123456</p>
         <p>Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.</p> --}}
         <p>Nhập đặt lại mật khẩu ngay tại đây:</p>
-        <a href="{{route('password.reset',['token' => $token])}}?email={{$user->email}}" style="    margin-left: 274px;
-    background-color: white;" class="button">Đổi mật khẩu</a>
+        <a href="{{route('password.reset',['token' => $token])}}?email={{$user->email}}" style=" padding: 17px;
+    background-color: aliceblue;   margin-left: 260px;" class="button">Đổi mật khẩu</a>
     </div>
     <div class="footer">
         <p>Thân,<br>
