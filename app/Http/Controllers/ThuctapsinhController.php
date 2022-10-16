@@ -114,7 +114,7 @@ class ThuctapsinhController extends Controller
         $t->id_dot = $request->id_dot;
         $t->save();
         Mail::to($request->email)->send(new MailSendAccount($request->hoten_sv,$request->email,$mk));
-        return redirect(route('qtv.thuctapsinh.index'))->with(['success' => 'Thêm thành công !']);
+        return redirect(route('thuctapsinh.index'))->with(['success' => 'Thêm thành công !']);
     }
 
     /**
@@ -202,7 +202,7 @@ class ThuctapsinhController extends Controller
         $t->id_chucvu = "$request->id_chucvu";
         $t->id_dot = $request->id_dot;
         $t->save();
-        return redirect(route('qtv.thuctapsinh.index'))->with(['success' => 'Sửa thành công !']);
+        return redirect(route('thuctapsinh.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**
