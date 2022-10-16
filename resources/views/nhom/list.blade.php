@@ -33,9 +33,13 @@
                 <th>Trưởng nhóm</th>
                 <th>Đợt thực tập</th>
                 <th>Đề tài</th>
+                
+                
+                @cannot('get-thuctapsinh')
+                <th>Link tham gia nhóm</th>
                 <th></th>
                 <th></th>
-                <th></th>
+                @endcan
                 <th></th>
               </tr>
             </thead>
@@ -49,8 +53,6 @@
                   @foreach($get_users as $data)
                   {{$t->id_nhomtruong == $data->id_sv ? $data->hoten_sv : ''}}
                   @endforeach
-                  </td>
-                  <td>
                     @foreach($get_dotthuctap as $data)
                     {{$t->id_dot == $data->id_dot ? $data->ten_dot : ''}}
                     @endforeach
@@ -60,6 +62,8 @@
                   <td>
                     <a href="{{route('detailtGroup',['id'=>$t->id_nhom])}}">Chi tiết nhóm</a>
                   </td>
+                  @cannot('get-thuctapsinh')
+                  <td><a href="{{route('thamgianhom.index',['token' => $t->token])}}">{{route('thamgianhom.index',['token' => $t->token])}}</a></td>
                   <td>
                     <a href="{{route('detailtJobGroup',['id'=>$t->id_nhom])}}">Tiến độ làm việc</a>
                   </td>
@@ -73,6 +77,7 @@
                       <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
                     </form>
                   </td>
+                  @endcan
                 </tr>         
               </form>               
                                

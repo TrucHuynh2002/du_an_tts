@@ -9,7 +9,7 @@ class nhom extends Model
 {
     protected $table = 'nhom';
     protected $primaryKey = 'id_nhom';
-    public $timestamps = false;
+
     protected $fillable = [
     'ten_nhom',
     'id_dot',
@@ -17,4 +17,5 @@ class nhom extends Model
     'id_nhomtruong',
     'token'
     ];
+
 }

@@ -17,6 +17,7 @@ class ThamgianhomController extends Controller
      */
     public function index(Request $request)
     {
+        
         $title = "Thông tin tham gia nhóm";
         // $get_nhom = nhom::where('token',$request->token)->first();
         $get_nhom = DB::table('nhom')

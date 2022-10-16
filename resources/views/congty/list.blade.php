@@ -24,14 +24,14 @@
                 <th></th>
               </tr>
             </thead>
-            {{$i = 1}}
+            <?php $i=1?>
             @foreach($data as $t)
             <tbody>                      
                 <tr>
                   <td>{{$i++}}</td>
                   <td>{{$t->ten_congty}}</td>
                   <td>{{$t->dia_chi}}</td>
-                  <td><img src="upload/{{$t->img}}" width="80px" height="80px"></td>
+                  <td><img src="{{asset('upload/'.$t->img)}}" width="80px" height="80px"></td>
                   <td>
                     <a href="{{route('qtv.congty.edit',['congty'=>$t->id_congty])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>

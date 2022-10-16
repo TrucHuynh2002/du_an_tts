@@ -31,10 +31,11 @@
               @foreach ($get_detailGroup as $item)
               <tr>
                 <td>{{$i++}}</td>
+                <td>{{$item->ten_congviec}}</td>
                 <td>
                   @foreach ($get_userJob as $items)
-                      @if($item->id_congviec==$items_id_congviec)
-                        {{$items->hoten_sv}},
+                      @if($item->id_congviec==$items->id_congviec)
+                        {{$items->hoten_sv}}
                       @else
                         Chưa có người thực hiện
                       @endif

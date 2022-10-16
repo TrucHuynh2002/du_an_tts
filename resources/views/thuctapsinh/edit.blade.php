@@ -17,7 +17,7 @@
     @endif
 
     <!-- Nội dung -->
-    <form action="{{route('qtv.thuctapsinh.update',['thuctapsinh' => $t->id_sv])}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('thuctapsinh.update',['thuctapsinh' => $t->id_sv])}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="form-group">

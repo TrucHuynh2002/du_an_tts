@@ -18,10 +18,10 @@ class CongtyController extends Controller
         if (Gate::allows('get-quantrivien')) {
         $title = "Danh sách công ty";
         $data = congty::all();
-        } else {
-            return abort(403);
-        }
         return view('congty.list', compact('title'),['data'=>$data]);
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -33,10 +33,10 @@ class CongtyController extends Controller
     {
         if (Gate::allows('get-quantrivien')) {
         $title = "Thêm công ty";
-        } else {
-            return abort(403);
-        }
         return view('congty.add', compact('title'));
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -86,7 +86,7 @@ class CongtyController extends Controller
         
         $title = "Cập nhật công ty";
         
-        return view('qtv.congty.edit', compact('title'));
+        return view('congty.edit', compact('title'));
     }
 
     /**
@@ -97,13 +97,13 @@ class CongtyController extends Controller
      */
     public function edit($id_congty)
     {
-        // if (Gate::allows('get-quantrivien')) {
+        if (Gate::allows('get-quantrivien')) {
         $title = "Cập nhật công ty";
         $t= congty::find($id_congty);
-        // } else {
-        //     return abort(403);
-        // }
-        return view('qtv.congty.edit',compact('t','title'));
+        return view('congty.edit',compact('t','title'));
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -116,7 +116,7 @@ class CongtyController extends Controller
     public function update(Request $request, $id_congty)
     {
         $request->validate([
-            'ten_congty'=> 'required|unique',
+            'ten_congty'=> 'required|unique:congty',
             'dia_chi'=> 'required'
         ],[
             'ten_congty.required' => 'Tên công ty không được bỏ trống',
@@ -148,15 +148,16 @@ class CongtyController extends Controller
      */
     public function destroy($id_congty)
     {
-        // if (Gate::allows('get-quantrivien')) {
+        if (Gate::allows('get-quantrivien')) {
         $congty= congty::find($id_congty);
         $congty->delete();
-        // } else {
-        //     return abort(403);
-        // }
+        
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
-        // return redirect(route('congty.index'));
+        } else {
+            return back();
+        }
     }
+    
         
     
 }

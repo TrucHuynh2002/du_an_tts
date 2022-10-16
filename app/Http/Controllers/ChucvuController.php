@@ -15,13 +15,13 @@ class ChucvuController extends Controller
      */
     public function index()
     {
-    // if (Gate::allows('get-quantrivien')) {
+    if (Gate::allows('get-quantrivien')) {
         $title = "Danh sách chức vụ";
         $data = chucvu::all();
-    // } else {
-    //     return abort(403);
-    //  }
-        return view('qtv.chucvu.list', compact('title'),['data'=>$data]);
+        return view('chucvu.list', compact('title'),['data'=>$data]);
+    } else {
+        return back();
+     }
     }
 
     /**
@@ -31,14 +31,13 @@ class ChucvuController extends Controller
      */
     public function create()
     {
-        // if (Gate::allows('get-quantrivien')) {
+        if (Gate::allows('get-quantrivien')) {
         $title = "Thêm chức vụ";
-    // } else {
-    //     return abort(403);
-    // }
-        return view('qtv.chucvu.add', compact('title'));
+        return view('chucvu.add', compact('title'));
+        } else {
+            return back();
+        }
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -69,7 +68,7 @@ class ChucvuController extends Controller
     public function show($id)
     {
         $title = "Cập nhật chức vụ";
-        return view('qtv.chucvu.edit', compact('title'));
+        return view('chucvu.edit', compact('title'));
     }
 
     /**
@@ -80,13 +79,13 @@ class ChucvuController extends Controller
      */
     public function edit($id_chucvu)
     {
-        // if (Gate::allows('get-quantrivien')) {
+        if (Gate::allows('get-quantrivien')) {
         $title = "Cập nhật chức vụ";
         $t= chucvu::find($id_chucvu);
-        // } else {
-        //     return abort(403);
-        // }
-        return view('qtv.chucvu.edit',compact('t','title'));
+        return view('chucvu.edit',compact('t','title'));
+    } else {
+        return back();
+    }
     }
 
     /**
@@ -120,12 +119,14 @@ class ChucvuController extends Controller
      */
     public function destroy($id_chucvu)
     {
-        // if (Gate::allows('get-quantrivien')) {
+        if (Gate::allows('get-quantrivien')) {
         $t = chucvu::find($id_chucvu);
         $t->delete();
-        // } else {
-        //     return abort(403);
-        // }
+        
         return redirect(route('qtv.chucvu.index'))->with(['success' => 'Xóa thành công !']);
+    } else {
+        return back();
     }
+    }
+        
 }

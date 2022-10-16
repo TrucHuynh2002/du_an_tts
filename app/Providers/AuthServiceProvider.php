@@ -39,6 +39,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('get-thuctapsinh', function ($user) {
             return $user->id_chucvu == 7;
         });
+        Gate::define('get-nhomtruong', function ($user) {
+            $get_leader = nhom::where('id_nhomtruong','=',$user->id_sv)->first();
+            if($get_leader){
+
+                return $user->id_sv == $get_leader->id_nhomtruong;
+            }
+        });
         //
     }
 }

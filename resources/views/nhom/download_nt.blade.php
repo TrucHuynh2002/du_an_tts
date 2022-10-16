@@ -26,7 +26,8 @@
           </tr>
         </thead>
         <tbody>
-        <form action="{{route('downloadAll')}}" method="POST" >
+      
+        <form action="{{route('downloadAll')}}" method="post">
           @csrf
           @if (count($data) <= 0)
           <tr>
@@ -37,15 +38,15 @@
           <tr>
             <td><input type="checkbox" name="fileDownload[]" value="{{$t->id}}" ></td>
             <td>
-              <a href="{{route('downloadFile',['id'=>$t->id])}}">{{$t->ten_file}}</a>
+              <a href="{{route('downloadFile',['id'=>$t->id])}}" class="link">{{$t->ten_file}}</a>
             </td>
-            <td>
-              {{-- <form action="{{route('file.destroy',['file' => $t->id])}}">
+            {{-- <td>
+              <form action="{{route('file.destroy',['file' => $t->id])}}" method="POST">
                 @csrf
-                @method('DELETE')
+                @Method('DELETE')
                 <button  class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
-              </form> --}}
-              </td>
+              </form>
+            </td> --}}
           </tr>
           @endforeach
           @endif
@@ -54,14 +55,11 @@
           
         </tbody>
         <td>
-<<<<<<< HEAD
-          <button class="btn btn-outline-primary" id="download">Download</button>
+          <button class="btn btn-outline-danger" id="download">Xóa</button>
           
-=======
-          <a href="#"><button type="button" class="btn btn-outline-primary">Tải về</button></a>
->>>>>>> b97a95a2b2f0cc276a2f0be86f7b96b60da1d69e
         </td>
       </form>
+   
       </table>
 
       <form action="{{route('file.store')}}" method="POST" enctype="multipart/form-data">
@@ -75,7 +73,11 @@
                 @enderror
             </div>                  
         </div>
-        <button style="margin-left: 15px;" type="submit" class="btn btn-primary" name="sub_mit">Tải lên</button>               
+        @if ($t < $get_dot)
+        <button style="margin-left: 15px;" type="submit" class="btn btn-primary" disabled name="sub_mit">Tải lên</button>
+        @else
+        <button style="margin-left: 15px;" type="submit" class="btn btn-primary" name="sub_mit">Tải lên</button>
+        @endif            
       </form>
 
 @endsection
@@ -93,44 +95,29 @@
             chk.checked=kt_true;
         }	
 
+
     }
+
     // $(document).ready(function(){
-    
-    //   $("#download").on('click',function(){
-    //     var checked = $("input[type='checkbox']:checked");
-    //     var _token = $('input[name="_token"]').val();
-    //     console.log(_token);
-    //              var checkbox = [];
-    //     for (let index = 1; index < checked.length; index++) {
+    //   $('#download').on('click',function(){
+    //     var checked = [];
+           
+    //       var chk=$('input[name="fileDownload"]:checked').map(function(){
+    //         checked.push($(this).val());
 
-    //       checkbox.push(checked[index].value);
-    //     }
+    //       });
 
-    //     // $.ajaxSetip({
-    //     //   headers:{
-    //     //       'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content'),
-    //     //   }
+    //     //   $.ajax({
+    //     //     url:"",
+    //     //     method:"POST",
+    //     //     data:{'checked[]': checked,"_token":"{{csrf_token()}}"},
+    //     //     success:function(data){
+    //     //       console.log(data);
+    //     //     }
     //     // })
-       
-    //     $.ajax({
-    //         url:"{{route('downloadAll')}}",
-    //         method:"GET",
-    //         data:{
-    //               checkbox:123,
-    //               // '_token':'{{csrf_token()}}',
-    //             },
-            
-    //         success:function(data){
-    //             console.log(data);
-    //             // $('#nhom_truong').html(data);
-    //         }
-    //     })
-  
-  
-
     //   })
-  
     // })
+
 
     </script>
 @endpush

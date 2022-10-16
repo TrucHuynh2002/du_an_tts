@@ -40,14 +40,14 @@
         </div>
         <div class="form-group">
             <label for="ngay_batdau">Ngày bắt đầu</label>
-            <input class="form-control" type="date" id="ngay_batdau" name="ngay_batdau" value="{{$t->created_at}}">
+            <input class="form-control" type="date" id="ngay_batdau" name="ngay_batdau" value="{{ date_format(date_create($t->created_at), 'Y-m-d') }}">
             @error('ngay_batdau')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="ngay_ketthuc">Ngày kết thúc</label>
-            <input class="form-control" type="date" id="ngay_ketthuc" name="ngay_ketthuc" value="{{$t->updated_at}}">
+            <input class="form-control" type="date" id="ngay_ketthuc" name="ngay_ketthuc" value="{{ date_format(date_create($t->updated_at), 'Y-m-d') }}">
             @error('ngay_ketthuc')
                 <span style="color:red">{{$message}}</span>
             @enderror
@@ -58,20 +58,20 @@
                   <tr>
                     <th>STT</th>
                     <th></th>
-                    <th>Tên nguoi thuc hien</th>
+                    <th>Tên người thực hiện</th>
                     <th></th>
                   </tr>
                 </thead>
-               
                 <tbody>
+                    <?php $i=1?>
                 @foreach ($get_userworks as $item)
                 <tr>
-                    <td>1</td>
-                    <td><img src="{{asset('img/'.$item->img)}}" alt="" width="120px" height="120px"></td>
+                    <td>{{$i++}}</td>
+                    <td><img src="{{asset('upload/'.$item->img)}}" alt="" width="120px" height="120px"></td>
                    
                  
                     <td>{{$item->hoten_sv}}</td>
-                    <td><a href="{{route('deleteuserwork',['id' => $item->id_sv])}}?id_cv={{$t->id_congviec}}">Xoa</a></td>
+                    <td class="text-danger"><a href="{{route('deleteuserwork',['id' => $item->id_sv])}}?id_cv={{$t->id_congviec}}">Xoá</a></td>
                   </tr>      
                 @endforeach                   
                                       
@@ -79,6 +79,6 @@
                
             </table>
         </div>
-        <button type="submit" class="btn btn-primary btn-block" name="submit">Cap nhat công việc</button>
+        <button type="submit" class="btn btn-primary btn-block" name="submit">Cập nhật công việc</button>
     </form>                          
 @endsection

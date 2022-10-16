@@ -9,6 +9,7 @@ use App\Models\chitiet_nhom;
 use App\Models\nhom;
 use App\Models\dot_thuctap;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,7 @@ class NhomController extends Controller
      */
     public function create()
     {
+        if (Gate::allows('get-quanli')) {
         $title = "Thêm nhóm thực tập";
         $get_dotthuctap = dot_thuctap::find(Auth::user()->id_dot)
         // ->groupBy('dot_thuctap.id_dot')
@@ -60,7 +62,10 @@ class NhomController extends Controller
                                     ->get();
         
      
-        return view('ql.nhom.add', compact('title','get_dotthuctap','get_users'));
+        return view('nhom.add', compact('title','get_dotthuctap','get_users'));
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -69,10 +74,10 @@ class NhomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NhomRequest $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'ten_nhom'=> 'required|unique',
+            'ten_nhom'=> 'required|unique:nhom',
             'de_tai'=> 'required',
             'id_nhomtruong'=>'required'
         ],[
@@ -111,8 +116,12 @@ class NhomController extends Controller
      */
     public function show($id)
     {
+        if (Gate::allows('get-quanli')) {
         $title = "Cập nhật nhóm thực tập";
         return view('nhom.edit', compact('title'));
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -175,7 +184,7 @@ class NhomController extends Controller
         $t->de_tai = $request->de_tai;
         $t->id_nhomtruong = $request->id_nhomtruong;
         $t->save();
-        return redirect(route('ql.nhom.index'))->with(['success' => 'Sửa thành công !']);
+        return redirect(route('nhom.index'))->with(['success' => 'Sửa thành công !']);
     }
 
     /**
@@ -186,10 +195,14 @@ class NhomController extends Controller
      */
     public function destroy($id_nhom)
     {
+        if (Gate::allows('get-quanli')) {
         $t= nhom::find($id_nhom);
         $t->delete();
         chitiet_nhom::where('id_nhom','=',$id_nhom)->delete();
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
+        } else {
+            return back();
+        }
     }
 
     public function get_Dot(Request $request){
@@ -211,13 +224,17 @@ class NhomController extends Controller
         
             
         return $output;
+
     }
 
     public function delete_memberGroup(Request $request){
         // dd($request->id_sv);
-
+        if (Gate::allows('get-quanli')) {
         chitiet_nhom::where('id_sv','=',$request->id_sv)->where('id_nhom','=',$request->id_group)->delete();
         return redirect()->back();
+    } else {
+        return back();
+    }
     }
 
     public function detailtGroup(Request $request , $id){

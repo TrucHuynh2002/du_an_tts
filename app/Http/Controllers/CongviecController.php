@@ -8,8 +8,10 @@ use App\Models\nhom;
 use App\Models\congviec;
 use App\Models\phancongcongviec;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class CongviecController extends Controller
 {
@@ -54,13 +56,16 @@ class CongviecController extends Controller
      */
     public function create()
     {
+        if (Gate::allows('get-nhomtruong')) {
         $title = "Thêm công việc";
         $get_nhom = nhom::where('id_nhomtruong','=',Auth::user()->id_sv)->first();
         $get_users = DB::table('users')
             ->join('chitiet_nhom','users.id_sv','=','chitiet_nhom.id_sv')
             ->get();
-        
         return view('congviec.add', compact('title','get_users','get_nhom'));
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -76,8 +81,8 @@ class CongviecController extends Controller
             congviec::create([
                 'ten_congviec' => $request->ten_congviec,
                 'id_nhom' => $request->id_nhom,
-                'created_at' => $request->ngay_batdau,
-                'updated_at' => $request->ngay_ketthuc
+                'created_at' => date('Y-m-d H:i:s', strtotime($request->ngay_batdau)),
+                'updated_at' => date('Y-m-d H:i:s', strtotime($request->ngay_ketthuc))
             ]);
             $congviec= congviec::orderBy('id_congviec','DESC')->first();
         
@@ -95,8 +100,8 @@ class CongviecController extends Controller
             congviec::create([
                 'ten_congviec' => $request->ten_congviec,
                 'id_nhom' => $request->id_nhom,
-                'created_at' => $request->ngay_batdau,
-                'updated_at' => $request->ngay_ketthuc
+                'created_at' => date('Y-m-d H:i:s', strtotime($request->ngay_batdau)),
+                'updated_at' => date('Y-m-d H:i:s', strtotime($request->ngay_ketthuc))
             ]);
         }   
         return redirect(route('congviec.index'))->with(['success' => 'Thêm thành công !']);
@@ -122,6 +127,7 @@ class CongviecController extends Controller
      */
     public function edit($id_cv, Request $request)
     {
+        if (Gate::allows('get-nhomtruong')) {
         $title = "Cập nhật công việc";
         $t= congviec::find($id_cv);
         $get_users = DB::table('chitiet_nhom')->join('users','chitiet_nhom.id_sv','=','users.id_sv')->where('chitiet_nhom.id_nhom','=',$request->id_nhom)->get();
@@ -131,6 +137,9 @@ class CongviecController extends Controller
                                                     ->where('phancong_congviec.id_congviec','=',$id_cv)    
                                                     ->get();
         return view('congviec.edit', compact('title','t','get_users','get_userworks'));
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -163,10 +172,10 @@ class CongviecController extends Controller
 
         $cv = congviec::find($id);
         $cv->ten_congviec = $request->ten_congviec;
-        $cv->created_at = $request->ngay_batdau;
-        $cv->updated_at = $request->ngay_ketthuc;
+        $cv->created_at = date('Y-m-d H:i:s', strtotime($request->ngay_batdau));
+        $cv->updated_at = date('Y-m-d H:i:s', strtotime($request->ngay_ketthuc));
         $cv->save();
-        return redirect()->back()->with('message','Cap nhat thanh cong');
+        return redirect()->back()->with('message','Cập nhật thành công !');
     }
 
     /**
@@ -177,15 +186,19 @@ class CongviecController extends Controller
      */
     public function destroy($id_cv)
     {
+        if (Gate::allows('get-nhomtruong')) {
         $t= congviec::find($id_cv);
         $l= phancongcongviec::find($id_cv);
         $l->delete();
         $t->delete();
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
+        } else {
+            return back();
+        }
     }
 
     public function detailt(Request $request){
-        $title = "Chi tiet cong viec";
+        $title = "Chi tiết công việc";
         // dd($request->id_cv);
         $get_detailUser = DB::table('phancong_congviec')->join('users','phancong_congviec.id_sv','=','users.id_sv')
                                                         ->join('congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
@@ -195,7 +208,7 @@ class CongviecController extends Controller
     }
     public function detailtJobGroup(Request $request , $id){
         $nhom = nhom::find($id);
-        $title = "tiến độ công việc của nhóm ".$nhom->ten_nhom;
+        $title = "Tiến độ công việc của nhóm ".$nhom->ten_nhom;
         $get_detailGroup = congviec::where('id_nhom','=',$id)->get();
         $get_userJob = DB::table('phancong_congviec')->join('users','phancong_congviec.id_sv','=','users.id_sv')->get();
                                                     
@@ -223,10 +236,12 @@ class CongviecController extends Controller
                                                 
                                                 ->get();
         // dd($detail_yourJob);
-        return view('congviec.detail_job',compact('title','detail_yourJob'));
+        $time = Carbon::now();
+        return view('congviec.detail_job',compact('title','detail_yourJob','time'));
     }
     public function update_job($id, Request $request){
-        $title = "Update iten do";
+        $title = "Update tiến độ";
+       
         $find_job = phancongcongviec::where('id_congviec','=',$id)->where('id_sv','=',Auth::user()->id_sv)->first();
         // dd($find_job);
         if($find_job) {
@@ -241,7 +256,7 @@ class CongviecController extends Controller
             }
             $find_job->save();
         }else{
-            $alert =  "<script>alert('Ban khong co quyen cap nhat cong viec nay')</script>";
+            $alert =  "<script>alert('Bạn không có quyền cập nhật công việc này')</script>";
             return redirect()->back()->with(['alert' => $alert]);
         }
 

@@ -332,3 +332,11 @@ body[data-background-color="dark"] .demo-icon .icon-class {
 	text-align: center;
 	margin: 16px;
 }
+
+.link{
+	display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 170px;
+}

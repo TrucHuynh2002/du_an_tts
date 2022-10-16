@@ -17,8 +17,8 @@
             <thead class="thead-light">
               <tr>
                 <th>STT</th>
-                <th>Ten cong viec</th>
-                <th>Nguoi thuc hien</th>
+                <th>Tên công việc</th>
+                <th>Người thực hiện</th>
                 <th>Tiến độ</th>
                 <th>Trạng thái</th>
                 <th>Ngày bắt đầu</th>
@@ -38,15 +38,19 @@
                 <td>{{$i++}}</td>
                 <td>{{$item->ten_congviec}}</td>
                 <td>{{$item->hoten_sv}}</td>
+                @if ($item->updated_at < $time)
+                <td>{{$item->tien_do}}</td>
+                @else
                 <td>
-                    <form action="{{route('updateJob',['id' => $item->id_congviec])}}" method="post">
-                        @csrf
-                        <input type="number"  value="{{$item->tien_do}}" name="tien_do" style="width: 65px;padding:4px"> <strong>%</strong>
-                    </form>
-                </td>
-                <td>{{$item->trang_thai == 1 ? 'Hoan thanh' : 'Chưa hoàn thnh'}}</td>
-                <td>12/12/2000</td>
-                <td>12/12/2000</td>
+                  <form action="{{route('updateJob',['id' => $item->id_congviec])}}" method="post">
+                      @csrf
+                      <input type="number"  value="{{$item->tien_do}}" name="tien_do" style="width: 65px;padding:4px"> <strong>%</strong>
+                  </form>
+              </td>
+                @endif
+                <td class="{{$item->trang_thai == 1 ? 'text-success' : 'text-danger'}}">{{$item->trang_thai == 1 ? 'Hoàn thành' : 'Chưa hoàn thành'}}</td>
+                <td>{{$item->created_at}}</td>
+                <td>{{$item->updated_at}}</td>
                 {{-- <td>
                   <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                 </td> --}}

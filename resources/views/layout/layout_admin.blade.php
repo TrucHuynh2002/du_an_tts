@@ -115,7 +115,7 @@
 							</li>
 						@endcan
 						
-						{{-- @cannot('get-thuctapsinh') --}}
+						@can('get-quantrivien')
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard1" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
@@ -135,10 +135,10 @@
 											<span class="sub-item">Thêm đợt thực tập</span>
 										</a>
 									</li>
-									{{-- @endcan --}}
 								</ul>
 							</div>
 						</li>
+						@endcan
 						
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard2" class="collapsed" aria-expanded="false">
@@ -153,15 +153,18 @@
 											<span class="sub-item">Danh sách nhóm</span>
 										</a>
 									</li>
+									@can('get-quanli')
 									<li>
 										<a href="{{route('nhom.create')}}">
 											<span class="sub-item">Thêm nhóm</span>
 										</a>
 									</li>
+									@endcan
 								</ul>
 							</div>
 						</li>
 						{{-- @endcan --}}
+				
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard6" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
@@ -171,20 +174,22 @@
 							<div class="collapse" id="dashboard6">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="{{route('qtv.thuctapsinh.index')}}">
+										<a href="{{route('thuctapsinh.index')}}">
 											<span class="sub-item">Danh sách thực tập sinh</span>
 										</a>
 									</li>
-									{{-- @can('get-quantrivien') --}}
+									@can('get-quantrivien')
 									<li>
-										<a href="{{route('qtv.thuctapsinh.create')}}">
+										<a href="{{route('thuctapsinh.create')}}">
 											<span class="sub-item">Thêm thực tập sinh</span>
 										</a>
 									</li>
-									{{-- @endcan --}}
+									@endcan
 								</ul>
 							</div>
 						</li>
+				
+						@can('get-thuctapsinh')
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard3" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
@@ -198,33 +203,36 @@
 											<span class="sub-item">Danh sách công việc</span>
 										</a>
 									</li>
-									{{-- @can('get-thuctapsinh') --}}
+									@can('get-nhomtruong')
 									<li>
 										<a href="{{route('congviec.create')}}">
 											<span class="sub-item">Thêm công việc</span>
 										</a>
 									</li>
+									<li>						
+										<a href="{{route('file.index')}}">
+											<span class="sub-item">Nộp bài</span>
+										</a>
+									</li>
+									@endcan
 									<li>
 										<a href="{{route('detailJob',['id' => Auth::user()->id_sv])}}">
 											<span class="sub-item">Công việc của bạn</span>
 										</a>
 									</li>
-									{{-- @endcan --}}
+									
 								</ul>
 							</div>
 						</li>
-						{{-- download file nhóm trưởng --}}
-						<li class="nav-item" style="margin-left: 40px">						
-							<a class="nav-link" href="{{route('file.index')}}">
-								<i class='bx bx-edit-alt'></i> Nộp bài
-							</a>
-						</li>
-						{{-- download file quản lý --}}
+						@endcan
+						@can('get-quanli')
 						<li class="nav-item" style="margin-left: 40px">
-							<a href="">
+							<a href="{{route('qlfile.index')}}">
 								<i class='bx bx-notepad'></i> Quản lý file
 							</a>
 						</li>
+						@endcan
+						
 					</ul>
 				</div>
 			</div>

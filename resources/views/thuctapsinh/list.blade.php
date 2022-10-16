@@ -33,14 +33,18 @@
                 <th></th>
                 <th>Tên sinh viên</th>
                 <th>MSSV</th>
+                @cannot('get-thuctapsinh')
                 <th>Email</th>
                 <th>Số điện thoại</th>
+                @endcan
                 <th>Địa chỉ</th>
                 <th>Đợt</th>
                 @can('get-quantrivien')
                 <th>Chức vụ</th>
-                @endcan
                 <th></th>
+                <th></th>
+                <th></th>
+                @endcan
                 <th></th>
               </tr>
             </thead>
@@ -55,10 +59,12 @@
                   <tr>
                     <td>{{$i++}}</td>
                     <td><img src="upload/{{$t->img}}" width="80px" height="80px"></td>
-                    <td>{{$t->hoten_sv}}</td>
+                    <td>{{$t->hoten_sv}}</a></td>
                     <td>{{$t->mssv}}</td>
+                    @cannot('get-thuctapsinh')
                     <td>{{$t->email}}</td>
                     <td>{{$t->sdt}}</td>
+                    @endcan
                     <td>{{$t->dia_chi}}</td>
                     <td>
                     @foreach($get_dotthuctap as $data)
@@ -71,17 +77,19 @@
                     {{$t->id_chucvu == $data->id_chucvu ? $data->ten_chucvu : ''}}
                     @endforeach
                     </td>
-                    @endcan
                     <td>
-                      <a href="{{route('qtv.thuctapsinh.edit',['thuctapsinh'=>$t->id_sv])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                      <a href="{{route('thuctapsinh.edit',['thuctapsinh'=>$t->id_sv])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                     </td>
                     <td>
-                      <form action="{{route('qtv.thuctapsinh.destroy',['thuctapsinh' => $t->id_sv])}}" method="post">
+                      <form action="{{route('thuctapsinh.destroy',['thuctapsinh' => $t->id_sv])}}" method="post">
                         @method('DELETE')
                         @csrf
                         <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
                       </form>
                     </td>
+                    @endcan
+                    
+                    <td><a href="{{route('get_profile',['id'=>$t->id_sv])}}">Xem chi tiết</a></td>
                   </tr>                          
               @endforeach
               @else

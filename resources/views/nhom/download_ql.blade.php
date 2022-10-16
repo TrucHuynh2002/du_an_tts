@@ -24,37 +24,20 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($data as $t)
           <tr>
-            <td><input type="checkbox"></td>
-            <td>3</td>
-            <td>1</td>
-            <td>01/10/2022</td>
+            <td><input type="checkbox" value="{{$t->id}}"></td>
+            <td>{{$t->ten_nhom}}</td>
+            <td>{{$t->ten_dot}}</td>
+            <td>{{$t->created_at}}</td>
             <td>
-                <a href="#"><button type="button" class="btn btn-outline-primary">Tải về</button></a>
+              <a href="{{route('downloadFile',['id'=>$t->id])}}" class="link">Tải về</a>
             </td>
           </tr>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td>3</td>
-            <td>1</td>
-            <td>01/10/2022</td>
-            <td>
-                <a href="#"><button type="button" class="btn btn-outline-primary">Tải về</button></a>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td>3</td>
-            <td>1</td>
-            <td>01/10/2022</td>
-            <td>
-                <a href="#"><button type="button" class="btn btn-outline-primary">Tải về</button></a>
-            </td>
-          </tr>
+          @endforeach
+      
         </tbody>
-        <td>
-          <a href="#"><button type="button" class="btn btn-outline-primary">Tải về tất cả</button></a>
-        </td>
+        
       </table>
     
 @endsection

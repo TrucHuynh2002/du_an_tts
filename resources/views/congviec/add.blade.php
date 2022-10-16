@@ -49,14 +49,14 @@
         </div>
         <div class="form-group">
             <label for="ngay_batdau">Ngày bắt đầu</label>
-            <input class="form-control" type="date" id="ngay_batdau" name="ngay_batdau">
+            <input class="form-control" type="datetime-local" id="ngay_batdau" name="ngay_batdau">
             @error('ngay_batdau')
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="ngay_ketthuc">Ngày kết thúc</label>
-            <input class="form-control" type="date" id="ngay_ketthuc" name="ngay_ketthuc">
+            <input class="form-control" type="datetime-local" id="ngay_ketthuc" name="ngay_ketthuc">
             @error('ngay_ketthuc')
                 <span style="color:red">{{$message}}</span>
             @enderror
