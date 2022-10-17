@@ -28,8 +28,8 @@
 
 			<!-- Navbar Header -->
 			<nav  class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">				
-				<div  class="container-fluid">
-					<div class="collapse" id="search-nav">
+				<div  class="container-fluid" style="display:flex;justify-content:end">
+					{{-- <div class="collapse" id="search-nav">
 						<form class="navbar-left navbar-form nav-search mr-md-3">
 							<div class="input-group">
 								<div style="margin-top: 10px;" class="input-group-prepend">
@@ -42,8 +42,8 @@
 							
 						</form>
 
-					</div>
-					<a href="{{route('logout')}}" style="color: white;text-decoration: none;">Đăng xuất</a>
+					</div> --}}
+					<a href="{{route('logout')}}" style="color: white;text-decoration: none; ">Đăng xuất</a>
 					
 
 				</div>
