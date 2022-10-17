@@ -70,17 +70,6 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="id_dot">Đợt</label>
-            <select class="form-control" id="id_dot" name="id_dot">
-                @foreach($get_dotthuctap as $data)
-                <option {{$t->id_dot == $data->id_dot ? 'selected' : ''}} value="{{$data->id_dot}}">{{$data->ten_dot}}</option>
-                @endforeach
-              </select>
-            @error('id_dot')
-                <span style="color:red">{{$message}}</span>
-            @enderror
-        </div>
-        <div class="form-group">
             <label for="id_chucvu">Chức vụ</label>
             <select class="form-control" id="id_chucvu" name="id_chucvu">
                 @foreach($get_chucvu as $data)
@@ -91,6 +80,19 @@
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
+        <div class="form-group">
+            <label for="id_dot">Đợt</label>
+            <select class="form-control" id="id_dot" name="id_dot">
+                @foreach($get_dotthuctap as $data)
+                <option {{$t->id_dot == $data->id_dot ? 'selected' : ''}} value="{{$data->id_dot}}">{{$data->ten_dot}}</option>
+                @endforeach
+              </select>
+            @error('id_dot')
+                <span style="color:red">{{$message}}</span>
+            @enderror
+        </div>
+        
         <button type="submit" class="btn btn-primary btn-block" name="submit">Cập nhật</button>
     </form>                          
 @endsection
+

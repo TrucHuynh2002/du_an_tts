@@ -69,18 +69,6 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="id_dot">Đợt</label>
-            <select class="form-control" id="id_dot" name="id_dot">
-                <option value="">Chưa chọn đợt thực tập</option>
-                @foreach($get_dotthuctap as $data_dotthuctap)
-                <option value="{{$data_dotthuctap->id_dot}}">{{$data_dotthuctap->ten_dot}}</option>
-                @endforeach
-              </select>
-            @error('id_dot')
-                <span style="color:red">{{$message}}</span>
-            @enderror
-        </div>
-        <div class="form-group">
             <label for="id_chucvu">Chức vụ</label>
             <select class="form-control" id="id_chucvu" name="id_chucvu">
                 <option value="">Chưa chọn chức vụ</option>
@@ -93,6 +81,35 @@
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
+        <div class="form-group" id="id_dot">
+            <label for="id_dot">Đợt</label>
+            <select class="form-control"  name="id_dot">
+                <option value="">Chưa chọn đợt thực tập</option>
+                @foreach($get_dotthuctap as $data_dotthuctap)
+                <option value="{{$data_dotthuctap->id_dot}}">{{$data_dotthuctap->ten_dot}}</option>
+                @endforeach
+              </select>
+            @error('id_dot')
+                <span style="color:red">{{$message}}</span>
+            @enderror
+        </div>
+        
         <button style=" margin-left:10px; width: 1250px;" type="submit" class="btn btn-primary btn-block" name="submit">Thêm thực tập sinh</button>
     </form>                          
 @endsection
+@push('scripts')
+ <script>
+      $(document).ready(function(){
+        $('#id_chucvu').change(function(){
+        
+            var _token = $('input[name="_token"]').val()
+            var id = $(this).val();
+            if(id == 5){
+                $('#id_dot').css('display','none')
+            }else{
+                $('#id_dot').css('display','block')
+            }
+        })
+    })
+</script>   
+@endpush

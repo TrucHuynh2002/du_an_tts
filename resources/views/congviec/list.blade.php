@@ -35,14 +35,10 @@
             <thead class="thead-light">
               <tr>
                 <th>ID công việc</th>
-                <th>Tên công việc</th>
-           
-             
+                <th>Tên công việc</th>             
                 <th>Ngày bắt đầu</th>
-                <th>Ngày kết thúc</th>
-             
-                <th>Trạng thái</th>
-                
+                <th>Ngày kết thúc</th>            
+                <th>Trạng thái</th>                
                 @can('get-thuctapsinh')
                 <th></th>
                 <th></th>
@@ -51,37 +47,46 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($get_congviec as $cv)
-                               
-                @if ($cv->id_nhom == $get_nhom->id_nhom)
-                <tr>
-                  <td>{{$cv->id_congviec}}</td>
-                  <td>{{$cv->ten_congviec}}</td>
-                
-              
-                  <td>{{$cv->created_at}}</td>
-                  <td>{{$cv->updated_at}}</td>
-                
+              @if ($get_nhom)
+                @foreach($get_congviec as $cv)
                   
-                  <td class="{{$cv->trang_thai == 0 ? 'text-danger' : 'text-success'}}">
-                    {{$cv->trang_thai == 0 ? 'Chưa hoàn thành' : 'Hoàn thành'}}
-                  </td>
-              
-                  {{-- @can('get-thuctapsinh') --}}
-                  <td>
-                    <a href="xemcongviec?id_cv={{$cv->id_congviec}}">Xem chi tiết</a>
-                  </td>
-                  <td>
-                    <a href="{{route('congviec.edit',['congviec'=>$cv->id_congviec])}}?id_nhom={{$cv->id_nhom}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                      @if ($cv->id_nhom == $get_nhom->id_nhom)
+                        <tr>
+                          <td>{{$cv->id_congviec}}</td>
+                          <td>{{$cv->ten_congviec}}</td>
+                        
+                      
+                          <td>{{$cv->created_at}}</td>
+                          <td>{{$cv->updated_at}}</td>
+                        
+                          
+                          <td class="{{$cv->trang_thai == 0 ? 'text-danger' : 'text-success'}}">
+                            {{$cv->trang_thai == 0 ? 'Chưa hoàn thành' : 'Hoàn thành'}}
+                          </td>
+                      
+                          {{-- @can('get-thuctapsinh') --}}
+                          <td>
+                            <a href="xemcongviec?id_cv={{$cv->id_congviec}}">Xem chi tiết</a>
+                          </td>
+                          <td>
+                            <a href="{{route('congviec.edit',['congviec'=>$cv->id_congviec])}}?id_nhom={{$cv->id_nhom}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
+                            
+                          </td>
+                          <td>
+                            <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
+                          </td>
+                          {{-- @endcan --}}
+                        </tr>     
+                                          
+                      @endif
+                                    
                     
-                  </td>
-                  <td>
-                    <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
-                  </td>
-                  {{-- @endcan --}}
-                </tr>    
-                @endif                      
-            @endforeach
+                @endforeach
+              @else
+                <tr>
+                  <td colspan="8" align="center">Bạn chưa có nhóm</td>
+                </tr>
+              @endif   
             </tbody>
         </table>
     </div>      

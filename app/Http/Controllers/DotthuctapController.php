@@ -145,6 +145,14 @@ class DotthuctapController extends Controller
     public function destroy($id_dot)
     {
         if (Gate::allows('get-quantrivien')) {
+        $get_file = DB::table('file')->join('nhom','file.id_nhom','=','nhom.id_nhom')->where('nhom.id_dot','=',$id_dot)->get();
+        if(count($get_file) > 0){
+            foreach ($get_file as $files) {
+                if($files->ten_file != '' && file_exists(public_path('upload/file/'.($files->ten_file)))){
+                    unlink(public_path('upload/file/'.($files->ten_file)));
+                };
+            }
+        }
         $dot_thuctap= dot_thuctap::find($id_dot);
         $dot_thuctap->delete();
         return redirect()->back()->with(['success' => 'Xóa thành công !']);

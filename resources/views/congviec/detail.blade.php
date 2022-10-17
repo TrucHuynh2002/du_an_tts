@@ -17,8 +17,8 @@
             <thead class="thead-light">
               <tr>
                 <th>STT</th>
-                <th>Ten cong viec</th>
-                <th>Nguoi thuc hien</th>
+                <th>Tên công việc</th>
+                <th>Người thực hiện</th>
                 {{-- <th>Ngày bắt đầu</th>
                 <th>Ngày kết thúc</th> --}}
                 <th>Tiến độ</th>
@@ -27,15 +27,18 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody> 
+            <tbody>
+              @php
+                $i = 1;
+              @endphp
             @if (count($get_detailUser) > 0)
               @foreach ($get_detailUser as $item)
               <tr>
-                <td></td>
+                <td>{{$i++}}</td>
                 <td>{{$item->ten_congviec}}</td>
                 <td>{{$item->hoten_sv}}</td>
                 <td>{{$item->tien_do}}</td>
-                <td>{{$item->trang_thai == 0 ? 'Chua Hoan thanh' : 'Hoan Thanh'}}</td>
+                <td class="{{$item->trang_thai == 0 ? 'text-danger' : 'text-success'}}">{{$item->trang_thai == 0 ? 'Chưa hoàn thành' : 'Hoàn thành'}}</td>
               
                 {{-- <td>
                   <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
@@ -47,7 +50,7 @@
               @endforeach 
             @else
             <tr>
-              <td colspan="6" align="center">Chua co nguoi thuc hien</td>
+              <td colspan="6" align="center">Chưa có người thực hiện</td>
             </tr>
             @endif                    
                                 
