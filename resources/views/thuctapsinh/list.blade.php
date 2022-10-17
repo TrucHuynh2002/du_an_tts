@@ -91,7 +91,9 @@
                     
                     <td><a href="{{route('get_profile',['id'=>$t->id_sv])}}">Xem chi tiết</a></td>
                   </tr>                          
+     
               @endforeach
+          
               @else
               <tr>
                 <td colspan="13">Chưa có thực tập sinh</td>
@@ -99,6 +101,6 @@
               @endif            
             </tbody>
         </table>
-        {{-- {!! $data->links() !!} --}}
     </div>  
+    {{-- {{ $get_chucvu->links(); }} --}}
 @endsection

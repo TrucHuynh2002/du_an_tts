@@ -11,6 +11,6 @@ class chucvu extends Model
     protected $primaryKey = 'id_chucvu';
     public $timestamps = false;
     protected $fillable = [
-    'ten_chucvu'
+        'ten_chucvu'
     ];
 }

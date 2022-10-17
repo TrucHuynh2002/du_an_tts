@@ -25,11 +25,12 @@ class ThuctapsinhController extends Controller
     public function index()
     {
         $title = "Danh sách thực tập sinh";
-        // $data = User::where('id_chucvu','=',7)->paginate(4);
+        
         if (Gate::allows('get-quantrivien')) {
             $data = User::whereNot(function ($query){
                 $query->where('id_chucvu','=',5);
             })->get();
+          
         }else {
             $data = User::where('id_chucvu','=',7)->where('id_dot','=',Auth::User()->id_dot)->get();
         }
