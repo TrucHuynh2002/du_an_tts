@@ -6,27 +6,25 @@
 @section('main')
 
     <!-- Nội dung -->
-    <div class="row">
       {{-- kiểm lỗi --}}
       @if(Session::has('success'))
       <div class="alert alert-success text-success">
           {{Session::get('success')}}
       </div>
-      @endif<div style="margin: 20px 0px 20px 30px;"class="dropdown">
-    <button style="   box-shadow: 0px 0px 17px 2px rgba(91, 87, 87, 0.8);
-   "  type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-      Tìm theo
-    </button>
-    <form>
-    		<select  style=" margin-top:2px; background-color:white; " class="dropdown-menu">
-				<a class="dropdown-item" href="#">Đợt</a>
-				<a class="dropdown-item" href="#">Trưởng nhóm</a>
-        <a class="dropdown-item" href="#">Đợt thực tập</a>
-        <a class="dropdown-item" href="#">Chức vụ</a>
-			  
-      
-        </select>
-    </form>
+      @endif
+      <div style="margin: 20px 0px 20px 30px;"class="dropdown">
+        <button style="   box-shadow: 0px 0px 17px 2px rgba(91, 87, 87, 0.8);
+          "type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+          Tìm theo
+        </button>
+        <form>
+            <select  style=" margin-top:2px; background-color:white; " class="dropdown-menu">
+              <a class="dropdown-item" href="#">Đợt</a>
+              <a class="dropdown-item" href="#">Trưởng nhóm</a>
+              <a class="dropdown-item" href="#">Đợt thực tập</a>
+              <a class="dropdown-item" href="#">Chức vụ</a>
+          </select>
+        </form>
         <div class="collapse" id="search-nav">
 						<form class="navbar-left navbar-form nav-search mr-md-3">
 							<div class="input-group">
@@ -36,13 +34,11 @@
 									</button>
 								</div>
 								<input type="text" placeholder="Tìm kiếm" class="form-control">
-							</div>
-							
+							</div>						
 						</form>
-
-					</div>
-  </div>
-        <table class="table">
+				</div>
+      </div>
+        <table class="table" id="myTable">
             <thead class="thead-light">
               <tr>
                 <th>STT</th>
@@ -117,6 +113,5 @@
               @endif            
             </tbody>
         </table>
-    </div>  
     {{-- {{ $get_chucvu->links(); }} --}}
 @endsection

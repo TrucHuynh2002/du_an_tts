@@ -6,7 +6,6 @@
 @section('main')
 
     <!-- Nội dung -->
-    <div class="row">
       {{-- kiểm lỗi --}}
       @if(Session::has('success'))
       <div class="alert alert-success text-success">
@@ -16,7 +15,7 @@
       <div style="padding: 5px;">
         <a href="{{route('qtv.congty.create')}}" class="btn btn-primary">Thêm công ty</a>
       </div>
-        <table class="table">
+        <table class="table" id="myTable">
             <thead class="thead-light">
               <tr>
                 <th>#</th>
@@ -52,6 +51,5 @@
                 </tr>                          
             </tbody>
             @endforeach
-        </table>
-    </div>      
+        </table> 
 @endsection

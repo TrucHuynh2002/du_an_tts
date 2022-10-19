@@ -6,7 +6,6 @@
 @section('main')
 
     <!-- Nội dung -->
-    <div class="row">
       {{-- kiểm lỗi --}}
       @if(Session::has('success'))
       <div class="alert alert-success text-success">
@@ -14,24 +13,20 @@
       </div>
       @endif
       <div style="margin: 20px 0px 20px 30px;"class="dropdown">
-    <button style="   box-shadow: 0px 0px 17px 2px rgba(91, 87, 87, 0.8);
-   "  type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-      Tìm theo
-    </button>
-    		<div  style=" margin-top:2px; background-color:white; " class="dropdown-menu">
-				<a class="dropdown-item" href="#">Mã số sinh viên</a>
-				<a class="dropdown-item" href="#">Ngày bắt đầu</a>
-        <a class="dropdown-item" href="#">Ngày kết thúc</a>
-        <a class="dropdown-item" href="#">Tiến độ</a>
-        <a class="dropdown-item" href="#">Trạng thái</a>
-        <a class="dropdown-item" href="#">Hoàn thành</a>
-
-
-			  
-      
-    		</div>
-  </div>
-        <table class="table">
+        <button style="   box-shadow: 0px 0px 17px 2px rgba(91, 87, 87, 0.8);
+          "type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+          Tìm theo
+        </button>
+        <div  style=" margin-top:2px; background-color:white; " class="dropdown-menu">
+          <a class="dropdown-item" href="#">Mã số sinh viên</a>
+          <a class="dropdown-item" href="#">Ngày bắt đầu</a>
+          <a class="dropdown-item" href="#">Ngày kết thúc</a>
+          <a class="dropdown-item" href="#">Tiến độ</a>
+          <a class="dropdown-item" href="#">Trạng thái</a>
+          <a class="dropdown-item" href="#">Hoàn thành</a>     
+        </div>
+      </div>
+        <table class="table" id="myTable">
             <thead class="thead-light">
               <tr>
                 <th>ID công việc</th>
@@ -54,12 +49,8 @@
                         <tr>
                           <td>{{$cv->id_congviec}}</td>
                           <td>{{$cv->ten_congviec}}</td>
-                        
-                      
                           <td>{{$cv->ngay_batdau}}</td>
-                          <td>{{$cv->ngay_ketthuc}}</td>
-                        
-                          
+                          <td>{{$cv->ngay_ketthuc}}</td>                         
                           <td class="{{$cv->trang_thai == 0 ? 'text-danger' : 'text-success'}}">
                             {{$cv->trang_thai == 0 ? 'Chưa hoàn thành' : 'Hoàn thành'}}
                           </td>
@@ -82,9 +73,7 @@
                           {{-- @endcan --}}
                         </tr>     
                                           
-                      @endif
-                                    
-                    
+                      @endif                   
                 @endforeach
               @else
                 <tr>
@@ -92,6 +81,5 @@
                 </tr>
               @endif   
             </tbody>
-        </table>
-    </div>      
+        </table>   
 @endsection

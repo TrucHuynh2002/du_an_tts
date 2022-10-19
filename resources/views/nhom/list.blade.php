@@ -15,7 +15,6 @@
     </form>
   </div>
     <!-- Nội dung -->
-    <div class="row">
       {{-- kiểm lỗi --}}
       @if(Session::has('success'))
       <div class="alert alert-success text-success">
@@ -23,10 +22,9 @@
       </div>
       @endif
       <div style="margin: 20px 0px 20px 30px;">
-      
-  
-  </div>
-        <table class="table">
+        
+      </div>
+        <table class="table" id="myTable">
             <thead class="thead-light">
               <tr>
                 <th>#</th>
@@ -67,8 +65,7 @@
                     @endforeach
                     </td>
                   <td>{{$t->de_tai}}</td>
-                  
-                 
+                                  
                   @cannot('get-thuctapsinh')
                 <td>File</td>
                 @endcan
@@ -93,6 +90,5 @@
                                
             </tbody>
             @endforeach
-        </table>
-    </div>      
+        </table>   
 @endsection

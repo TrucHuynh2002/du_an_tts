@@ -6,7 +6,6 @@
 @section('main')
 
     <!-- Nội dung -->
-    <div class="row">
       {{-- kiểm lỗi --}}
       @if(Session::has('success'))
       <div class="alert alert-success text-success">
@@ -15,7 +14,7 @@
       @endif
       <div style="margin: 20px 0px 20px 30px;"class="dropdown">
     <button style="   box-shadow: 0px 0px 17px 2px rgba(91, 87, 87, 0.8);
-   "  type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+      "type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
       Tìm theo
     </button>
     		<div  style=" margin-top:2px; background-color:white; " class="dropdown-menu">
@@ -26,7 +25,7 @@
       
     		</div>
   </div>
-        <table class="table">
+        <table class="table" id="myTable">
             <thead class="thead-light">
               <tr>
                 <th>ID đợt thực tập</th>
@@ -68,6 +67,5 @@
                 </tr>                          
             </tbody>
             @endforeach
-        </table>
-    </div>      
+        </table>   
 @endsection
