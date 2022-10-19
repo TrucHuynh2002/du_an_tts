@@ -13,7 +13,9 @@ class congty extends Model
     protected $fillable = [
     'ten_congty',
     'dia_chi',
-    'img'
+    'ma_sothue',
+    'sdt',
+    'nguoi_daidien'
     ];
 
 }

@@ -79,6 +79,11 @@
                
             </table>
         </div>
+        <div class="form-group">
+            @if(Session('error'))
+            <span style="color:red">{{Session('error')}}</span>
+            @endif
+        </div>
         <button type="submit" class="btn btn-primary btn-block" name="submit">Cập nhật công việc</button>
     </form>                          
 @endsection

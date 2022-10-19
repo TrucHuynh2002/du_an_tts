@@ -17,14 +17,30 @@
    "  type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
       Tìm theo
     </button>
-    		<div  style=" margin-top:2px; background-color:white; " class="dropdown-menu">
-				<a class="dropdown-item" href="#">Mã số sinh viên</a>
-				<a class="dropdown-item" href="#">Tên sinh viên</a>
+    <form>
+    		<select  style=" margin-top:2px; background-color:white; " class="dropdown-menu">
+				<a class="dropdown-item" href="#">Đợt</a>
+				<a class="dropdown-item" href="#">Trưởng nhóm</a>
         <a class="dropdown-item" href="#">Đợt thực tập</a>
         <a class="dropdown-item" href="#">Chức vụ</a>
 			  
       
-    		</div>
+        </select>
+    </form>
+        <div class="collapse" id="search-nav">
+						<form class="navbar-left navbar-form nav-search mr-md-3">
+							<div class="input-group">
+								<div style="margin-top: 10px;" class="input-group-prepend">
+									<button  type="submit" class="btn btn-search pr-1">
+										<i class="fa fa-search search-icon"></i>
+									</button>
+								</div>
+								<input type="text" placeholder="Tìm kiếm" class="form-control">
+							</div>
+							
+						</form>
+
+					</div>
   </div>
         <table class="table">
             <thead class="thead-light">

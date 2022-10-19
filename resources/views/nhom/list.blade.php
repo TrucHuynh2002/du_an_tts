@@ -4,7 +4,16 @@
 @endsection       
     <!-- Begin Page Content -->
 @section('main')
-
+  <div>
+    <form>
+      <select  style=" margin-top:2px;width:120px" class="form-control">
+        <option >Đợt</option>
+        <option >Trưởng nhóm</option>
+        <option >Tên đề tài</option>
+        <option >Trạng thái</option>
+      </select>
+    </form>
+  </div>
     <!-- Nội dung -->
     <div class="row">
       {{-- kiểm lỗi --}}
@@ -13,29 +22,24 @@
           {{Session::get('success')}}
       </div>
       @endif
-      <div style="margin: 20px 0px 20px 30px;"class="dropdown">
-    <button style="   box-shadow: 0px 0px 17px 2px rgba(91, 87, 87, 0.8);
-   "  type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-      Tìm theo
-    </button>
-    		<div  style=" margin-top:2px; background-color:white; " class="dropdown-menu">
-				<a class="dropdown-item" href="#">Tên nhóm</a>
-				<a class="dropdown-item" href="#">Đợt thực tập</a>
-			  <a class="dropdown-item" href="#">Đề tài</a>
+      <div style="margin: 20px 0px 20px 30px;">
       
-    		</div>
+  
   </div>
         <table class="table">
             <thead class="thead-light">
               <tr>
-                <th>ID nhóm thực tập</th>
+                <th>#</th>
                 <th>Tên nhóm thực tập</th>
                 <th>Trưởng nhóm</th>
                 <th>Đợt thực tập</th>
                 <th>Đề tài</th>
                 
-                
                 @cannot('get-thuctapsinh')
+                <th>File</th>
+                @endcan
+                
+                @can('get-quanli')
                 <th>Link tham gia nhóm</th>
                 <th></th>
                 <th></th>
@@ -43,26 +47,32 @@
                 <th></th>
               </tr>
             </thead>
+            @php
+                $i=1;
+            @endphp
             @foreach($get_nhom as $t)
             <tbody>       
          
                 <tr>
-                  <td>{{$t->id_nhom}}</td>
-                  <td>{{$t->ten_nhom}}</td>
+                  <td>{{$i++}}</td>
+                  <td><a href="{{route('detailtGroup',['id'=>$t->id_nhom])}}">{{$t->ten_nhom}}</a></td>
                   <td>
                   @foreach($get_users as $data)
                   {{$t->id_nhomtruong == $data->id_sv ? $data->hoten_sv : ''}}
                   @endforeach
+                  </td>
+                  <td>
                     @foreach($get_dotthuctap as $data)
                     {{$t->id_dot == $data->id_dot ? $data->ten_dot : ''}}
                     @endforeach
                     </td>
                   <td>{{$t->de_tai}}</td>
                   
-                  <td>
-                    <a href="{{route('detailtGroup',['id'=>$t->id_nhom])}}">Chi tiết nhóm</a>
-                  </td>
+                 
                   @cannot('get-thuctapsinh')
+                <td>File</td>
+                @endcan
+                  @can('get-quanli')
                   <td><a href="{{route('thamgianhom.index',['token' => $t->token])}}">{{route('thamgianhom.index',['token' => $t->token])}}</a></td>
                   <td>
                     <a href="{{route('detailtJobGroup',['id'=>$t->id_nhom])}}">Tiến độ làm việc</a>

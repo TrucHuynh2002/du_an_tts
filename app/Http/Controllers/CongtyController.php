@@ -49,25 +49,39 @@ class CongtyController extends Controller
     {
         $request->validate([
             'ten_congty'=> 'required|unique:congty',
-            'dia_chi'=> 'required'
+            'dia_chi'=> 'required',
+            'ma_sothue' => 'required|unique:congty|max:13',
+            'sdt'=> 'required|min:10|max:12',
+            'nguoi_daidien' => 'required'
         ],[
             'ten_congty.required' => 'Tên công ty không được bỏ trống',
             'ten_congty.unique' => 'Tên công ty đã tồn tại',
-            'dia_chi.required' => 'Địa chỉ không được bỏ trống'
+            'dia_chi.required' => 'Địa chỉ không được bỏ trống',
+            'ma_sothue.required' => 'Mã số thuế không đươc bỏ trống',
+            'ma_sothue.unique' => 'Mã số thuế đã tồn tại',
+            'ma_sothue.max' => 'Mã số thuế sai',
+            'sdt.required' => 'Số điện thoại không được bỏ trống',
+            'sdt.min' => 'Số điện thoại phải từ 10 số',
+            'sdt.max' => 'Số điện thoại không đúng',
+            'nguoi_daidien.mrequiredax' => 'Người đại diện không được bỏ trống'
+
         ]);
         $t = new congty;
         $t->ten_congty = $request->ten_congty;
         $t->dia_chi = $request->dia_chi;
+        $t->ma_sothue = $request->ma_sothue;
+        $t->sdt = $request->sdt;
+        $t->nguoi_daidien = $request->nguoi_daidien;
         // $t->img = $request->file('img');
-        $get_image = $request->file('img');
-        if ($get_image) {
-                $get_name_image = $get_image->getClientOriginalName(); //lay ten file
-                $path = 'upload/';  //duong dan den file
-                $name_image  = current(explode('.',$get_name_image)); //tach mang sau dau .
-                $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension(); //
-                $get_image->move($path,$new_image);
-                $t->img = $new_image;
-        }
+        // $get_image = $request->file('img');
+        // if ($get_image) {
+        //         $get_name_image = $get_image->getClientOriginalName(); //lay ten file
+        //         $path = 'upload/';  //duong dan den file
+        //         $name_image  = current(explode('.',$get_name_image)); //tach mang sau dau .
+        //         $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension(); //
+        //         $get_image->move($path,$new_image);
+        //         $t->img = $new_image;
+        // }
         $t->save();
         return redirect(route('qtv.congty.index'))->with(['success' => 'Thêm công ty thành công !']);
         // $title = "Danh sách công ty";
@@ -116,26 +130,39 @@ class CongtyController extends Controller
     public function update(Request $request, $id_congty)
     {
         $request->validate([
-            'ten_congty'=> 'required|unique:congty',
-            'dia_chi'=> 'required'
+            'ten_congty'=> 'required',
+            'dia_chi'=> 'required',
+            'ma_sothue' => 'required|max:13',
+            'sdt'=> 'required|min:10|max:12',
+            'nguoi_daidien' => 'required'
         ],[
             'ten_congty.required' => 'Tên công ty không được bỏ trống',
-            'ten_congty.unique' => 'Tên công ty đã tồn tại',
-            'dia_chi.required' => 'Địa chỉ không được bỏ trống'
+            
+            'dia_chi.required' => 'Địa chỉ không được bỏ trống',
+            'ma_sothue.required' => 'Mã số thuế không đươc bỏ trống',
+            
+            'ma_sothue.max' => 'Mã số thuế sai',
+            'sdt.required' => 'Số điện thoại không được bỏ trống',
+            'sdt.min' => 'Số điện thoại phải từ 10 số',
+            'sdt.max' => 'Số điện thoại không đúng',
+            'nguoi_daidien.mrequiredax' => 'Người đại diện không được bỏ trống'
         ]);
         $t= congty::find($id_congty);
         $t->ten_congty = $request->ten_congty;
         $t->dia_chi = $request->dia_chi;
+        $t->ma_sothue = $request->ma_sothue;
+        $t->sdt = $request->sdt;
+        $t->nguoi_daidien = $request->nguoi_daidien;
         // $t->img = $request->file('img');
-        $get_image = $request->file('img');
-        if ($get_image) {
-                $get_name_image = $get_image->getClientOriginalName();
-                $path = 'upload/';
-                $name_image  = current(explode('.',$get_name_image));
-                $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension();
-                $get_image->move($path,$new_image);
-                $t->img = $new_image;
-        }
+        // $get_image = $request->file('img');
+        // if ($get_image) {
+        //         $get_name_image = $get_image->getClientOriginalName();
+        //         $path = 'upload/';
+        //         $name_image  = current(explode('.',$get_name_image));
+        //         $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension();
+        //         $get_image->move($path,$new_image);
+        //         $t->img = $new_image;
+        // }
         $t->save();
         return redirect(route('qtv.congty.index'))->with(['success' => 'Sửa thành công !']);
     }

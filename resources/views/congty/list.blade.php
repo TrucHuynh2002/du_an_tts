@@ -13,13 +13,18 @@
           {{Session::get('success')}}
       </div>
       @endif
+      <div style="padding: 5px;">
+        <a href="{{route('qtv.congty.create')}}" class="btn btn-primary">Thêm công ty</a>
+      </div>
         <table class="table">
             <thead class="thead-light">
               <tr>
-                <th>STT công ty</th>
+                <th>#</th>
                 <th>Tên công ty</th>
+                <th>Mã số thuế</th>
+                <th>Số điện thoại</th>
                 <th>Địa chỉ</th>
-                <th>Hình ảnh</th>
+                <th>Người đại diện</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -30,8 +35,10 @@
                 <tr>
                   <td>{{$i++}}</td>
                   <td>{{$t->ten_congty}}</td>
+                  <td>{{$t->ma_sothue}}</td>
+                  <td>{{$t->sdt}}</td>
                   <td>{{$t->dia_chi}}</td>
-                  <td><img src="{{asset('upload/'.$t->img)}}" width="80px" height="80px"></td>
+                  <td>{{$t->nguoi_daidien}}</td>
                   <td>
                     <a href="{{route('qtv.congty.edit',['congty'=>$t->id_congty])}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td>

@@ -92,7 +92,7 @@
 									</ul>
 								</div>
 							</li>
-							<li class="nav-item">
+							{{-- <li class="nav-item">
 								<a data-toggle="collapse" href="#dashboard4" class="collapsed" aria-expanded="false">
 									<i class="fas fa-home"></i>
 									<p><i class='bx bx-male-female'></i>Chức vụ</p>
@@ -112,7 +112,7 @@
 										</li>
 									</ul>
 								</div>
-							</li>
+							</li> --}}
 						@endcan
 						
 						@can('get-quantrivien')
@@ -168,20 +168,20 @@
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard6" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
-								<p><i class='bx bx-user-circle'></i>Thực tập sinh</p>
+								<p><i class='bx bx-user-circle'></i>User</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="dashboard6">
 								<ul class="nav nav-collapse">
 									<li>
 										<a href="{{route('thuctapsinh.index')}}">
-											<span class="sub-item">Danh sách thực tập sinh</span>
+											<span class="sub-item">Danh sách User</span>
 										</a>
 									</li>
 									@can('get-quantrivien')
 									<li>
 										<a href="{{route('thuctapsinh.create')}}">
-											<span class="sub-item">Thêm thực tập sinh</span>
+											<span class="sub-item">Thêm User</span>
 										</a>
 									</li>
 									@endcan

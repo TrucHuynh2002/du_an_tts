@@ -76,13 +76,14 @@ class CongviecController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->ngay_batdau < $request->ngay_ketthuc){
         
         if($request->id_sv){
             congviec::create([
                 'ten_congviec' => $request->ten_congviec,
                 'id_nhom' => $request->id_nhom,
-                'created_at' => date('Y-m-d H:i:s', strtotime($request->ngay_batdau)),
-                'updated_at' => date('Y-m-d H:i:s', strtotime($request->ngay_ketthuc))
+                'ngay_batdau' => date('Y-m-d H:i:s', strtotime($request->ngay_batdau)),
+                'ngay_ketthuc' => date('Y-m-d H:i:s', strtotime($request->ngay_ketthuc))
             ]);
             $congviec= congviec::orderBy('id_congviec','DESC')->first();
         
@@ -100,11 +101,14 @@ class CongviecController extends Controller
             congviec::create([
                 'ten_congviec' => $request->ten_congviec,
                 'id_nhom' => $request->id_nhom,
-                'created_at' => date('Y-m-d H:i:s', strtotime($request->ngay_batdau)),
-                'updated_at' => date('Y-m-d H:i:s', strtotime($request->ngay_ketthuc))
+                'ngay_batdau' => date('Y-m-d H:i:s', strtotime($request->ngay_batdau)),
+                'ngay_ketthuc' => date('Y-m-d H:i:s', strtotime($request->ngay_ketthuc))
             ]);
         }   
         return redirect(route('congviec.index'))->with(['success' => 'Thêm thành công !']);
+    }else{
+        return redirect()->back()->with('error','Ngày bắt đầu phải nhỏ hơn ngày kết thúc !');
+    }
     }
 
     /**
@@ -151,24 +155,52 @@ class CongviecController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        // dd($find_idcv);
+        if($request->ngay_batdau < $request->ngay_ketthuc){
+            
         if($request->id_sv){
+           
             $find_idcv = phancongcongviec::where('id_congviec','=',$id)->get();
-            foreach($request->id_sv as $id_sv){
-                foreach ($find_idcv as $id_cv) {
-                    if(!$id_sv == $id_cv->id_sv){
+        
+            if(count($find_idcv) > 0 ){
+                foreach($request->id_sv as $id_sv){
+                    $find_idcv = phancongcongviec::where('id_congviec','=',$id)->where('id_sv','=',$id_sv)->first();
+                    if(!$find_idcv){
                         phancongcongviec::create([
-                            'id_sv' => $id_sv,
-                            'id_congviec' => $id,
-                            'tien_do' => 0,
-                            'trang_thai' => 0,
-                            'ghi_chu' => ''
-                        ]);
+                                        'id_sv' => $id_sv,
+                                        'id_congviec' => $id,
+                                        'tien_do' => 0,
+                                        'trang_thai' => 0,
+                                        'ghi_chu' => ''
+                                    ]);
                     }
+                    // foreach ($find_idcv as $id_cv) {
+                    //     if($id_sv == $id_cv->id_sv){
+                         
+                    //         phancongcongviec::create([
+                    //             'id_sv' => $id_sv,
+                    //             'id_congviec' => $id,
+                    //             'tien_do' => 0,
+                    //             'trang_thai' => 0,
+                    //             'ghi_chu' => ''
+                    //         ]);
+                    //     }
+                    // }
+                }
+ 
+            }else{
+                foreach($request->id_sv as $id_sv){
+                            phancongcongviec::create([
+                                'id_sv' => $id_sv,
+                                'id_congviec' => $id,
+                                'tien_do' => 0,
+                                'trang_thai' => 0,
+                                'ghi_chu' => ''
+                            ]);
                 }
             }
+            
         }
+    
 
         $cv = congviec::find($id);
         $cv->ten_congviec = $request->ten_congviec;
@@ -176,6 +208,9 @@ class CongviecController extends Controller
         $cv->updated_at = date('Y-m-d H:i:s', strtotime($request->ngay_ketthuc));
         $cv->save();
         return redirect()->back()->with('message','Cập nhật thành công !');
+    }else{
+        return redirect()->back()->with('error','Ngày bắt đầu phải nhỏ hơn ngày kết thúc !');
+    }
     }
 
     /**
@@ -188,7 +223,7 @@ class CongviecController extends Controller
     {
         if (Gate::allows('get-nhomtruong')) {
         $t= congviec::find($id_cv);
-        $l= phancongcongviec::find($id_cv);
+        $l= phancongcongviec::where('id_congviec','=',$id_cv);
         $l->delete();
         $t->delete();
         return redirect()->back()->with(['success' => 'Xóa thành công !']);

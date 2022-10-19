@@ -30,7 +30,7 @@ Route::prefix('/')->middleware(['auth'])->group(function(){
 
     Route::middleware(['auth.qtv'])->prefix('/quantrivien')->name('qtv.')->group(function(){
         Route::resource('congty', CongtyController::class);
-        Route::resource('chucvu', ChucvuController::class);
+        // Route::resource('chucvu', ChucvuController::class);
         Route::resource('dotthuctap', DotthuctapController::class);
     });
     Route::resource('thuctapsinh', ThuctapsinhController::class);

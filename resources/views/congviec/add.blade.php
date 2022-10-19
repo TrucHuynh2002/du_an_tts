@@ -61,6 +61,11 @@
                 <span style="color:red">{{$message}}</span>
             @enderror
         </div>
+        <div class="form-group">
+            @if(Session('error'))
+            <span style="color:red">{{Session('error')}}</span>
+            @endif
+        </div>
         <button type="submit" id="button" class="btn btn-primary btn-block" name="submit">Thêm công việc</button>
     </form>                          
 @endsection

@@ -56,8 +56,8 @@
                           <td>{{$cv->ten_congviec}}</td>
                         
                       
-                          <td>{{$cv->created_at}}</td>
-                          <td>{{$cv->updated_at}}</td>
+                          <td>{{$cv->ngay_batdau}}</td>
+                          <td>{{$cv->ngay_ketthuc}}</td>
                         
                           
                           <td class="{{$cv->trang_thai == 0 ? 'text-danger' : 'text-success'}}">
@@ -70,10 +70,14 @@
                           </td>
                           <td>
                             <a href="{{route('congviec.edit',['congviec'=>$cv->id_congviec])}}?id_nhom={{$cv->id_nhom}}"><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
-                            
                           </td>
                           <td>
-                            <a href=""><button type="button" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button></a>
+                            <form action="{{route('congviec.destroy',['congviec'=>$cv->id_congviec])}}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-outline-danger"><i class='bx bxs-trash'></i></button>
+                            </form>
+                            
                           </td>
                           {{-- @endcan --}}
                         </tr>     

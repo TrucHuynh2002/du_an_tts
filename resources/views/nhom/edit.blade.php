@@ -77,7 +77,7 @@
                                 {{$mb->hoten_sv}}
                             </td>
                             <td>{{$mb->ten_chucvu}}</td>
-                            <td><a href="{{route('deleteMember')}}?id_sv={{$mb->id_sv}}&&id_group={{$mb->id_nhom}}" class="btn btn-danger">Xóa</a></td>
+                            <td><a href="{{route('deleteMember')}}?id_sv={{$mb->id_sv}}&id_group={{$mb->id_nhom}}" class="btn btn-danger">Xóa</a></td>
                         </tr>  
                         @endforeach
                 @else

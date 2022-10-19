@@ -94,7 +94,7 @@
             @enderror
         </div>
         
-        <button style=" margin-left:10px; width: 1250px;" type="submit" class="btn btn-primary btn-block" name="submit">Thêm thực tập sinh</button>
+        <button style=" margin-left:10px; width: 1250px;" type="submit" class="btn btn-primary btn-block" name="submit">Thêm User</button>
     </form>                          
 @endsection
 @push('scripts')
