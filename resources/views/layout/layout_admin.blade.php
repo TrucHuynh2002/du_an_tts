@@ -209,11 +209,11 @@
 											<span class="sub-item">Thêm công việc</span>
 										</a>
 									</li>
-									<li>						
+									{{-- <li>						
 										<a href="{{route('file.index')}}">
 											<span class="sub-item">Nộp bài</span>
 										</a>
-									</li>
+									</li> --}}
 									@endcan
 									<li>
 										<a href="{{route('detailJob',['id' => Auth::user()->id_sv])}}">
@@ -224,6 +224,14 @@
 								</ul>
 							</div>
 						</li>
+							@can('get-nhomtruong')
+							<li class="nav-item">
+								<a href="{{route('file.index')}}">
+									<i class="fas fa-home"></i>
+									<p><i class='bx bx-spreadsheet'></i>Dự án</p>
+								</a>
+							</li>
+							@endcan
 						@endcan
 						@can('get-quanli')
 						<li class="nav-item" style="margin-left: 40px">

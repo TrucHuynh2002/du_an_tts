@@ -16,8 +16,7 @@
         <div class="alert alert-danger">Dữ liệu không hợp lệ. Vui lòng kiểm tra lại !</div>
     @endif
 
-    <!-- Nội dung -->
-    <form action="{{route('congviec.store')}}" method="POST" enctype="multipart/form-data">
+    <!-- Nội dung --><form action="{{route('congviec.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="id_nhom">Nhóm</label>
@@ -67,5 +66,6 @@
             @endif
         </div>
         <button type="submit" id="button" class="btn btn-primary btn-block" name="submit">Thêm công việc</button>
-    </form>                          
+    </form>  
+                            
 @endsection

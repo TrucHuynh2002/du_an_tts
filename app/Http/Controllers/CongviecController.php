@@ -254,8 +254,9 @@ class CongviecController extends Controller
         return redirect()->back()->with(['success' => 'Xóa thành công !']);
     }
 
-    public function detailJob(){
+    public function detailJob(Request $request, $id){
         $title = "Chi tiết công việc của bạn";
+        $get_users = DB::table('chitiet_nhom')->join('users','chitiet_nhom.id_sv','=','users.id_sv')->where('chitiet_nhom.id_nhom','=',$request->id_nhom)->get();
         $detail_yourJob = DB::table('congviec')->join('phancong_congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
                                                 ->join('users', 'phancong_congviec.id_sv' ,'=', 'users.id_sv')
                                                 ->select(
@@ -263,28 +264,41 @@ class CongviecController extends Controller
                                                     'users.hoten_sv',
                                                     'phancong_congviec.tien_do',
                                                     'phancong_congviec.trang_thai',
-                                                    'congviec.created_at',
-                                                    'congviec.updated_at',
-                                                    'congviec.id_congviec'
+                                                    'congviec.ngay_batdau',
+                                                    'congviec.ngay_ketthuc',
+                                                    'congviec.id_congviec',
+                                                    // DB::raw('count(*) as cv')
                                                     )
                                                 ->where('phancong_congviec.id_sv' ,'=' ,Auth::user()->id_sv)
-                                                
+                                                // ->groupBy('congviec.ten_congviec')
                                                 ->get();
-        // dd($detail_yourJob);
+        // dd($detail_yourJob);>
+        $select_job = DB::table('phancong_congviec')->join('congviec','phancong_congviec.id_congviec','=','congviec.id_congviec')->select('phancong_congviec.id_congviec',DB::raw('count(*) as total'))->groupBy('phancong_congviec.id_congviec')
+        ->where('id_sv' ,'=' ,Auth::user()->id_sv)
+        ->orderBy('phancong_congviec.tien_do','DESC')
+        ->get();
+                                            
+        // dd($select_job);
         $time = Carbon::now();
-        return view('congviec.detail_job',compact('title','detail_yourJob','time'));
+        return view('congviec.detail_job',compact('title','detail_yourJob','time','get_users','select_job'));
     }
-    public function update_job($id, Request $request){
+    public function update_job( Request $request){
         $title = "Update tiến độ";
-       
-        $find_job = phancongcongviec::where('id_congviec','=',$id)->where('id_sv','=',Auth::user()->id_sv)->first();
+        
+        $find_job = phancongcongviec::where('id_congviec','=',$request->ten_congviec)->where('id_sv','=',Auth::user()->id_sv)->first();
         // dd($find_job);
         if($find_job) {
             if($find_job->id_sv == Auth::user()->id_sv){
-                $find_job->tien_do = $request->tien_do;
+                // $find_job->tien_do = $request->tien_do;
+                phancongcongviec::create([
+                    'id_sv' => Auth::user()->id_sv,
+                    'id_congviec' => $request->ten_congviec,
+                    'tien_do'   => $request->tien_do,
+                    'trang_thai' => 0
+                ]);
                 if($request->tien_do >=100){
                     $find_job->trang_thai = 1;
-                    $congviec = congviec::find($id);
+                    $congviec = congviec::find($request->ten_congviec);
                     $congviec->trang_thai = 1;
                     $congviec->save();
                 }
