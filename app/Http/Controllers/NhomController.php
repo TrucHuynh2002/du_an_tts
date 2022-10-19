@@ -8,6 +8,7 @@ use App\Http\Requests\StudentRequest;
 use App\Models\chitiet_nhom;
 use App\Models\nhom;
 use App\Models\dot_thuctap;
+use App\Models\File;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
@@ -39,9 +40,14 @@ class NhomController extends Controller
                 ->get();
             }
             // dd($get_nhom);
+        $get_file = DB::table('file')
+            ->join('nhom','file.id_nhom','=','nhom.id_nhom')
+            ->first();
+            // dd($get_file);
+           
         $get_dotthuctap = dot_thuctap::all();
         $get_users = User::all();
-        return view('nhom.list', compact('title','get_nhom','get_dotthuctap','get_users'));
+        return view('nhom.list', compact('title','get_nhom','get_dotthuctap','get_users','get_file'));
     }
 
     /**

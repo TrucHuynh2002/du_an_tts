@@ -67,7 +67,12 @@
                   <td>{{$t->de_tai}}</td>
                                   
                   @cannot('get-thuctapsinh')
-                <td>File</td>
+                  @if ($get_file)
+                  <td><a href="{{route('downloadFile',['id'=>$t->id])}}" class="link">{{$get_file->ten_file}}</a></td>
+                  @else
+                      
+                  @endif
+                <td></td>
                 @endcan
                   @can('get-quanli')
                   <td><a href="{{route('thamgianhom.index',['token' => $t->token])}}">{{route('thamgianhom.index',['token' => $t->token])}}</a></td>

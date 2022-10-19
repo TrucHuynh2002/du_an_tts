@@ -51,7 +51,7 @@ Route::prefix('/')->middleware(['auth'])->group(function(){
     Route::get('taikhoan/{id}', [ThuctapsinhController::class,'get_profile'])->name('get_profile');
     Route::get('chi-tiet-nhom/{id}',[NhomController::class,'detailtGroup'])->name('detailtGroup');
     Route::get('deleteuserwork/{id}',[CongviecController::class,'deleteUserWork'])->name('deleteuserwork');
-    Route::post('cap-nhat-tien-do-cong-viec/{id}',[CongviecController::class,'update_job'])->name('updateJob');
+    Route::post('cap-nhat-tien-do-cong-viec',[CongviecController::class,'update_job'])->name('updateJob');
 
     Route::post('abc',[NhomController::class,'get_Dot'])->name('taolao');
 
