@@ -9,7 +9,7 @@ class phancongcongviec extends Model
 {
     protected $table = 'phancong_congviec';
     protected $primaryKey = 'id_pccv';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
     'id_sv',
     'id_congviec',

@@ -14,6 +14,7 @@ class congviec extends Model
     protected $fillable = [
     'ten_congviec',
     'id_nhom',
+    'tien_do',
     'ngay_batdau',
     'ngay_ketthuc',
     'updated_at',

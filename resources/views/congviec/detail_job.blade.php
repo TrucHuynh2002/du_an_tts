@@ -39,12 +39,12 @@
                     <td><a href="{{route('detailJob',['id' => $item->id_congviec])}}">{{$item->ten_congviec}}</a></td>
                     <td>{{$item->hoten_sv}}</td>
                     @if ($item->ngay_ketthuc < $time)
-                    <td>{{$item->tien_do}}</td>
+                    <td>{{$item->max_tienDo}}</td>
                     @else
                     <td>
                       <form action="{{route('updateJob',['id' => $item->id_congviec])}}" method="post">
                           @csrf
-                          <input type="number" min="0" max="100"  value="{{$item->tien_do}}" name="tien_do" style="width: 65px;padding:4px"> <strong>%</strong>
+                          <input type="number" min="0" max="100"  value="{{$item->max_tienDo}}" name="tien_do" style="width: 65px;padding:4px"> <strong>%</strong>
                           {{-- <select name="tien_do" id="">
                               <option value="25">25%</option>
                               <option value="50">50%</option>
@@ -112,7 +112,7 @@
                   </div>
                   <div class="form-grpup">
                     <label for="tien_do">Tiến độ</label>
-                    <input class="form-control" type="number" id="ten_congviec" name="tien_do" id="tien_do">
+                    <input class="form-control" type="number" min="1" max="100" id="ten_congviec" name="tien_do" id="tien_do">
                     @error('tien_do')
                         <span style="color:red">{{$message}}</span>
                     @enderror
@@ -140,8 +140,8 @@
               <th>STT</th>
               <th>Tên công việc</th>
               <th>Tiến độ</th>
-              <th>Ngày bắt đầu</th>
-              <th>Ngày kết thúc</th>
+              <th>Người thực hiện</th>
+              <th>Ngày cập nhật</th>
               <th></th>
               <th></th>
             </tr>
@@ -150,30 +150,16 @@
           @php
               $i = 1;
           @endphp
-          @if (count($detail_yourJob)>0)
-              @foreach ($detail_yourJob as $item)
+          @if (count($select_job)>0)
+              @foreach ($select_job as $item)
           
                 <tr>
                   <td>{{$i++}}</td>
                   <td>{{$item->ten_congviec}}</td>
-                  @if ($item->ngay_ketthuc < $time)
                   <td>{{$item->tien_do}}</td>
-                  @else
-                  <td>
-                    <form action="{{route('updateJob',['id' => $item->id_congviec])}}" method="post">
-                        @csrf
-                        <input type="number" min="0" max="100"  value="{{$item->tien_do}}" name="tien_do" style="width: 65px;padding:4px"> <strong>%</strong>
-                        {{-- <select name="tien_do" id="">
-                            <option value="25">25%</option>
-                            <option value="50">50%</option>
-                            <option value="75">75%</option>
-                            <option value="100">100%</option>
-                        </select> --}}
-                      </form>
-                </td>
-                  @endif
-                  <td>{{$item->ngay_batdau}}</td>
-                  <td>{{$item->ngay_ketthuc}}</td>
+                  <td>{{$item->hoten_sv}}</td>
+                  <td>{{$item->created_at}}</td>
+                  {{-- <td>{{$item->ngay_ketthuc}}</td> --}}
                   {{-- <td>
                     <a href=""><button type="button" class="btn btn-outline-info"><i class='bx bxs-edit'></i></button></a>
                   </td> --}}

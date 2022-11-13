@@ -257,26 +257,47 @@ class CongviecController extends Controller
     public function detailJob(Request $request, $id){
         $title = "Chi tiết công việc của bạn";
         $get_users = DB::table('chitiet_nhom')->join('users','chitiet_nhom.id_sv','=','users.id_sv')->where('chitiet_nhom.id_nhom','=',$request->id_nhom)->get();
-        $detail_yourJob = DB::table('congviec')->join('phancong_congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
-                                                ->join('users', 'phancong_congviec.id_sv' ,'=', 'users.id_sv')
+        $detail_yourJob = DB::table('phancong_congviec')
+                                            ->join('congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
+                                            ->join('users', 'phancong_congviec.id_sv' ,'=', 'users.id_sv')
                                                 ->select(
                                                     'congviec.ten_congviec',
                                                     'users.hoten_sv',
+                                                  
                                                     'phancong_congviec.tien_do',
-                                                    'phancong_congviec.trang_thai',
-                                                    'congviec.ngay_batdau',
+                                                    'phancong_congviec.trang_thai',                                                    'congviec.ngay_batdau',
                                                     'congviec.ngay_ketthuc',
                                                     'congviec.id_congviec',
-                                                    // DB::raw('count(*) as cv')
+                                                    DB::raw('MAX(phancong_congviec.tien_do) as max_tienDo')
                                                     )
+                                                    
                                                 ->where('phancong_congviec.id_sv' ,'=' ,Auth::user()->id_sv)
-                                                // ->groupBy('congviec.ten_congviec')
-                                                ->get();
-        // dd($detail_yourJob);>
-        $select_job = DB::table('phancong_congviec')->join('congviec','phancong_congviec.id_congviec','=','congviec.id_congviec')->select('phancong_congviec.id_congviec',DB::raw('count(*) as total'))->groupBy('phancong_congviec.id_congviec')
-        ->where('id_sv' ,'=' ,Auth::user()->id_sv)
-        ->orderBy('phancong_congviec.tien_do','DESC')
-        ->get();
+                                                    // ->orderBy('phancong_congviec.id_congviec','DESC')
+                                                    // ->havingRaw('MAX(phancong_congviec.tien_do)')
+                                            ->groupBy('phancong_congviec.id_congviec')
+                                               
+                                            // ->havingRaw()
+                                          
+                                            
+                                            ->get();   
+        // dd($detail_yourJob);
+            $select_job = DB::table('phancong_congviec')
+            ->join('congviec','congviec.id_congviec','=','phancong_congviec.id_congviec')
+            ->join('users', 'phancong_congviec.id_sv' ,'=', 'users.id_sv')
+                ->select(
+                    'congviec.ten_congviec',
+                    'users.hoten_sv',
+                    'phancong_congviec.tien_do',
+                    'phancong_congviec.trang_thai',
+                    'phancong_congviec.created_at',
+                   
+                    // DB::raw('count(*) as cv')
+                    )
+                ->where('phancong_congviec.id_sv' ,'=' ,Auth::user()->id_sv)
+                // ->where('phancong_congviec.id_sv','=',Auth::user()->id_sv)
+                ->get();
+
+        // $select_job = phancongcongviec::where('id_sv','=',Auth::user()->id_sv)->get();
                                             
         // dd($select_job);
         $time = Carbon::now();
